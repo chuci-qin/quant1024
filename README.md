@@ -1,96 +1,98 @@
 # quant1024
 
-一个量化交易工具包，提供抽象的策略框架和常用的量化分析函数。
+A quantitative trading toolkit providing an abstract strategy framework and common quantitative analysis functions.
 
-## 特性
+**Documentation**: [English](guide/en/) | [中文](guide/zh-hans/) | [中文文档](README_zh.md)
 
-- 🎯 **抽象策略基类**：提供 `QuantStrategy` 抽象基类，方便快速开发自定义策略
-- 📊 **量化工具函数**：内置收益率计算、夏普比率等常用指标
-- 🧪 **完整测试**：全面的测试覆盖，确保外部调用稳定可靠
-- 🚀 **易于扩展**：清晰的接口设计，便于继承和定制
+## Features
 
-## 安装
+- 🎯 **Abstract Strategy Base Class**: Provides `QuantStrategy` abstract base class for rapid custom strategy development
+- 📊 **Quantitative Tool Functions**: Built-in indicators including returns calculation, Sharpe ratio, and more
+- 🧪 **Comprehensive Testing**: Full test coverage ensuring stable and reliable external API calls
+- 🚀 **Easy to Extend**: Clear interface design for easy inheritance and customization
 
-### 方式 1: 从 PyPI 安装（包发布后）
+## Installation
+
+### Method 1: Install from PyPI (after package is published)
 
 ```bash
 pip install quant1024
 ```
 
-### 方式 2: 从 Git 仓库安装
+### Method 2: Install from Git Repository
 
 ```bash
 pip install git+https://github.com/yourusername/quant1024.git
 ```
 
-### 方式 3: 从本地源码安装
+### Method 3: Install from Local Source
 
 ```bash
-# 克隆或下载本仓库后
+# After cloning or downloading the repository
 cd quant1024
 
-# 开发模式安装（推荐开发时使用）
+# Development mode installation (recommended for development)
 pip install -e .
 
-# 或正常安装
+# Or normal installation
 pip install .
 ```
 
-### 安装开发依赖
+### Install Development Dependencies
 
 ```bash
 pip install -e ".[dev]"
 ```
 
-## 快速开始
+## Quick Start
 
-### 1. 创建自定义策略
+### 1. Create a Custom Strategy
 
 ```python
 from quant1024 import QuantStrategy
 
 class MyStrategy(QuantStrategy):
-    """自定义交易策略"""
+    """Custom trading strategy"""
     
     def generate_signals(self, data):
-        """生成交易信号"""
+        """Generate trading signals"""
         signals = []
         for i, price in enumerate(data):
             if i == 0:
                 signals.append(0)
             elif price > data[i-1]:
-                signals.append(1)   # 买入
+                signals.append(1)   # Buy
             else:
-                signals.append(-1)  # 卖出
+                signals.append(-1)  # Sell
         return signals
     
     def calculate_position(self, signal, current_position):
-        """计算仓位"""
+        """Calculate position size"""
         if signal == 1:
-            return 1.0  # 满仓
+            return 1.0  # Full position
         elif signal == -1:
-            return 0.0  # 空仓
+            return 0.0  # No position
         else:
             return current_position
 ```
 
-### 2. 运行回测
+### 2. Run Backtest
 
 ```python
-# 创建策略实例
+# Create strategy instance
 strategy = MyStrategy(
     name="MyFirstStrategy",
     params={"param1": "value1"}
 )
 
-# 准备价格数据
+# Prepare price data
 prices = [100, 102, 101, 105, 103, 108, 110]
 
-# 运行回测
+# Run backtest
 result = strategy.backtest(prices)
 
 print(result)
-# 输出:
+# Output:
 # {
 #     'strategy_name': 'MyFirstStrategy',
 #     'total_signals': 7,
@@ -100,143 +102,158 @@ print(result)
 # }
 ```
 
-### 3. 使用工具函数
+### 3. Use Utility Functions
 
 ```python
 from quant1024 import calculate_returns, calculate_sharpe_ratio
 
-# 计算收益率
+# Calculate returns
 prices = [100, 110, 105, 115]
 returns = calculate_returns(prices)
 print(returns)  # [0.1, -0.0454..., 0.0952...]
 
-# 计算夏普比率
+# Calculate Sharpe ratio
 sharpe = calculate_sharpe_ratio(returns)
 print(sharpe)  # 1.2345
 ```
 
-## API 文档
+## API Documentation
 
-### `QuantStrategy` 抽象基类
+### `QuantStrategy` Abstract Base Class
 
-所有策略必须继承此基类并实现以下方法：
+All strategies must inherit from this base class and implement the following methods:
 
-#### 方法
+#### Methods
 
 - `__init__(name: str, params: Optional[Dict[str, Any]] = None)`
-  - 初始化策略
-  - `name`: 策略名称
-  - `params`: 策略参数字典（可选）
+  - Initialize the strategy
+  - `name`: Strategy name
+  - `params`: Strategy parameters dictionary (optional)
 
 - `initialize() -> None`
-  - 初始化策略（在回测前会自动调用）
+  - Initialize the strategy (called automatically before backtesting)
 
-- `generate_signals(data: List[float]) -> List[int]` **[抽象方法]**
-  - 生成交易信号
-  - `data`: 价格数据列表
-  - 返回：信号列表（1=买入，-1=卖出，0=持有）
+- `generate_signals(data: List[float]) -> List[int]` **[Abstract Method]**
+  - Generate trading signals
+  - `data`: List of price data
+  - Returns: List of signals (1=buy, -1=sell, 0=hold)
 
-- `calculate_position(signal: int, current_position: float) -> float` **[抽象方法]**
-  - 根据信号计算仓位
-  - `signal`: 交易信号
-  - `current_position`: 当前仓位
-  - 返回：新的仓位大小
+- `calculate_position(signal: int, current_position: float) -> float` **[Abstract Method]**
+  - Calculate position size based on signal
+  - `signal`: Trading signal
+  - `current_position`: Current position size
+  - Returns: New position size
 
 - `backtest(data: List[float]) -> Dict[str, Any]`
-  - 运行回测
-  - `data`: 历史价格数据
-  - 返回：回测结果字典
+  - Run backtest
+  - `data`: Historical price data
+  - Returns: Backtest results dictionary
 
-### 工具函数
+### Utility Functions
 
 - `calculate_returns(prices: List[float]) -> List[float]`
-  - 计算收益率序列
-  - `prices`: 价格序列
-  - 返回：收益率序列
+  - Calculate returns series
+  - `prices`: Price series
+  - Returns: Returns series
 
 - `calculate_sharpe_ratio(returns: List[float], risk_free_rate: float = 0.0) -> float`
-  - 计算夏普比率
-  - `returns`: 收益率序列
-  - `risk_free_rate`: 无风险利率（默认为0）
-  - 返回：夏普比率值
+  - Calculate Sharpe ratio
+  - `returns`: Returns series
+  - `risk_free_rate`: Risk-free rate (default 0)
+  - Returns: Sharpe ratio value
 
-## 示例代码
+## Documentation
 
-查看 `examples/usage_example.py` 获取更多详细示例，包括：
+For detailed guides and tutorials, please visit:
 
-- 均值回归策略
-- 动量策略
-- 工具函数使用
-- 策略方法直接调用
+- 📖 [Quick Start Guide](guide/en/QUICKSTART.md) - Get started in 5 minutes
+- 📦 [Installation Guide](guide/en/INSTALLATION.md) - Detailed installation instructions
+- 💡 [Usage Guide](guide/en/USAGE.md) - Comprehensive usage examples
+- 🚀 [Publishing Guide](guide/en/PUBLISHING.md) - How to publish to PyPI
 
-运行示例：
+中文用户请访问 [中文指南](guide/zh-hans/)
+
+## Examples
+
+See `examples/usage_example.py` for more detailed examples, including:
+
+- Mean reversion strategy
+- Momentum strategy
+- Utility function usage
+- Direct strategy method calls
+
+Run the example:
 
 ```bash
 cd examples
 python usage_example.py
 ```
 
-## 开发
+## Development
 
-### 安装开发依赖
+### Install Development Dependencies
 
 ```bash
 uv pip install -e ".[dev]"
 ```
 
-### 运行测试
+### Run Tests
 
 ```bash
 pytest tests/ -v
 ```
 
-### 测试覆盖率
+### Test Coverage
 
 ```bash
 pytest tests/ --cov=quant1024 --cov-report=html
 ```
 
-## 项目结构
+## Project Structure
 
 ```
 quant1024/
-├── src/quant1024/          # 源代码
-│   ├── __init__.py         # 包初始化
-│   └── core.py             # 核心功能
-├── tests/                  # 测试代码
+├── src/quant1024/          # Source code
+│   ├── __init__.py         # Package initialization
+│   └── core.py             # Core functionality
+├── tests/                  # Test code
 │   ├── __init__.py
-│   └── test_core.py        # 核心功能测试
-├── examples/               # 示例代码
-│   └── usage_example.py    # 使用示例
-├── pyproject.toml          # 项目配置
-├── README.md               # 项目文档
-└── LICENSE                 # 许可证
+│   └── test_core.py        # Core functionality tests
+├── examples/               # Example code
+│   └── usage_example.py    # Usage examples
+├── guide/                  # Documentation guides
+│   ├── en/                 # English guides
+│   └── zh-hans/            # Chinese guides
+├── pyproject.toml          # Project configuration
+├── README.md               # Project documentation (English)
+├── README_zh.md            # Project documentation (Chinese)
+└── LICENSE                 # License
 ```
 
-## 测试说明
+## Testing
 
-本项目包含全面的测试用例，确保外部软件可以正常调用：
+This project includes comprehensive test cases to ensure external software can properly call the API:
 
-- ✅ **导入测试**：验证所有公共API可以被正确导入
-- ✅ **继承测试**：验证外部代码可以继承抽象基类
-- ✅ **功能测试**：验证所有方法正常工作
-- ✅ **集成测试**：验证典型使用场景
-- ✅ **边界测试**：验证异常情况处理
+- ✅ **Import Tests**: Verify all public APIs can be correctly imported
+- ✅ **Inheritance Tests**: Verify external code can inherit from the abstract base class
+- ✅ **Functionality Tests**: Verify all methods work correctly
+- ✅ **Integration Tests**: Verify typical use cases
+- ✅ **Edge Case Tests**: Verify exception handling
 
-运行测试以确保一切正常：
+Run tests to ensure everything works:
 
 ```bash
 pytest tests/ -v
 ```
 
-## 许可证
+## License
 
-请查看 LICENSE 文件了解许可证信息。
+See the LICENSE file for license information.
 
-## 贡献
+## Contributing
 
-欢迎提交 Issue 和 Pull Request！
+Issues and Pull Requests are welcome!
 
-## 联系方式
+## Contact
 
-如有问题或建议，请提交 Issue。
+For questions or suggestions, please submit an Issue.

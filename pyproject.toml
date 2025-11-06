@@ -1,17 +1,17 @@
 [project]
 name = "quant1024"
 version = "0.1.0"
-description = "A quantitative trading toolkit with abstract strategy framework"
+description = "A quantitative trading toolkit with abstract strategy framework and common analysis functions"
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "1024 Exchange", email = "1024exchange@gmail.com"}
 ]
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.8"
 dependencies = []
-keywords = ["quant", "trading", "strategy", "backtest", "finance"]
+keywords = ["quant", "quantitative", "trading", "strategy", "backtest", "finance", "algorithmic-trading"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: Financial and Insurance Industry",
     "License :: OSI Approved :: Apache Software License",
@@ -23,13 +23,14 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Topic :: Office/Business :: Financial",
     "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/quant1024"
-Repository = "https://github.com/yourusername/quant1024"
-Documentation = "https://github.com/yourusername/quant1024#readme"
-Issues = "https://github.com/yourusername/quant1024/issues"
+Homepage = "https://github.com/chuci-qin/quant1024"
+Repository = "https://github.com/chuci-qin/quant1024"
+Documentation = "https://github.com/chuci-qin/quant1024"
+Issues = "https://github.com/chuci-qin/quant1024/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -49,4 +50,13 @@ python_functions = ["test_*"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/quant1024"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "release_documents/",
+    "publish.sh",
+    "check_package.sh",
+    "setup.py",
+    ".packageignore",
+]
 

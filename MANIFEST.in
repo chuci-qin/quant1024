@@ -1,4 +1,26 @@
+# Include necessary files for the package
 include README.md
+include README_zh.md
 include LICENSE
+
+# Include source code
 recursive-include src/quant1024 *.py
+
+# Include documentation and examples
+recursive-include guide *.md
+recursive-include examples *.py
+
+# Exclude development and publishing documents/scripts (keep in git, but not in package)
+recursive-exclude release_documents *
+exclude publish.sh
+exclude check_package.sh
+exclude setup.py
+exclude .packageignore
+
+# Exclude build artifacts and cache
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *.so
+global-exclude .DS_Store
+global-exclude *.egg-info
 

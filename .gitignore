@@ -49,3 +49,5 @@ htmlcov/
 # Distribution / packaging
 .Python
 
+# Release documents
+release_documents/

@@ -17,7 +17,7 @@
 ### 方式 A: 可编辑模式安装（开发模式）
 
 ```bash
-cd /Users/chuciqin/Desktop/project1024/quant1024
+cd quant1024
 
 # 使用 uv（推荐）
 uv pip install -e .
@@ -60,7 +60,7 @@ pip install build twine
 
 ```bash
 # 进入项目根目录
-cd /Users/chuciqin/Desktop/project1024/quant1024
+cd quant1024
 
 # 清理旧的构建文件
 rm -rf dist/ build/ *.egg-info
@@ -269,7 +269,7 @@ twine upload dist/*
 
 ```bash
 # 1. 确保代码已提交
-cd /Users/chuciqin/Desktop/project1024/quant1024
+cd quant1024
 git add .
 git commit -m "Prepare for release 0.1.0"
 git push origin main
