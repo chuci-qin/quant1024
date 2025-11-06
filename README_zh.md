@@ -1,5 +1,10 @@
 # quant1024
 
+[![PyPI version](https://badge.fury.io/py/quant1024.svg)](https://pypi.org/project/quant1024/)
+[![Python versions](https://img.shields.io/pypi/pyversions/quant1024.svg)](https://pypi.org/project/quant1024/)
+[![License](https://img.shields.io/pypi/l/quant1024.svg)](https://github.com/chuci-qin/quant1024/blob/main/LICENSE)
+[![Downloads](https://pepy.tech/badge/quant1024)](https://pepy.tech/project/quant1024)
+
 一个量化交易工具包，提供抽象的策略框架和常用的量化分析函数。
 
 **文档**: [中文](guide/zh-hans/) | [English](guide/en/) | [English README](README.md)

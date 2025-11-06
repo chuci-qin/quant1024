@@ -1,5 +1,10 @@
 # quant1024
 
+[![PyPI version](https://badge.fury.io/py/quant1024.svg)](https://pypi.org/project/quant1024/)
+[![Python versions](https://img.shields.io/pypi/pyversions/quant1024.svg)](https://pypi.org/project/quant1024/)
+[![License](https://img.shields.io/pypi/l/quant1024.svg)](https://github.com/chuci-qin/quant1024/blob/main/LICENSE)
+[![Downloads](https://pepy.tech/badge/quant1024)](https://pepy.tech/project/quant1024)
+
 A quantitative trading toolkit providing an abstract strategy framework and common quantitative analysis functions.
 
 **Documentation**: [English](guide/en/) | [中文](guide/zh-hans/) | [中文文档](README_zh.md)
