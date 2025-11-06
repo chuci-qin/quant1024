@@ -49,5 +49,11 @@ htmlcov/
 # Distribution / packaging
 .Python
 
+# PyPI credentials (NEVER commit these!)
+.pypirc
+*.pypirc
+.pypi-token
+*.token
+
 # Release documents
 release_documents/
