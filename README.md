@@ -5,16 +5,40 @@
 [![License](https://img.shields.io/pypi/l/quant1024.svg)](https://github.com/chuci-qin/quant1024/blob/main/LICENSE)
 [![Downloads](https://pepy.tech/badge/quant1024)](https://pepy.tech/project/quant1024)
 
-A quantitative trading toolkit providing an abstract strategy framework and common quantitative analysis functions.
+**A cross-exchange quantitative trading toolkit for structured data retrieval and real-time trading**
+
+跨券商跨交易所的开源量化交易工具包，支持结构化数据获取、快速连接多个交易所、实时 WebSocket/Webhook 数据推送。
 
 **Documentation**: [English](guide/en/) | [中文](guide/zh-hans/) | [中文文档](README_zh.md)
 
 ## Features
 
-- 🎯 **Abstract Strategy Base Class**: Provides `QuantStrategy` abstract base class for rapid custom strategy development
-- 📊 **Quantitative Tool Functions**: Built-in indicators including returns calculation, Sharpe ratio, and more
-- 🧪 **Comprehensive Testing**: Full test coverage ensuring stable and reliable external API calls
-- 🚀 **Easy to Extend**: Clear interface design for easy inheritance and customization
+- 🌐 **Multi-Exchange Support**: Unified interface for multiple exchanges
+  - ✅ 1024 Exchange (Decentralized Perpetuals)
+  - 🔄 Binance (Crypto Exchange)
+  - 🔄 IBKR (Interactive Brokers - Traditional Finance)
+  - 🔄 More exchanges coming...
+
+- 📊 **Structured Data Retrieval**: Multi-source aggregation and standardized format
+  - **Multi-source aggregation**: Combine data from multiple exchanges/brokers
+  - **Historical time series**: Get historical data for any trading pair
+    * Klines (1m, 5m, 1h, 1d, etc.)
+    * Trade history
+    * Order history
+    * Funding rate history
+  - **Multiple trading pairs**: Perpetuals, Spot, Futures, Options
+  - **Cross-exchange data**: Compare and arbitrage across exchanges
+  - **Standardized format**: Same data structure across all sources
+
+- 🔌 **Real-time Data Push**: Live data via WebSocket and Webhook
+  - WebSocket for price updates
+  - Webhook callbacks for order events
+  - Continuous live trading data
+
+- 🚀 **Quick Connection**: One-line code to connect any exchange
+  - Auto-handled authentication
+  - Unified API interface
+  - Easy to switch between exchanges
 
 ## Installation
 
