@@ -1,7 +1,7 @@
 [project]
 name = "quant1024"
-version = "0.2.0"
-description = "Cross-exchange quantitative trading toolkit with unified API for 1024ex, Binance, IBKR and more"
+version = "0.3.0"
+description = "Multi-source quantitative trading toolkit for structured data retrieval and real-time trading - supports exchanges, financial data providers, and blockchain sources"
 authors = [
     {name = "1024 Exchange", email = "1024exchange@gmail.com"}
 ]
@@ -11,8 +11,11 @@ requires-python = ">=3.8"
 dependencies = [
     "requests>=2.31.0",
     "pydantic>=2.0.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
 ]
-keywords = ["quant", "quantitative", "trading", "strategy", "backtest", "finance", "algorithmic-trading"]
+
+keywords = ["quant", "quantitative", "trading", "strategy", "backtest", "finance", "algorithmic-trading", "multi-source", "data-retrieval"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -36,10 +39,21 @@ Documentation = "https://github.com/chuci-qin/quant1024"
 Issues = "https://github.com/chuci-qin/quant1024/issues"
 
 [project.optional-dependencies]
+yahoo = [
+    "yfinance>=0.2.0",
+]
+blockchain = [
+    "web3>=6.0.0",
+]
+all = [
+    "yfinance>=0.2.0",
+    "web3>=6.0.0",
+]
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
     "responses>=0.23.0",
+    "yfinance>=0.2.0",
 ]
 
 [build-system]
