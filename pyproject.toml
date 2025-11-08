@@ -1,14 +1,17 @@
 [project]
 name = "quant1024"
-version = "0.1.0"
-description = "A quantitative trading toolkit with abstract strategy framework and common analysis functions"
+version = "0.2.0"
+description = "Cross-exchange quantitative trading toolkit with unified API for 1024ex, Binance, IBKR and more"
 authors = [
     {name = "1024 Exchange", email = "1024exchange@gmail.com"}
 ]
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.8"
-dependencies = []
+dependencies = [
+    "requests>=2.31.0",
+    "pydantic>=2.0.0",
+]
 keywords = ["quant", "quantitative", "trading", "strategy", "backtest", "finance", "algorithmic-trading"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -36,6 +39,7 @@ Issues = "https://github.com/chuci-qin/quant1024/issues"
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
+    "responses>=0.23.0",
 ]
 
 [build-system]
