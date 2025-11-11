@@ -11,6 +11,7 @@ quant1024 - A quantitative trading toolkit
 from .core import QuantStrategy, calculate_returns, calculate_sharpe_ratio
 from .exchanges import BaseExchange, Exchange1024ex
 from .data import DataRetriever, BacktestDataset
+from .live_trading import start_trading, LiveTrader
 from .exceptions import (
     Quant1024Exception,
     AuthenticationError,
@@ -34,6 +35,9 @@ __all__ = [
     # Data Retrieval (v0.3.0)
     "DataRetriever",
     "BacktestDataset",
+    # Live Trading (v0.3.0)
+    "start_trading",
+    "LiveTrader",
     # Exceptions
     "Quant1024Exception",
     "AuthenticationError",

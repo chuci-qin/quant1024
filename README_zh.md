@@ -75,6 +75,49 @@ pip install -e ".[dev]"
 
 ## 快速开始
 
+### 模式 1：实盘交易（一行代码开始交易！）⭐
+
+```python
+from quant1024 import QuantStrategy, start_trading
+
+class MyStrategy(QuantStrategy):
+    """你的交易策略"""
+    
+    def generate_signals(self, data):
+        # 简单的趋势策略
+        if len(data) < 2:
+            return [0]
+        return [1 if data[-1] > data[-2] else -1]
+    
+    def calculate_position(self, signal, current_position):
+        if signal == 1:
+            return 0.5  # 50% 仓位
+        elif signal == -1:
+            return 0.0  # 清仓
+        return current_position
+
+# 🚀 开始实盘交易！就这么简单！
+start_trading(
+    strategy=MyStrategy(name="我的策略"),
+    api_key="your_api_key",
+    api_secret="your_api_secret",
+    market="BTC-PERP",
+    initial_capital=10000,      # 初始资金
+    max_position_size=0.5,      # 最多 50% 仓位
+    check_interval=60,          # 每 60 秒检查
+    stop_loss=0.05,             # 5% 止损
+    take_profit=0.10            # 10% 止盈
+)
+```
+
+**就是这样！你的策略现在正在实盘运行！** 🎉
+
+查看 [实盘交易指南](guide/zh-hans/LIVE_TRADING.md) 了解更多。
+
+---
+
+### 模式 2：回测（测试你的策略）
+
 ### 1. 创建自定义策略
 
 ```python
@@ -196,9 +239,10 @@ print(sharpe)  # 1.2345
 更多详细指南和教程，请访问：
 
 - 📖 [快速开始指南](guide/zh-hans/QUICKSTART.md) - 5分钟快速上手
+- 🚀 [实盘交易指南](guide/zh-hans/LIVE_TRADING.md) - ⭐ 一行代码开始交易！
 - 📦 [安装指南](guide/zh-hans/INSTALLATION.md) - 详细安装说明
 - 💡 [使用指南](guide/zh-hans/USAGE.md) - 完整的使用示例
-- 🚀 [发布指南](guide/zh-hans/PUBLISHING.md) - 如何发布到 PyPI
+- 📤 [发布指南](guide/zh-hans/PUBLISHING.md) - 如何发布到 PyPI
 
 English users please visit [English Guide](guide/en/)
 
