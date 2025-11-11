@@ -12,6 +12,7 @@ from .core import QuantStrategy, calculate_returns, calculate_sharpe_ratio
 from .exchanges import BaseExchange, Exchange1024ex
 from .data import DataRetriever, BacktestDataset
 from .live_trading import start_trading, LiveTrader
+from .monitor_feeds import RuntimeConfig, RuntimeReporter
 from .exceptions import (
     Quant1024Exception,
     AuthenticationError,
@@ -38,6 +39,9 @@ __all__ = [
     # Live Trading (v0.3.0)
     "start_trading",
     "LiveTrader",
+    # Monitor Feeds (v0.3.0)
+    "RuntimeConfig",
+    "RuntimeReporter",
     # Exceptions
     "Quant1024Exception",
     "AuthenticationError",

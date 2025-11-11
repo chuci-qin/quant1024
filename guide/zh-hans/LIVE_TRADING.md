@@ -227,6 +227,30 @@ start_trading(
 
 ---
 
+## 🔌 跨交易所支持
+
+### 设计优势
+
+`LiveTrader` 使用 `BaseExchange` 抽象接口，支持多个交易所：
+
+```python
+# 架构图
+LiveTrader (交易逻辑)
+    ↓ 依赖抽象接口
+BaseExchange (统一接口)
+    ↓ 实现
+Exchange1024ex / Binance / IBKR (具体交易所)
+```
+
+**核心优势**：
+- ✅ 同一个策略可以在不同交易所运行
+- ✅ 无需修改策略代码即可切换交易所
+- ✅ 易于添加新的交易所支持
+
+查看 [架构设计文档](../../ARCHITECTURE_LIVE_TRADING.md) 了解详情。
+
+---
+
 ## 🎮 高级控制
 
 如果你需要更细粒度的控制，可以使用 `LiveTrader` 类：

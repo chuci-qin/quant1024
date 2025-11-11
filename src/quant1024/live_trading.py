@@ -10,8 +10,9 @@ from typing import Optional, Dict, Any, List
 from datetime import datetime
 
 from .core import QuantStrategy
-from .exchanges import Exchange1024ex
+from .exchanges import BaseExchange, Exchange1024ex
 from .exceptions import Quant1024Exception, InvalidParameterError
+from .monitor_feeds import RuntimeConfig, RuntimeReporter
 
 
 # 配置日志
@@ -32,26 +33,33 @@ class LiveTrader:
     - 自动执行交易
     - 风险管理
     - 持仓监控
+    
+    设计说明：
+    - 使用 BaseExchange 抽象接口，支持多个交易所
+    - 只依赖 3 个核心方法：get_ticker, get_positions, place_order
+    - 任何实现 BaseExchange 的交易所都可以使用
     """
     
     def __init__(
         self,
         strategy: QuantStrategy,
-        exchange: Exchange1024ex,
+        exchange: BaseExchange,
         market: str,
         initial_capital: float,
         max_position_size: float = 1.0,
         check_interval: int = 60,
         max_slippage: float = 0.01,
         stop_loss: Optional[float] = None,
-        take_profit: Optional[float] = None
+        take_profit: Optional[float] = None,
+        # ========== 简化：只有一个参数 ==========
+        runtime_config: Optional[RuntimeConfig] = None
     ):
         """
         初始化实盘交易器
         
         Args:
             strategy: 交易策略（继承自 QuantStrategy）
-            exchange: 交易所连接器
+            exchange: 交易所连接器（实现 BaseExchange 接口）
             market: 交易对（如 "BTC-PERP"）
             initial_capital: 初始资金
             max_position_size: 最大仓位比例（0-1，默认1.0=满仓）
@@ -59,6 +67,9 @@ class LiveTrader:
             max_slippage: 最大滑点容忍度（默认1%）
             stop_loss: 止损百分比（可选）
             take_profit: 止盈百分比（可选）
+            runtime_config: Runtime 监控配置
+                - 如果提供，自动启用监控
+                - 如果为 None，不启用监控
         """
         self.strategy = strategy
         self.exchange = exchange
@@ -78,11 +89,36 @@ class LiveTrader:
         self.price_history = []       # 价格历史（用于生成信号）
         self.history_length = 100     # 保留的历史数据长度
         
+        # ========== 简化：Runtime 监控 ==========
+        self.runtime_config = runtime_config
+        self.runtime_reporter: Optional[RuntimeReporter] = None
+        
+        if self.runtime_config:
+            # 创建报告器（移除 exchange 参数）
+            self.runtime_reporter = RuntimeReporter(self.runtime_config)
+            
+            # 创建 Runtime
+            success = self.runtime_reporter.create_runtime(
+                market=market,
+                initial_capital=initial_capital,
+                max_position_size=max_position_size
+            )
+            
+            if not success:
+                logger.warning(
+                    "Failed to create runtime, monitoring will be disabled"
+                )
+                self.runtime_reporter = None
+        
         # 初始化策略
         if not strategy._is_initialized:
             strategy.initialize()
         
-        logger.info(f"LiveTrader 初始化完成: 策略={strategy.name}, 市场={market}, 初始资金={initial_capital}")
+        logger.info(
+            f"LiveTrader 初始化完成: "
+            f"策略={strategy.name}, 市场={market}, "
+            f"监控={'启用' if self.runtime_reporter else '禁用'}"
+        )
     
     def start(self, max_iterations: Optional[int] = None):
         """
@@ -128,6 +164,15 @@ class LiveTrader:
     def stop(self):
         """停止交易"""
         self.is_running = False
+        
+        # 更新 Runtime 状态为 stopped
+        if self.runtime_reporter:
+            self.runtime_reporter.update_runtime_status(
+                "stopped",
+                total_trades=self.trades_count,
+                final_position=self.current_position
+            )
+        
         logger.info("=" * 60)
         logger.info("🛑 交易已停止")
         logger.info(f"总交易次数: {self.trades_count}")
@@ -169,7 +214,17 @@ class LiveTrader:
             if abs(target_position - actual_position) > 0.001:  # 仓位变化超过0.1%才交易
                 self._execute_trade(target_position, actual_position, current_price)
             
-            # 9. 记录状态
+            # 9. 报告信号到监控系统
+            if self.runtime_reporter:
+                self.runtime_reporter.report_signal(
+                    market=self.market,
+                    signal=signal,
+                    price=current_price,
+                    current_position=actual_position,
+                    target_position=target_position
+                )
+            
+            # 10. 记录状态
             logger.info(
                 f"📊 状态 | 价格: ${current_price:.2f} | "
                 f"信号: {self._signal_to_str(signal)} | "
@@ -280,6 +335,26 @@ class LiveTrader:
             elif target_position == 0:
                 self.entry_price = 0
             
+            # 报告交易到监控系统
+            if self.runtime_reporter:
+                self.runtime_reporter.report_trade(
+                    market=self.market,
+                    side=side,
+                    size=size,
+                    price=current_price,
+                    order_id=order.get('order_id'),
+                    position_before=current_position,
+                    position_after=target_position
+                )
+                
+                # 报告持仓更新
+                self.runtime_reporter.report_position(
+                    market=self.market,
+                    position_size=self.current_position,
+                    entry_price=self.entry_price,
+                    current_price=current_price
+                )
+            
             logger.info(f"✅ 交易成功! 订单ID: {order.get('order_id', 'N/A')}")
         
         except Exception as e:
@@ -330,6 +405,8 @@ def start_trading(
     check_interval: int = 60,
     stop_loss: Optional[float] = 0.05,
     take_profit: Optional[float] = 0.10,
+    # ========== 简化：只有一个参数 ==========
+    runtime_config: Optional[Dict[str, Any]] = None,
     **kwargs
 ) -> LiveTrader:
     """
@@ -339,8 +416,8 @@ def start_trading(
     
     Args:
         strategy: 你的交易策略（继承自 QuantStrategy）
-        api_key: API Key
-        api_secret: API Secret
+        api_key: API Key（交易所）
+        api_secret: API Secret（交易所）
         market: 交易市场（如 "BTC-PERP"）
         initial_capital: 初始资金（默认 10000）
         exchange: 交易所名称（默认 "1024ex"）
@@ -349,27 +426,30 @@ def start_trading(
         check_interval: 检查间隔秒数（默认 60秒）
         stop_loss: 止损比例（默认 0.05 = 5%）
         take_profit: 止盈比例（默认 0.10 = 10%）
+        runtime_config: Runtime 监控配置字典（可选）
+            - 必填: "api_key"
+            - 可选: "api_base_url", "runtime_id", "strategy_id", "environment", "metadata"
+            - 如果不提供，不启用监控
         **kwargs: 其他参数
     
     Returns:
         LiveTrader 实例
     
-    Example:
+    Example 1 - 基本使用（不启用监控）:
         ```python
         from quant1024 import QuantStrategy, start_trading
         
         class MyStrategy(QuantStrategy):
             def generate_signals(self, data):
-                # 简单的趋势策略
                 if len(data) < 2:
                     return [0]
                 return [1 if data[-1] > data[-2] else -1]
             
             def calculate_position(self, signal, current_position):
                 if signal == 1:
-                    return 1.0  # 做多
+                    return 1.0
                 elif signal == -1:
-                    return 0.0  # 平仓
+                    return 0.0
                 return current_position
         
         # 开始交易！
@@ -379,6 +459,37 @@ def start_trading(
             api_secret="your_api_secret",
             market="BTC-PERP",
             initial_capital=10000
+        )
+        ```
+    
+    Example 2 - 启用监控（最简单）:
+        ```python
+        trader = start_trading(
+            strategy=MyStrategy(name="策略"),
+            api_key="exchange_api_key",
+            api_secret="exchange_api_secret",
+            market="BTC-PERP",
+            runtime_config={
+                "api_key": "server_api_key"  # 只需这一个！
+            }
+        )
+        ```
+    
+    Example 3 - 完整配置:
+        ```python
+        trader = start_trading(
+            strategy=MyStrategy(name="策略"),
+            api_key="exchange_api_key",
+            api_secret="exchange_api_secret",
+            market="BTC-PERP",
+            runtime_config={
+                "api_key": "server_api_key",
+                "api_base_url": "https://custom-api.com",
+                "runtime_id": "custom-id",
+                "strategy_id": "uuid",
+                "environment": "production",
+                "metadata": {"version": "1.0"}
+            }
         )
         ```
     
@@ -400,6 +511,28 @@ def start_trading(
     if not 0 < max_position_size <= 1:
         raise InvalidParameterError("max_position_size 必须在 0-1 之间")
     
+    # ========== 简化：处理 runtime_config ==========
+    runtime_config_obj = None
+    if runtime_config:
+        # 验证必填字段
+        if not runtime_config.get('api_key'):
+            raise InvalidParameterError(
+                "runtime_config must contain 'api_key'"
+            )
+        
+        # 创建 RuntimeConfig 对象
+        runtime_config_obj = RuntimeConfig(
+            api_key=runtime_config['api_key'],
+            runtime_id=runtime_config.get('runtime_id', str(__import__('uuid').uuid4())),
+            strategy_id=runtime_config.get('strategy_id'),
+            api_base_url=runtime_config.get(
+                'api_base_url',
+                'https://api.1024ex.com'  # 默认：1024ex 记录服务
+            ),
+            environment=runtime_config.get('environment'),
+            extra_metadata=runtime_config.get('metadata')
+        )
+    
     # 创建交易所连接
     if exchange.lower() == "1024ex":
         exchange_client = Exchange1024ex(
@@ -419,7 +552,9 @@ def start_trading(
         max_position_size=max_position_size,
         check_interval=check_interval,
         stop_loss=stop_loss,
-        take_profit=take_profit
+        take_profit=take_profit,
+        # ========== 简化：只传一个参数 ==========
+        runtime_config=runtime_config_obj
     )
     
     # 开始交易
