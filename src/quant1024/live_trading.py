@@ -95,18 +95,18 @@ class LiveTrader:
         
         if self.runtime_config:
             try:
-            # 创建报告器（移除 exchange 参数）
-            self.runtime_reporter = RuntimeReporter(self.runtime_config)
-            
-            # 创建 Runtime
-            success = self.runtime_reporter.create_runtime(
-                market=market,
-                initial_capital=initial_capital,
-                max_position_size=max_position_size
-            )
-            
-            if not success:
-                logger.warning(
+                # 创建报告器（移除 exchange 参数）
+                self.runtime_reporter = RuntimeReporter(self.runtime_config)
+                
+                # 创建 Runtime
+                success = self.runtime_reporter.create_runtime(
+                    market=market,
+                    initial_capital=initial_capital,
+                    max_position_size=max_position_size
+                )
+                
+                if not success:
+                    logger.warning(
                         "❌ 创建 Runtime 失败，监控功能已禁用，交易将继续进行"
                     )
                     self.runtime_reporter = None
