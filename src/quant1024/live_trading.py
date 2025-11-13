@@ -94,19 +94,26 @@ class LiveTrader:
         self.runtime_reporter: Optional[RuntimeReporter] = None
         
         if self.runtime_config:
-            # 创建报告器（移除 exchange 参数）
-            self.runtime_reporter = RuntimeReporter(self.runtime_config)
-            
-            # 创建 Runtime
-            success = self.runtime_reporter.create_runtime(
-                market=market,
-                initial_capital=initial_capital,
-                max_position_size=max_position_size
-            )
-            
-            if not success:
-                logger.warning(
-                    "Failed to create runtime, monitoring will be disabled"
+            try:
+                # 创建报告器（移除 exchange 参数）
+                self.runtime_reporter = RuntimeReporter(self.runtime_config)
+                
+                # 创建 Runtime
+                success = self.runtime_reporter.create_runtime(
+                    market=market,
+                    initial_capital=initial_capital,
+                    max_position_size=max_position_size
+                )
+                
+                if not success:
+                    logger.warning(
+                        "❌ 创建 Runtime 失败，监控功能已禁用，交易将继续进行"
+                    )
+                    self.runtime_reporter = None
+            except Exception as e:
+                logger.error(
+                    f"❌ Runtime 初始化错误: {e}，"
+                    f"监控功能已禁用，交易将继续进行"
                 )
                 self.runtime_reporter = None
         
@@ -167,11 +174,14 @@ class LiveTrader:
         
         # 更新 Runtime 状态为 stopped
         if self.runtime_reporter:
-            self.runtime_reporter.update_runtime_status(
-                "stopped",
-                total_trades=self.trades_count,
-                final_position=self.current_position
-            )
+            try:
+                self.runtime_reporter.update_runtime_status(
+                    "stopped",
+                    total_trades=self.trades_count,
+                    final_position=self.current_position
+                )
+            except Exception as e:
+                logger.error(f"更新 Runtime 状态失败: {e}")
         
         logger.info("=" * 60)
         logger.info("🛑 交易已停止")
@@ -216,13 +226,16 @@ class LiveTrader:
             
             # 9. 报告信号到监控系统
             if self.runtime_reporter:
-                self.runtime_reporter.report_signal(
-                    market=self.market,
-                    signal=signal,
-                    price=current_price,
-                    current_position=actual_position,
-                    target_position=target_position
-                )
+                try:
+                    self.runtime_reporter.report_signal(
+                        market=self.market,
+                        signal=signal,
+                        price=current_price,
+                        current_position=actual_position,
+                        target_position=target_position
+                    )
+                except Exception as e:
+                    logger.error(f"报告信号失败: {e}")
             
             # 10. 记录状态
             logger.info(
@@ -353,23 +366,26 @@ class LiveTrader:
             
             # 报告交易到监控系统
             if self.runtime_reporter:
-                self.runtime_reporter.report_trade(
-                    market=self.market,
-                    side=side,
-                    size=size,
-                    price=current_price,
-                    order_id=order.get('order_id'),
-                    position_before=current_position,
-                    position_after=target_position
-                )
-                
-                # 报告持仓更新
-                self.runtime_reporter.report_position(
-                    market=self.market,
-                    position_size=self.current_position,
-                    entry_price=self.entry_price,
-                    current_price=current_price
-                )
+                try:
+                    self.runtime_reporter.report_trade(
+                        market=self.market,
+                        side=side,
+                        size=size,
+                        price=current_price,
+                        order_id=order.get('order_id'),
+                        position_before=current_position,
+                        position_after=target_position
+                    )
+                    
+                    # 报告持仓更新
+                    self.runtime_reporter.report_position(
+                        market=self.market,
+                        position_size=self.current_position,
+                        entry_price=self.entry_price,
+                        current_price=current_price
+                    )
+                except Exception as e:
+                    logger.error(f"报告交易/持仓失败: {e}")
             
             logger.info(f"✅ 交易成功! 订单ID: {order.get('order_id', 'N/A')}")
         
@@ -444,7 +460,8 @@ def start_trading(
         take_profit: 止盈比例（默认 0.10 = 10%）
         runtime_config: Runtime 监控配置字典（可选）
             - 必填: "api_key"
-            - 可选: "api_base_url", "runtime_id", "strategy_id", "environment", "metadata"
+            - 可选: "api_base_url", "strategy_id", "environment", "metadata"
+            - runtime_id 会自动生成（UUID）
             - 如果不提供，不启用监控
         **kwargs: 其他参数
     
@@ -501,10 +518,10 @@ def start_trading(
             runtime_config={
                 "api_key": "server_api_key",
                 "api_base_url": "https://custom-api.com",
-                "runtime_id": "custom-id",
                 "strategy_id": "uuid",
                 "environment": "production",
                 "metadata": {"version": "1.0"}
+                # runtime_id 会自动生成，无需手动指定
             }
         )
         ```
@@ -530,24 +547,32 @@ def start_trading(
     # ========== 简化：处理 runtime_config ==========
     runtime_config_obj = None
     if runtime_config:
-        # 验证必填字段
-        if not runtime_config.get('api_key'):
-            raise InvalidParameterError(
-                "runtime_config must contain 'api_key'"
+        try:
+            # 验证必填字段
+            if not runtime_config.get('api_key'):
+                logger.error(
+                    "❌ Runtime config 错误: 缺少必填字段 'api_key'，"
+                    "监控功能已禁用，交易将继续进行"
+                )
+            else:
+                # 创建 RuntimeConfig 对象
+                runtime_config_obj = RuntimeConfig(
+                    api_key=runtime_config['api_key'],
+                    runtime_id=str(__import__('uuid').uuid4()),  # 自动生成 UUID
+                    strategy_id=runtime_config.get('strategy_id'),
+                    api_base_url=runtime_config.get(
+                        'api_base_url',
+                        'https://api.1024ex.com'  # 默认：1024ex 记录服务
+                    ),
+                    environment=runtime_config.get('environment'),
+                    extra_metadata=runtime_config.get('metadata')
+                )
+        except Exception as e:
+            logger.error(
+                f"❌ Runtime config 配置错误: {e}，"
+                f"监控功能已禁用，交易将继续进行"
             )
-        
-        # 创建 RuntimeConfig 对象
-        runtime_config_obj = RuntimeConfig(
-            api_key=runtime_config['api_key'],
-            runtime_id=runtime_config.get('runtime_id', str(__import__('uuid').uuid4())),
-            strategy_id=runtime_config.get('strategy_id'),
-            api_base_url=runtime_config.get(
-                'api_base_url',
-                'https://api.1024ex.com'  # 默认：1024ex 记录服务
-            ),
-            environment=runtime_config.get('environment'),
-            extra_metadata=runtime_config.get('metadata')
-        )
+            runtime_config_obj = None
     
     # 创建交易所连接
     if exchange.lower() == "1024ex":
