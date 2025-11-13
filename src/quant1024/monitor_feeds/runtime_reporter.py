@@ -122,14 +122,14 @@ class RuntimeReporter:
         Raises:
             requests.RequestException: 重试失败后抛出
         """
-        response = self.session.post(url, json=payload, timeout=10)
+        response = self.session.post(url, json=payload, timeout=30)
         response.raise_for_status()  # 非2xx状态码会抛出异常
         return response
     
     @retry_with_backoff(max_retries=3, base_delay=1.0)
     def _patch_with_retry(self, url: str, payload: Dict[str, Any]) -> requests.Response:
         """带重试的PATCH请求"""
-        response = self.session.patch(url, json=payload, timeout=10)
+        response = self.session.patch(url, json=payload, timeout=30)
         response.raise_for_status()
         return response
     
@@ -168,13 +168,12 @@ class RuntimeReporter:
             payload = {
                 "runtime_id": self.config.runtime_id,
                 "strategy_id": self.config.strategy_id,
+                "deployment_id": None,
                 "market": market,
                 "initial_capital": initial_capital,
                 "max_position_size": max_position_size,
                 "environment": self.config.environment,
-                "sdk_version": self.config.sdk_version,
-                "status": "running",
-                "start_time": datetime.utcnow().isoformat()
+                "sdk_version": self.config.sdk_version
             }
             
             # 添加额外的元数据
