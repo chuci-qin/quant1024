@@ -239,10 +239,20 @@ class LiveTrader:
         """获取当前价格"""
         try:
             ticker = self.exchange.get_ticker(self.market)
-            price = float(ticker.get('last_price', 0))
+            # 处理不同的响应格式
+            if isinstance(ticker, dict):
+                # 如果有 'data' 字段，从 data 中获取
+                if 'data' in ticker:
+                    data = ticker['data']
+                    price = float(data.get('last_price', 0))
+                else:
+                    # 直接从ticker获取
+                    price = float(ticker.get('last_price', 0))
+            else:
+                price = 0
             return price if price > 0 else None
         except Exception as e:
-            logger.error(f"获取价格失败: {e}")
+            logger.error(f"获取价格失败: {e}", exc_info=True)
             return None
     
     def _update_price_history(self, price: float):
@@ -266,13 +276,19 @@ class LiveTrader:
         """从交易所获取当前持仓"""
         try:
             positions = self.exchange.get_positions(market=self.market)
+            # 处理不同的响应格式
+            if isinstance(positions, dict):
+                # 如果有 'data' 字段，从 data 中获取
+                if 'data' in positions:
+                    positions = positions['data']
+            
             if positions and len(positions) > 0:
                 position_size = float(positions[0].get('size', 0))
                 self.current_position = position_size
                 return position_size
             return 0.0
         except Exception as e:
-            logger.error(f"获取持仓失败: {e}")
+            logger.error(f"获取持仓失败: {e}", exc_info=True)
             return self.current_position
     
     def _check_stop_loss_take_profit(self, current_price: float) -> bool:

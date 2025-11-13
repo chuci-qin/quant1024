@@ -47,26 +47,37 @@ def mock_response():
 def test_get_server_time(client, mock_response):
     """测试1: 获取服务器时间"""
     mock_response("GET", "/api/v1/time", {
-        "timestamp": 1234567890,
-        "iso": "2024-01-01T00:00:00Z"
+        "success": True,
+        "data": {
+            "server_time": 1762911479265,
+            "timezone": "UTC"
+        },
+        "timestamp": 1762911479265
     })
     
     result = client.get_server_time()
-    assert result["timestamp"] == 1234567890
-    assert "iso" in result
+    assert result["success"] == True
+    assert "data" in result
+    assert "server_time" in result["data"]
+    assert "timezone" in result["data"]
 
 
 @responses.activate
 def test_get_server_time_format(client, mock_response):
     """测试2: 验证时间格式"""
     mock_response("GET", "/api/v1/time", {
-        "timestamp": 1234567890,
-        "iso": "2024-01-01T00:00:00Z"
+        "success": True,
+        "data": {
+            "server_time": 1762911479265,
+            "timezone": "UTC"
+        },
+        "timestamp": 1762911479265
     })
     
     result = client.get_server_time()
+    assert isinstance(result["data"]["server_time"], int)
+    assert isinstance(result["data"]["timezone"], str)
     assert isinstance(result["timestamp"], int)
-    assert isinstance(result["iso"], str)
 
 
 @responses.activate

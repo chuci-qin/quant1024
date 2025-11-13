@@ -160,7 +160,14 @@ class Exchange1024ex(BaseExchange):
         获取服务器时间
         
         Returns:
-            {"timestamp": 1234567890, "iso": "2024-01-01T00:00:00Z"}
+            {
+                "success": True,
+                "data": {
+                    "server_time": 1762911479265,
+                    "timezone": "UTC"
+                },
+                "timestamp": 1762911479265
+            }
         """
         return self._request("GET", "/api/v1/time", auth_required=False)
     
