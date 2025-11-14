@@ -16,7 +16,7 @@ class RuntimeConfig:
     设计原则：
     - 只有 api_key 是必填的
     - 其他都自动处理或可选
-    - api_base_url 默认指向 1024ex 记录服务（与交易所无关）
+    - api_base_url 默认指向 1024Quant 平台（与交易所无关）
     """
     
     # 必填字段
@@ -27,7 +27,7 @@ class RuntimeConfig:
     strategy_id: Optional[str] = field(default_factory=lambda: os.getenv('STRATEGY_ID'))
     
     # 可选配置字段
-    api_base_url: str = "https://api.1024ex.com"  # 默认：1024ex 记录服务
+    api_base_url: str = "https://api.1024quant.com"  # 默认：1024Quant 平台 API
     environment: str = field(default_factory=lambda: os.getenv('ENVIRONMENT', 'local'))
     sdk_version: Optional[str] = None
     extra_metadata: Optional[Dict[str, Any]] = None

@@ -60,7 +60,7 @@ def example_1_basic():
     # 自动行为：
     # - runtime_id: 自动生成 UUID
     # - strategy_id: 从环境变量 STRATEGY_ID 读取
-    # - api_base_url: 默认 https://api.1024ex.com
+    # - api_base_url: 默认 https://api.1024quant.com
     # - environment: 从环境变量 ENVIRONMENT 读取，默认 "local"
 
 
@@ -161,7 +161,7 @@ def example_5_direct_usage():
     # 创建配置
     config = RuntimeConfig(
         api_key="your_server_api_key",
-        api_base_url="https://api.1024ex.com"
+        api_base_url="https://api.1024quant.com"
     )
     
     # 创建报告器

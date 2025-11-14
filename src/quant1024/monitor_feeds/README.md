@@ -64,7 +64,7 @@ trader = start_trading(
 **自动行为：**
 - `runtime_id`: 自动生成 UUID
 - `strategy_id`: 从环境变量 `STRATEGY_ID` 读取
-- `api_base_url`: 默认 `https://api.1024ex.com`
+- `api_base_url`: 默认 `https://api.1024quant.com`
 - `environment`: 从环境变量 `ENVIRONMENT` 读取，默认 `"local"`
 
 ---
@@ -144,7 +144,7 @@ from quant1024.monitor_feeds import RuntimeConfig, RuntimeReporter
 # 创建配置
 config = RuntimeConfig(
     api_key="server_api_key",
-    api_base_url="https://api.1024ex.com"
+    api_base_url="https://api.1024quant.com"
 )
 
 # 创建报告器
@@ -278,12 +278,12 @@ reporter.update_runtime_status(
   - 用途: 记录交易数据、Runtime 统计
   - 配置: runtime_config.api_base_url
   - 示例:
-    * 1024ex 记录服务: https://api.1024ex.com
+    * 1024Quant 平台: https://api.1024quant.com (监控记录)
     * 自建记录服务: https://my-api.com
 
 可以混搭:
-  ✅ 在 Binance 交易 + 使用 1024ex 记录
-  ✅ 在 1024ex 交易 + 使用自建记录
+  ✅ 在 Binance 交易 + 使用 1024Quant 记录
+  ✅ 在 1024ex 交易 + 使用 1024Quant 记录
   ✅ 在任意交易所 + 使用任意记录服务
 ```
 

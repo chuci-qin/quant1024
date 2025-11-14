@@ -562,7 +562,7 @@ def start_trading(
                     strategy_id=runtime_config.get('strategy_id'),
                     api_base_url=runtime_config.get(
                         'api_base_url',
-                        'https://api.1024ex.com'  # 默认：1024ex 记录服务
+                        'https://api.1024quant.com'  # 默认：1024Quant 平台 API
                     ),
                     environment=runtime_config.get('environment'),
                     extra_metadata=runtime_config.get('metadata')
