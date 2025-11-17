@@ -6,6 +6,7 @@ Live Trading Module - Start trading with your strategy in one function call
 
 import time
 import logging
+import sys
 from typing import Optional, Dict, Any, List
 from datetime import datetime
 
@@ -15,10 +16,12 @@ from .exceptions import Quant1024Exception, InvalidParameterError
 from .monitor_feeds import RuntimeConfig, RuntimeReporter
 
 
-# 配置日志
+# 配置日志 - 输出到 stdout 以避免在 Railway 等平台上被标记为错误
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    stream=sys.stdout,  # 明确指定输出到 stdout
+    force=True  # 强制重新配置（防止被其他模块覆盖）
 )
 logger = logging.getLogger(__name__)
 
