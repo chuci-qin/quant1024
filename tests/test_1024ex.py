@@ -23,7 +23,6 @@ def client():
     """创建测试客户端"""
     return Exchange1024ex(
         api_key="test_api_key",
-        api_secret="test_api_secret",
         base_url="https://api.1024ex.com"
     )
 

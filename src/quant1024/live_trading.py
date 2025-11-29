@@ -431,8 +431,7 @@ class LiveTrader:
 def start_trading(
     strategy: QuantStrategy,
     api_key: str,
-    api_secret: str,
-    market: str,
+    market: str = "BTC-PERP",
     initial_capital: float = 10000,
     exchange: str = "1024ex",
     base_url: str = "https://api.1024ex.com",
@@ -440,7 +439,6 @@ def start_trading(
     check_interval: int = 60,
     stop_loss: Optional[float] = 0.05,
     take_profit: Optional[float] = 0.10,
-    # ========== 简化：只有一个参数 ==========
     runtime_config: Optional[Dict[str, Any]] = None,
     **kwargs
 ) -> LiveTrader:
@@ -449,10 +447,27 @@ def start_trading(
     
     这是最简单的方式来开始实盘交易。只需要传入你的策略和API密钥即可。
     
+    环境变量 (Environment Variables):
+        交易相关:
+        - EXCHANGE_API_KEY: 1024 Exchange API Key（用于交易）
+        
+        监控相关（可选）:
+        - PLATFORM_API_KEY: 1024 Quant 平台 API Key（用于记录监控）
+        - STRATEGY_ID: 策略 ID（可选）
+        - PLATFORM_API_URL: 平台 API 地址（默认 https://api.1024quant.com）
+        
+        交易配置（可选）:
+        - MARKET: 交易市场（默认 BTC-PERP）
+        - INITIAL_CAPITAL: 初始资金（默认 10000）
+        - MAX_POSITION_SIZE: 最大仓位比例（默认 0.5）
+        - CHECK_INTERVAL: 检查间隔秒数（默认 60）
+        - STOP_LOSS: 止损比例（默认 0.05）
+        - TAKE_PROFIT: 止盈比例（默认 0.10）
+        - EXCHANGE_BASE_URL: 交易所 API 地址（默认 https://api.1024ex.com）
+    
     Args:
         strategy: 你的交易策略（继承自 QuantStrategy）
-        api_key: API Key（交易所）
-        api_secret: API Secret（交易所）
+        api_key: 交易所 API Key（通过 X-API-KEY header 认证）
         market: 交易市场（如 "BTC-PERP"）
         initial_capital: 初始资金（默认 10000）
         exchange: 交易所名称（默认 "1024ex"）
@@ -462,7 +477,7 @@ def start_trading(
         stop_loss: 止损比例（默认 0.05 = 5%）
         take_profit: 止盈比例（默认 0.10 = 10%）
         runtime_config: Runtime 监控配置字典（可选）
-            - 必填: "api_key"
+            - 必填: "api_key" (平台 API Key)
             - 可选: "api_base_url", "strategy_id", "environment", "metadata"
             - runtime_id 会自动生成（UUID）
             - 如果不提供，不启用监控
@@ -491,40 +506,34 @@ def start_trading(
         # 开始交易！
         trader = start_trading(
             strategy=MyStrategy(name="趋势策略"),
-            api_key="your_api_key",
-            api_secret="your_api_secret",
+            api_key="your_exchange_api_key",
             market="BTC-PERP",
             initial_capital=10000
         )
         ```
     
-    Example 2 - 启用监控（最简单）:
+    Example 2 - 启用监控:
         ```python
         trader = start_trading(
             strategy=MyStrategy(name="策略"),
-            api_key="exchange_api_key",
-            api_secret="exchange_api_secret",
+            api_key="exchange_api_key",  # 交易所 API Key
             market="BTC-PERP",
             runtime_config={
-                "api_key": "server_api_key"  # 只需这一个！
+                "api_key": "platform_api_key"  # 平台 API Key（用于监控）
             }
         )
         ```
     
-    Example 3 - 完整配置:
+    Example 3 - 使用环境变量:
         ```python
+        import os
         trader = start_trading(
             strategy=MyStrategy(name="策略"),
-            api_key="exchange_api_key",
-            api_secret="exchange_api_secret",
-            market="BTC-PERP",
+            api_key=os.getenv("EXCHANGE_API_KEY"),
+            market=os.getenv("MARKET", "BTC-PERP"),
             runtime_config={
-                "api_key": "server_api_key",
-                "api_base_url": "https://custom-api.com",
-                "strategy_id": "uuid",
-                "environment": "production",
-                "metadata": {"version": "1.0"}
-                # runtime_id 会自动生成，无需手动指定
+                "api_key": os.getenv("PLATFORM_API_KEY"),
+                "strategy_id": os.getenv("STRATEGY_ID")
             }
         )
         ```
@@ -538,8 +547,8 @@ def start_trading(
     if not isinstance(strategy, QuantStrategy):
         raise InvalidParameterError("strategy 必须是 QuantStrategy 的子类")
     
-    if not api_key or not api_secret:
-        raise InvalidParameterError("api_key 和 api_secret 不能为空")
+    if not api_key:
+        raise InvalidParameterError("api_key 不能为空")
     
     if initial_capital <= 0:
         raise InvalidParameterError("initial_capital 必须大于 0")
@@ -581,7 +590,6 @@ def start_trading(
     if exchange.lower() == "1024ex":
         exchange_client = Exchange1024ex(
             api_key=api_key,
-            api_secret=api_secret,
             base_url=base_url
         )
     else:
