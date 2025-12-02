@@ -1,8 +1,16 @@
 """
 1024ex Exchange connector
 
-Implements the 1024 Exchange Public API v2.2.0
-Supports 15 order types including advanced orders (TWAP, Scale, OCO, Bracket, Iceberg, Pegged, VWAP, Trailing Stop, Sniper)
+Implements the 1024 Exchange Public API v2.6.0
+Supports 16 order types including advanced orders (TWAP, Scale, OCO, Bracket, Iceberg, Pegged, VWAP, POV, Trailing Stop, Sniper)
+
+Authentication: HMAC-SHA256 signature
+- Header: X-EXCHANGE-API-KEY (API Key)
+- Header: X-SIGNATURE (HMAC-SHA256 signature)
+- Header: X-TIMESTAMP (Unix timestamp in milliseconds)
+- Header: X-RECV-WINDOW (Optional, default 5000ms)
+
+API Documentation: https://api.1024ex.com/api-docs/openapi.json
 """
 
 import requests
@@ -12,7 +20,7 @@ from typing import List, Dict, Any, Optional
 from urllib.parse import urljoin
 
 from .base import BaseExchange
-from ..auth.hmac_auth import get_simple_auth_headers
+from ..auth.hmac_auth import get_auth_headers, get_simple_auth_headers
 from ..exceptions import (
     APIError,
     AuthenticationError,
@@ -27,17 +35,22 @@ class Exchange1024ex(BaseExchange):
     """
     1024 Exchange 连接器
     
-    实现 1024ex Public API v2.2.0 的完整封装
-    支持 15 种订单类型，包括高级订单（TWAP, Scale, OCO, Bracket, Iceberg, Pegged, VWAP, Trailing Stop, Sniper）
+    实现 1024ex Public API v2.6.0 的完整封装
+    支持 16 种订单类型，包括高级订单（TWAP, Scale, OCO, Bracket, Iceberg, Pegged, VWAP, POV, Trailing Stop, Sniper）
     
-    认证方式: X-API-KEY header（简单 API Key 认证）
+    认证方式: HMAC-SHA256 签名认证
+    - X-EXCHANGE-API-KEY: API Key
+    - X-SIGNATURE: HMAC-SHA256 签名
+    - X-TIMESTAMP: 时间戳（毫秒）
+    - X-RECV-WINDOW: 请求有效窗口
     
-    API 文档: https://docs.1024ex.com
+    API 文档: https://api.1024ex.com/api-docs/openapi.json
     """
     
     def __init__(
         self,
         api_key: str = "",
+        secret_key: str = "",
         base_url: str = "https://api.1024ex.com",
         timeout: int = 30,
         max_retries: int = 3
@@ -46,7 +59,8 @@ class Exchange1024ex(BaseExchange):
         初始化 1024ex 客户端
         
         Args:
-            api_key: API Key（通过 X-API-KEY header 认证）
+            api_key: Exchange API Key（X-EXCHANGE-API-KEY header）
+            secret_key: Exchange Secret Key（用于生成 HMAC-SHA256 签名）
             base_url: API 基础 URL (默认生产环境)
                 - 生产环境: https://api.1024ex.com
                 - 测试网: https://testnet-api.1024ex.com
@@ -54,7 +68,8 @@ class Exchange1024ex(BaseExchange):
             timeout: 请求超时时间（秒）
             max_retries: 最大重试次数
         """
-        super().__init__(api_key, "", base_url)  # api_secret 不需要，传空字符串
+        super().__init__(api_key, secret_key, base_url)
+        self.secret_key = secret_key
         self.timeout = timeout
         self.max_retries = max_retries
         self.session = requests.Session()
@@ -92,9 +107,20 @@ class Exchange1024ex(BaseExchange):
         if data:
             body = json.dumps(data)
         
-        # 构造 Headers（使用 X-API-KEY 认证）
+        # 构造认证 Headers
         if auth_required and self.api_key:
-            headers = get_simple_auth_headers(self.api_key)
+            if self.secret_key:
+                # 使用 HMAC-SHA256 签名认证（推荐）
+                headers = get_auth_headers(
+                    api_key=self.api_key,
+                    secret_key=self.secret_key,
+                    method=method.upper(),
+                    path=path,
+                    body=body
+                )
+            else:
+                # 仅 API Key 认证（用于公开端点或测试）
+                headers = get_simple_auth_headers(self.api_key)
         else:
             headers = {"Content-Type": "application/json"}
         
