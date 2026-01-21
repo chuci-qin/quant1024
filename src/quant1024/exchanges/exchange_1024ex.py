@@ -2,7 +2,7 @@
 1024ex Exchange connector
 
 Implements the 1024 Exchange Public API v2.6.0
-Supports 16 order types including advanced orders (TWAP, Scale, OCO, Bracket, Iceberg, Pegged, VWAP, POV, Trailing Stop, Sniper)
+Supports modular architecture with separate modules for Perp, Spot, Prediction, Championship, and Account.
 
 Authentication: HMAC-SHA256 signature
 - Header: X-EXCHANGE-API-KEY (API Key)
@@ -20,6 +20,13 @@ from typing import List, Dict, Any, Optional
 from urllib.parse import urljoin
 
 from .base import BaseExchange
+from .modules import (
+    PerpModule,
+    SpotModule,
+    PredictionModule,
+    ChampionshipModule,
+    AccountModule,
+)
 from ..auth.hmac_auth import get_auth_headers, get_simple_auth_headers
 from ..exceptions import (
     APIError,
@@ -35,16 +42,29 @@ class Exchange1024ex(BaseExchange):
     """
     1024 Exchange 连接器
     
-    实现 1024ex Public API v2.6.0 的完整封装
-    支持 16 种订单类型，包括高级订单（TWAP, Scale, OCO, Bracket, Iceberg, Pegged, VWAP, POV, Trailing Stop, Sniper）
+    采用模块化架构，通过 exchange.perp.xxx() 风格访问各模块 API。
+    
+    模块:
+        - perp: 永续合约交易 (PerpModule)
+        - spot: 现货交易 (SpotModule)
+        - prediction: 预测市场 (PredictionModule)
+        - championship: 锦标赛排行榜 (ChampionshipModule)
+        - account: 账户管理 (AccountModule)
     
     认证方式: HMAC-SHA256 签名认证
-    - X-EXCHANGE-API-KEY: API Key
-    - X-SIGNATURE: HMAC-SHA256 签名
-    - X-TIMESTAMP: 时间戳（毫秒）
-    - X-RECV-WINDOW: 请求有效窗口
     
-    API 文档: https://api.1024ex.com/api-docs/openapi.json
+    Example:
+        >>> exchange = Exchange1024ex(api_key="xxx", secret_key="xxx")
+        >>> 
+        >>> # 永续合约
+        >>> exchange.perp.get_ticker("BTC-USDC")
+        >>> exchange.perp.place_order(market="BTC-USDC", side="long", size="0.1")
+        >>> 
+        >>> # 现货
+        >>> exchange.spot.get_balances()
+        >>> 
+        >>> # 预测市场
+        >>> exchange.prediction.list_markets(category="crypto")
     """
     
     def __init__(
@@ -73,6 +93,42 @@ class Exchange1024ex(BaseExchange):
         self.timeout = timeout
         self.max_retries = max_retries
         self.session = requests.Session()
+        
+        # 初始化模块
+        self._perp = PerpModule(self)
+        self._spot = SpotModule(self)
+        self._prediction = PredictionModule(self)
+        self._championship = ChampionshipModule(self)
+        self._account = AccountModule(self)
+    
+    # ========== 模块访问器 ==========
+    
+    @property
+    def perp(self) -> PerpModule:
+        """永续合约模块"""
+        return self._perp
+    
+    @property
+    def spot(self) -> SpotModule:
+        """现货交易模块"""
+        return self._spot
+    
+    @property
+    def prediction(self) -> PredictionModule:
+        """预测市场模块"""
+        return self._prediction
+    
+    @property
+    def championship(self) -> ChampionshipModule:
+        """锦标赛模块"""
+        return self._championship
+    
+    @property
+    def account(self) -> AccountModule:
+        """账户管理模块"""
+        return self._account
+    
+    # ========== HTTP 请求层 ==========
     
     def _request(
         self,
@@ -182,6 +238,7 @@ class Exchange1024ex(BaseExchange):
         return {}
     
     # ========== 系统接口（3个）==========
+    # 这些是全局接口，保留在主客户端
     
     def get_server_time(self) -> Dict[str, Any]:
         """
@@ -217,70 +274,28 @@ class Exchange1024ex(BaseExchange):
         """
         return self._request("GET", "/api/v1/exchange-info", auth_required=False)
     
-    # ========== 市场数据（8个）==========
+    # ========== 向后兼容的便捷方法 ==========
+    # 委托给 perp 模块，保持旧 API 兼容
     
     def get_markets(self) -> List[Dict[str, Any]]:
-        """
-        获取所有市场
-        
-        Returns:
-            市场列表
-        """
-        result = self._request("GET", "/api/v1/markets", auth_required=False)
-        return result.get('data', result) if isinstance(result, dict) else result
+        """获取所有市场（委托给 perp 模块）"""
+        return self.perp.get_markets()
     
     def get_market(self, market: str) -> Dict[str, Any]:
-        """
-        获取单个市场信息
-        
-        Args:
-            market: 市场名称，如 BTC-PERP
-        
-        Returns:
-            市场信息
-        """
-        return self._request("GET", f"/api/v1/markets/{market}", auth_required=False)
+        """获取单个市场信息（委托给 perp 模块）"""
+        return self.perp.get_market(market)
     
     def get_ticker(self, market: str) -> Dict[str, Any]:
-        """
-        获取24小时行情
-        
-        Args:
-            market: 市场名称
-        
-        Returns:
-            行情数据
-        """
-        return self._request("GET", f"/api/v1/ticker/{market}", auth_required=False)
+        """获取24小时行情（委托给 perp 模块）"""
+        return self.perp.get_ticker(market)
     
     def get_orderbook(self, market: str, depth: int = 20) -> Dict[str, Any]:
-        """
-        获取订单簿
-        
-        Args:
-            market: 市场名称
-            depth: 深度（默认20档）
-        
-        Returns:
-            订单簿数据
-        """
-        params = {"depth": depth}
-        return self._request("GET", f"/api/v1/orderbook/{market}", params=params, auth_required=False)
+        """获取订单簿（委托给 perp 模块）"""
+        return self.perp.get_orderbook(market, depth)
     
     def get_trades(self, market: str, limit: int = 50) -> List[Dict[str, Any]]:
-        """
-        获取最近成交
-        
-        Args:
-            market: 市场名称
-            limit: 数量限制
-        
-        Returns:
-            成交列表
-        """
-        params = {"limit": limit}
-        result = self._request("GET", f"/api/v1/trades/{market}", params=params, auth_required=False)
-        return result.get('data', result) if isinstance(result, dict) else result
+        """获取最近成交（委托给 perp 模块）"""
+        return self.perp.get_trades(market, limit)
     
     def get_klines(
         self,
@@ -290,56 +305,8 @@ class Exchange1024ex(BaseExchange):
         end_time: Optional[int] = None,
         limit: int = 100
     ) -> List[Dict[str, Any]]:
-        """
-        获取K线数据
-        
-        Args:
-            market: 市场名称
-            interval: 时间间隔（1m, 5m, 15m, 1h, 4h, 1d）
-            start_time: 开始时间（时间戳，毫秒）
-            end_time: 结束时间（时间戳，毫秒）
-            limit: 数量限制
-        
-        Returns:
-            K线列表
-        """
-        params = {
-            "interval": interval,
-            "limit": limit
-        }
-        if start_time:
-            params["start_time"] = start_time
-        if end_time:
-            params["end_time"] = end_time
-        
-        result = self._request("GET", f"/api/v1/klines/{market}", params=params, auth_required=False)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    def get_funding_rate(self, market: str) -> Dict[str, Any]:
-        """
-        获取资金费率
-        
-        Args:
-            market: 市场名称
-        
-        Returns:
-            资金费率信息
-        """
-        return self._request("GET", f"/api/v1/funding-rate/{market}", auth_required=False)
-    
-    def get_market_stats(self, market: str) -> Dict[str, Any]:
-        """
-        获取市场统计
-        
-        Args:
-            market: 市场名称
-        
-        Returns:
-            市场统计数据
-        """
-        return self._request("GET", f"/api/v1/market-stats/{market}", auth_required=False)
-    
-    # ========== 交易接口（8个）==========
+        """获取K线数据（委托给 perp 模块）"""
+        return self.perp.get_klines(market, interval, start_time, end_time, limit)
     
     def place_order(
         self,
@@ -354,1179 +321,44 @@ class Exchange1024ex(BaseExchange):
         time_in_force: str = "GTC",
         client_order_id: Optional[str] = None
     ) -> Dict[str, Any]:
-        """
-        下单
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            order_type: 订单类型（limit/market）
-            size: 数量
-            price: 价格（限价单必填）
-            leverage: 杠杆倍数
-            reduce_only: 只减仓
-            post_only: 只做 Maker
-            time_in_force: 有效期（GTC/IOC/FOK）
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "type": order_type,
-            "size": size,
-            "reduce_only": reduce_only,
-            "post_only": post_only,
-            "time_in_force": time_in_force
-        }
-        
-        if price:
-            data["price"] = price
-        if leverage:
-            data["leverage"] = leverage
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/orders", data=data)
+        """下单（委托给 perp 模块）"""
+        return self.perp.place_order(
+            market=market,
+            side=side,
+            order_type=order_type,
+            size=size,
+            price=price,
+            leverage=leverage,
+            reduce_only=reduce_only,
+            post_only=post_only,
+            time_in_force=time_in_force,
+            client_order_id=client_order_id
+        )
     
     def cancel_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        撤单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            撤单结果
-        """
-        return self._request("DELETE", f"/api/v1/orders/{order_id}")
+        """撤单（委托给 perp 模块）"""
+        return self.perp.cancel_order(order_id)
     
     def cancel_all_orders(self, market: Optional[str] = None) -> Dict[str, Any]:
-        """
-        批量撤单
-        
-        Args:
-            market: 市场名称（可选，不填则撤销所有）
-        
-        Returns:
-            撤单结果
-        """
-        params = {}
-        if market:
-            params["market"] = market
-        
-        return self._request("DELETE", "/api/v1/orders", params=params)
+        """批量撤单（委托给 perp 模块）"""
+        return self.perp.cancel_all_orders(market)
     
     def get_orders(
         self,
         market: Optional[str] = None,
         status: Optional[str] = None
     ) -> List[Dict[str, Any]]:
-        """
-        获取当前委托
-        
-        Args:
-            market: 市场名称（可选）
-            status: 订单状态（可选）
-        
-        Returns:
-            订单列表
-        """
-        params = {}
-        if market:
-            params["market"] = market
-        if status:
-            params["status"] = status
-        
-        result = self._request("GET", "/api/v1/orders", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
+        """获取当前委托（委托给 perp 模块）"""
+        return self.perp.get_orders(market, status)
     
     def get_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            订单详情
-        """
-        return self._request("GET", f"/api/v1/orders/{order_id}")
-    
-    def update_order(
-        self,
-        order_id: str,
-        price: str,
-        size: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        修改订单
-        
-        Args:
-            order_id: 订单ID
-            price: 新价格
-            size: 新数量（可选）
-        
-        Returns:
-            修改后的订单
-        """
-        data = {"price": price}
-        if size:
-            data["size"] = size
-        
-        return self._request("PUT", f"/api/v1/orders/{order_id}", data=data)
-    
-    def batch_place_orders(self, orders: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """
-        批量下单
-        
-        Args:
-            orders: 订单列表
-        
-        Returns:
-            批量下单结果
-        """
-        data = {"orders": orders}
-        return self._request("POST", "/api/v1/orders/batch", data=data)
-    
-    def set_tpsl(
-        self,
-        market: str,
-        tp_price: Optional[str] = None,
-        sl_price: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        设置止盈止损
-        
-        Args:
-            market: 市场名称
-            tp_price: 止盈价格
-            sl_price: 止损价格
-        
-        Returns:
-            设置结果
-        """
-        data = {}
-        if tp_price:
-            data["take_profit_price"] = tp_price
-        if sl_price:
-            data["stop_loss_price"] = sl_price
-        
-        return self._request("PUT", f"/api/v1/positions/{market}/tpsl", data=data)
-    
-    # ========== 账户接口（6个）==========
-    
-    def get_balance(self) -> Dict[str, Any]:
-        """
-        获取账户余额
-        
-        Returns:
-            余额信息
-        """
-        return self._request("GET", "/api/v1/account/balance")
+        """获取订单详情（委托给 perp 模块）"""
+        return self.perp.get_order(order_id)
     
     def get_positions(self, market: Optional[str] = None) -> List[Dict[str, Any]]:
-        """
-        获取持仓
-        
-        Args:
-            market: 市场名称（可选）
-        
-        Returns:
-            持仓列表
-        """
-        params = {}
-        if market:
-            params["market"] = market
-        
-        result = self._request("GET", "/api/v1/account/positions", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
+        """获取持仓（委托给 perp 模块）"""
+        return self.perp.get_positions(market)
     
-    def get_margin(self) -> Dict[str, Any]:
-        """
-        获取保证金信息
-        
-        Returns:
-            保证金信息
-        """
-        return self._request("GET", "/api/v1/account/margin")
-    
-    def get_leverage(self, market: str) -> Dict[str, Any]:
-        """
-        查询杠杆
-        
-        Args:
-            market: 市场名称
-        
-        Returns:
-            杠杆信息
-        """
-        return self._request("GET", f"/api/v1/account/leverage/{market}")
-    
-    def set_leverage(self, market: str, leverage: int) -> Dict[str, Any]:
-        """
-        设置杠杆
-        
-        Args:
-            market: 市场名称
-            leverage: 杠杆倍数
-        
-        Returns:
-            设置结果
-        """
-        data = {"leverage": leverage}
-        return self._request("PUT", f"/api/v1/account/leverage/{market}", data=data)
-    
-    def get_sub_accounts(self) -> List[Dict[str, Any]]:
-        """
-        获取子账户列表
-        
-        Returns:
-            子账户列表
-        """
-        result = self._request("GET", "/api/v1/account/sub-accounts")
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    # ========== 资金接口（4个）==========
-    
-    def get_deposit_address(self, asset: str) -> Dict[str, Any]:
-        """
-        获取充值地址
-        
-        Args:
-            asset: 资产名称（如 USDC）
-        
-        Returns:
-            充值地址信息
-        """
-        data = {"asset": asset}
-        return self._request("POST", "/api/v1/account/deposit", data=data)
-    
-    def withdraw(
-        self,
-        asset: str,
-        amount: str,
-        address: str,
-        memo: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        提现
-        
-        Args:
-            asset: 资产名称
-            amount: 提现数量
-            address: 提现地址
-            memo: 备注（可选）
-        
-        Returns:
-            提现结果
-        """
-        data = {
-            "asset": asset,
-            "amount": amount,
-            "address": address
-        }
-        if memo:
-            data["memo"] = memo
-        
-        return self._request("POST", "/api/v1/account/withdraw", data=data)
-    
-    def get_deposit_history(
-        self,
-        asset: Optional[str] = None,
-        limit: int = 50
-    ) -> List[Dict[str, Any]]:
-        """
-        获取充值历史
-        
-        Args:
-            asset: 资产名称（可选）
-            limit: 数量限制
-        
-        Returns:
-            充值历史列表
-        """
-        params = {"limit": limit}
-        if asset:
-            params["asset"] = asset
-        
-        result = self._request("GET", "/api/v1/account/deposits", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    def get_withdraw_history(
-        self,
-        asset: Optional[str] = None,
-        limit: int = 50
-    ) -> List[Dict[str, Any]]:
-        """
-        获取提现历史
-        
-        Args:
-            asset: 资产名称（可选）
-            limit: 数量限制
-        
-        Returns:
-            提现历史列表
-        """
-        params = {"limit": limit}
-        if asset:
-            params["asset"] = asset
-        
-        result = self._request("GET", "/api/v1/account/withdrawals", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    # ========== 历史数据（5个）==========
-    
-    def get_order_history(
-        self,
-        market: Optional[str] = None,
-        status: Optional[str] = None,
-        limit: int = 100
-    ) -> List[Dict[str, Any]]:
-        """
-        获取历史订单
-        
-        Args:
-            market: 市场名称（可选）
-            status: 订单状态（可选）
-            limit: 数量限制
-        
-        Returns:
-            历史订单列表
-        """
-        params = {"limit": limit}
-        if market:
-            params["market"] = market
-        if status:
-            params["status"] = status
-        
-        result = self._request("GET", "/api/v1/orders/history", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    def get_trade_history(
-        self,
-        market: Optional[str] = None,
-        limit: int = 100
-    ) -> List[Dict[str, Any]]:
-        """
-        获取成交历史
-        
-        Args:
-            market: 市场名称（可选）
-            limit: 数量限制
-        
-        Returns:
-            成交历史列表
-        """
-        params = {"limit": limit}
-        if market:
-            params["market"] = market
-        
-        result = self._request("GET", "/api/v1/trades/history", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    def get_funding_history(
-        self,
-        market: Optional[str] = None,
-        limit: int = 100
-    ) -> List[Dict[str, Any]]:
-        """
-        获取资金费历史
-        
-        Args:
-            market: 市场名称（可选）
-            limit: 数量限制
-        
-        Returns:
-            资金费历史列表
-        """
-        params = {"limit": limit}
-        if market:
-            params["market"] = market
-        
-        result = self._request("GET", "/api/v1/funding/history", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    def get_liquidation_history(
-        self,
-        market: Optional[str] = None,
-        limit: int = 100
-    ) -> List[Dict[str, Any]]:
-        """
-        获取强平历史
-        
-        Args:
-            market: 市场名称（可选）
-            limit: 数量限制
-        
-        Returns:
-            强平历史列表
-        """
-        params = {"limit": limit}
-        if market:
-            params["market"] = market
-        
-        result = self._request("GET", "/api/v1/liquidations/history", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    def get_pnl_summary(self, period: str = '30d') -> Dict[str, Any]:
-        """
-        获取盈亏汇总
-        
-        Args:
-            period: 时间周期（7d, 30d, 90d）
-        
-        Returns:
-            盈亏汇总
-        """
-        params = {"period": period}
-        return self._request("GET", "/api/v1/pnl/summary", params=params)
-    
-    # ========== Smart ADL（4个）==========
-    
-    def get_smart_adl_config(self) -> Dict[str, Any]:
-        """
-        获取 Smart ADL 配置
-        
-        Returns:
-            ADL 配置信息
-        """
-        return self._request("GET", "/api/v1/smart-adl/config")
-    
-    def update_smart_adl_config(
-        self,
-        enabled: Optional[bool] = None,
-        mode: Optional[str] = None,
-        threshold: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        修改 Smart ADL 配置
-        
-        Args:
-            enabled: 是否启用
-            mode: 模式
-            threshold: 阈值
-        
-        Returns:
-            更新结果
-        """
-        data = {}
-        if enabled is not None:
-            data["enabled"] = enabled
-        if mode:
-            data["mode"] = mode
-        if threshold:
-            data["threshold"] = threshold
-        
-        return self._request("PUT", "/api/v1/smart-adl/config", data=data)
-    
-    def get_protection_pool(self) -> List[Dict[str, Any]]:
-        """
-        获取保护池信息
-        
-        Returns:
-            保护池列表
-        """
-        result = self._request("GET", "/api/v1/smart-adl/protection-pool")
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    def get_smart_adl_history(self, limit: int = 50) -> List[Dict[str, Any]]:
-        """
-        获取 Smart ADL 历史
-        
-        Args:
-            limit: 数量限制
-        
-        Returns:
-            ADL 历史列表
-        """
-        params = {"limit": limit}
-        result = self._request("GET", "/api/v1/smart-adl/history", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    # ========== 高级订单类型（API v2.2.0）==========
-    
-    def place_conditional_order(
-        self,
-        market: str,
-        side: str,
-        order_type: str,
-        size: str,
-        trigger_price: str,
-        trigger_type: str = "mark",
-        price: Optional[str] = None,
-        reduce_only: bool = False,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建条件订单（触发后下单）
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            order_type: 订单类型（limit/market）
-            size: 数量
-            trigger_price: 触发价格
-            trigger_type: 触发类型（mark/last/index）
-            price: 价格（限价单必填）
-            reduce_only: 只减仓
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            条件订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "order_type": order_type,
-            "size": size,
-            "trigger_price": trigger_price,
-            "trigger_type": trigger_type,
-            "reduce_only": reduce_only
-        }
-        if price:
-            data["price"] = price
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/conditional-orders", data=data)
-    
-    def get_conditional_orders(
-        self,
-        market: Optional[str] = None,
-        status: Optional[str] = None,
-        limit: int = 50
-    ) -> List[Dict[str, Any]]:
-        """
-        获取条件订单列表
-        
-        Args:
-            market: 市场名称（可选）
-            status: 状态（pending/triggered/cancelled）
-            limit: 数量限制
-        
-        Returns:
-            条件订单列表
-        """
-        params = {"limit": limit}
-        if market:
-            params["market"] = market
-        if status:
-            params["status"] = status
-        
-        result = self._request("GET", "/api/v1/conditional-orders", params=params)
-        return result.get('data', result) if isinstance(result, dict) else result
-    
-    def cancel_conditional_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消条件订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/conditional-orders/{order_id}")
-    
-    def place_twap_order(
-        self,
-        market: str,
-        side: str,
-        total_size: str,
-        duration_seconds: int,
-        interval_seconds: Optional[int] = None,
-        slippage_tolerance: Optional[str] = None,
-        reduce_only: bool = False,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建 TWAP 订单（时间加权平均价格）
-        
-        将大订单分割成多个小订单，在指定时间内均匀执行
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            total_size: 总数量
-            duration_seconds: 执行时长（秒）
-            interval_seconds: 执行间隔（秒）
-            slippage_tolerance: 滑点容忍度
-            reduce_only: 只减仓
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            TWAP 订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "total_size": total_size,
-            "duration_seconds": duration_seconds,
-            "reduce_only": reduce_only
-        }
-        if interval_seconds:
-            data["interval_seconds"] = interval_seconds
-        if slippage_tolerance:
-            data["slippage_tolerance"] = slippage_tolerance
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/twap-orders", data=data)
-    
-    def get_twap_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取 TWAP 订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            TWAP 订单详情
-        """
-        return self._request("GET", f"/api/v1/twap-orders/{order_id}")
-    
-    def cancel_twap_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消 TWAP 订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/twap-orders/{order_id}")
-    
-    def place_scale_order(
-        self,
-        market: str,
-        side: str,
-        total_size: str,
-        num_orders: int,
-        start_price: str,
-        end_price: str,
-        distribution: str = "linear",
-        reduce_only: bool = False,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建阶梯订单（Scale Order）
-        
-        在价格区间内按分布创建多个限价订单
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            total_size: 总数量
-            num_orders: 订单数量
-            start_price: 起始价格
-            end_price: 结束价格
-            distribution: 分布类型（linear/fibonacci/exponential）
-            reduce_only: 只减仓
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            阶梯订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "total_size": total_size,
-            "num_orders": num_orders,
-            "start_price": start_price,
-            "end_price": end_price,
-            "distribution": distribution,
-            "reduce_only": reduce_only
-        }
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/scale-orders", data=data)
-    
-    def get_scale_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取阶梯订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            阶梯订单详情
-        """
-        return self._request("GET", f"/api/v1/scale-orders/{order_id}")
-    
-    def cancel_scale_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消阶梯订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/scale-orders/{order_id}")
-    
-    def place_oco_order(
-        self,
-        market: str,
-        side: str,
-        size: str,
-        limit_price: str,
-        stop_price: str,
-        stop_limit_price: Optional[str] = None,
-        reduce_only: bool = False,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建 OCO 订单（One-Cancels-Other）
-        
-        同时创建限价单和止损单，一个成交后自动取消另一个
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            size: 数量
-            limit_price: 限价单价格
-            stop_price: 止损触发价格
-            stop_limit_price: 止损限价（可选，不填则为市价止损）
-            reduce_only: 只减仓
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            OCO 订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "size": size,
-            "limit_price": limit_price,
-            "stop_price": stop_price,
-            "reduce_only": reduce_only
-        }
-        if stop_limit_price:
-            data["stop_limit_price"] = stop_limit_price
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/oco-orders", data=data)
-    
-    def get_oco_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取 OCO 订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            OCO 订单详情
-        """
-        return self._request("GET", f"/api/v1/oco-orders/{order_id}")
-    
-    def cancel_oco_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消 OCO 订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/oco-orders/{order_id}")
-    
-    def place_bracket_order(
-        self,
-        market: str,
-        side: str,
-        size: str,
-        entry_price: str,
-        take_profit_price: str,
-        stop_loss_price: str,
-        entry_type: str = "limit",
-        reduce_only: bool = False,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建 Bracket 订单（括号订单）
-        
-        入场订单 + 止盈订单 + 止损订单的组合
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            size: 数量
-            entry_price: 入场价格
-            take_profit_price: 止盈价格
-            stop_loss_price: 止损价格
-            entry_type: 入场类型（limit/market）
-            reduce_only: 只减仓
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            Bracket 订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "size": size,
-            "entry_price": entry_price,
-            "take_profit_price": take_profit_price,
-            "stop_loss_price": stop_loss_price,
-            "entry_type": entry_type,
-            "reduce_only": reduce_only
-        }
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/bracket-orders", data=data)
-    
-    def get_bracket_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取 Bracket 订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            Bracket 订单详情
-        """
-        return self._request("GET", f"/api/v1/bracket-orders/{order_id}")
-    
-    def cancel_bracket_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消 Bracket 订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/bracket-orders/{order_id}")
-    
-    def place_iceberg_order(
-        self,
-        market: str,
-        side: str,
-        total_size: str,
-        display_size: str,
-        price: str,
-        variance: Optional[str] = None,
-        reduce_only: bool = False,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建冰山订单（Iceberg Order）
-        
-        将大订单分成小订单显示，隐藏真实订单量
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            total_size: 总数量（隐藏）
-            display_size: 显示数量
-            price: 价格
-            variance: 价格方差（可选）
-            reduce_only: 只减仓
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            冰山订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "total_size": total_size,
-            "display_size": display_size,
-            "price": price,
-            "reduce_only": reduce_only
-        }
-        if variance:
-            data["variance"] = variance
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/iceberg-orders", data=data)
-    
-    def get_iceberg_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取冰山订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            冰山订单详情
-        """
-        return self._request("GET", f"/api/v1/iceberg-orders/{order_id}")
-    
-    def cancel_iceberg_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消冰山订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/iceberg-orders/{order_id}")
-    
-    def place_trailing_stop_order(
-        self,
-        market: str,
-        side: str,
-        size: str,
-        callback_rate: str,
-        activation_price: Optional[str] = None,
-        trigger_price_type: str = "mark",
-        reduce_only: bool = True,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建追踪止损订单（Trailing Stop）
-        
-        止损价格随市场价格移动，锁定利润
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            size: 数量
-            callback_rate: 回调比率（如 "0.01" 表示 1%）
-            activation_price: 激活价格（可选，不填则立即激活）
-            trigger_price_type: 触发价格类型（mark/last/index）
-            reduce_only: 只减仓（默认 True）
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            追踪止损订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "size": size,
-            "callback_rate": callback_rate,
-            "trigger_price_type": trigger_price_type,
-            "reduce_only": reduce_only
-        }
-        if activation_price:
-            data["activation_price"] = activation_price
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/trailing-stops", data=data)
-    
-    def get_trailing_stop_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取追踪止损订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            追踪止损订单详情
-        """
-        return self._request("GET", f"/api/v1/trailing-stops/{order_id}")
-    
-    def cancel_trailing_stop_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消追踪止损订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/trailing-stops/{order_id}")
-    
-    def place_vwap_order(
-        self,
-        market: str,
-        side: str,
-        total_size: str,
-        duration_seconds: int,
-        participation_rate: float,
-        min_execution_size: Optional[str] = None,
-        max_spread_tolerance: Optional[str] = None,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建 VWAP 订单（成交量加权平均价格）
-        
-        根据市场成交量分配订单执行
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            total_size: 总数量
-            duration_seconds: 执行时长（秒）
-            participation_rate: 参与率（0.0-1.0）
-            min_execution_size: 最小执行数量
-            max_spread_tolerance: 最大价差容忍度
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            VWAP 订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "total_size": total_size,
-            "duration_seconds": duration_seconds,
-            "participation_rate": participation_rate
-        }
-        if min_execution_size:
-            data["min_execution_size"] = min_execution_size
-        if max_spread_tolerance:
-            data["max_spread_tolerance"] = max_spread_tolerance
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/vwap-orders", data=data)
-    
-    def get_vwap_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取 VWAP 订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            VWAP 订单详情
-        """
-        return self._request("GET", f"/api/v1/vwap-orders/{order_id}")
-    
-    def cancel_vwap_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消 VWAP 订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/vwap-orders/{order_id}")
-    
-    def place_sniper_order(
-        self,
-        market: str,
-        side: str,
-        size: str,
-        target_price: str,
-        price_tolerance: Optional[str] = None,
-        time_limit_seconds: Optional[int] = None,
-        reduce_only: bool = False,
-        client_order_id: Optional[str] = None
-    ) -> Dict[str, Any]:
-        """
-        创建狙击订单（Sniper Order）
-        
-        在目标价格出现时快速执行
-        
-        Args:
-            market: 市场名称
-            side: 方向（buy/sell）
-            size: 数量
-            target_price: 目标价格
-            price_tolerance: 价格容忍度
-            time_limit_seconds: 时间限制（秒）
-            reduce_only: 只减仓
-            client_order_id: 客户端订单ID
-        
-        Returns:
-            狙击订单信息
-        """
-        data = {
-            "market": market,
-            "side": side,
-            "size": size,
-            "target_price": target_price,
-            "reduce_only": reduce_only
-        }
-        if price_tolerance:
-            data["price_tolerance"] = price_tolerance
-        if time_limit_seconds:
-            data["time_limit_seconds"] = time_limit_seconds
-        if client_order_id:
-            data["client_order_id"] = client_order_id
-        
-        return self._request("POST", "/api/v1/sniper-orders", data=data)
-    
-    def get_sniper_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        获取狙击订单详情
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            狙击订单详情
-        """
-        return self._request("GET", f"/api/v1/sniper-orders/{order_id}")
-    
-    def cancel_sniper_order(self, order_id: str) -> Dict[str, Any]:
-        """
-        取消狙击订单
-        
-        Args:
-            order_id: 订单ID
-        
-        Returns:
-            取消结果
-        """
-        return self._request("DELETE", f"/api/v1/sniper-orders/{order_id}")
-    
-    # ========== 账户扩展接口 ==========
-    
-    def get_api_status(self) -> Dict[str, Any]:
-        """
-        获取 API Key 状态
-        
-        返回 API Key 的当前状态和权限，包括交易启用状态、IP限制、提现权限等
-        
-        Returns:
-            API 状态信息
-        """
-        return self._request("GET", "/api/v1/account/api-status")
-    
-    def get_trading_stats(self, period: str = "30d") -> Dict[str, Any]:
-        """
-        获取交易统计
-        
-        返回指定时间段的交易统计，包括总交易数、成交量、盈亏、胜率等
-        
-        Args:
-            period: 统计周期（1d, 7d, 30d, all）
-        
-        Returns:
-            交易统计信息
-        """
-        params = {"period": period}
-        return self._request("GET", "/api/v1/account/trading-stats", params=params)
-    
-    def get_insurance_fund(self) -> Dict[str, Any]:
-        """
-        获取保险基金状态
-        
-        Returns:
-            保险基金信息
-        """
-        return self._request("GET", "/api/v1/account/insurance-fund")
-    
-    def get_onchain_status(self) -> Dict[str, Any]:
-        """
-        获取链上账户状态
-        
-        返回 Solana Vault 程序的链上账户状态
-        
-        Returns:
-            链上状态信息
-        """
-        return self._request("GET", "/api/v1/account/onchain-status")
-
+    def get_balance(self) -> Dict[str, Any]:
+        """获取账户余额（委托给 account 模块）"""
+        return self.account.get_overview()
