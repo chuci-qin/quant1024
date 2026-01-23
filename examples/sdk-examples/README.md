@@ -9,6 +9,7 @@
 | `authenticated_example.py` | 使用 JSON 配置文件进行 API 认证的完整示例 |
 | `sdk_usage_example.py` | SDK 基本使用示例 |
 | `story_test_flows.py` | 基于测试故事的完整业务流程示例 |
+| `price_trigger_buy.py` | 价格触发自动购买脚本 - 监控价格并在到达目标时自动下单 |
 
 ## 快速开始
 
@@ -48,7 +49,50 @@ python examples/sdk-examples/sdk_usage_example.py
 
 # 故事测试流程 - 完整业务流程 (dry-run 模式)
 DRY_RUN=true python examples/sdk-examples/story_test_flows.py
+
+# 价格触发自动购买 - 当价格到达目标时自动下单
+python examples/sdk-examples/price_trigger_buy.py --market BTC-USDC --trigger-price 90000 --size 0.01
 ```
+
+## 价格触发自动购买
+
+`price_trigger_buy.py` 是一个监控价格并在到达目标价格时自动执行买入的脚本。
+
+### 基本用法
+
+```bash
+# 当 BTC 跌到 90000 时市价买入 0.01 BTC (永续合约做多)
+python price_trigger_buy.py --market BTC-USDC --trigger-price 90000 --size 0.01
+
+# 当 BTC 跌到 90000 时，以 89500 限价买入
+python price_trigger_buy.py --market BTC-USDC --trigger-price 90000 --size 0.01 --order-price 89500
+
+# 当 ETH 涨到 4000 时买入 (追涨模式)
+python price_trigger_buy.py --market ETH-USDC --trigger-price 4000 --size 0.1 --direction up
+
+# 现货交易
+python price_trigger_buy.py --market SOL-USDC --trigger-price 180 --size 5 --mode spot
+
+# 设置杠杆倍数 (仅永续合约)
+python price_trigger_buy.py --market BTC-USDC --trigger-price 90000 --size 0.1 --leverage 5
+
+# 模拟运行 (不实际下单)
+python price_trigger_buy.py --market BTC-USDC --trigger-price 90000 --size 0.01 --dry-run
+```
+
+### 参数说明
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--market` | ✅ | 交易市场，如 BTC-USDC |
+| `--trigger-price` | ✅ | 触发价格 |
+| `--size` | ✅ | 购买数量 |
+| `--order-price` | ❌ | 下单价格，不填则使用市价单 |
+| `--direction` | ❌ | 触发方向: down=跌破买入, up=涨破买入 (默认: down) |
+| `--mode` | ❌ | 交易模式: perp=永续合约, spot=现货 (默认: perp) |
+| `--leverage` | ❌ | 杠杆倍数，仅永续合约 (默认: 1) |
+| `--interval` | ❌ | 价格检查间隔秒数 (默认: 2) |
+| `--dry-run` | ❌ | 模拟运行，不实际下单 |
 
 ## SDK 认证机制
 
