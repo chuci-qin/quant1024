@@ -362,3 +362,143 @@ class Exchange1024ex(BaseExchange):
     def get_balance(self) -> Dict[str, Any]:
         """获取账户余额（委托给 account 模块）"""
         return self.account.get_overview()
+    
+    def get_margin(self) -> Dict[str, Any]:
+        """获取保证金信息（委托给 account 模块）"""
+        return self.account.get_perp_margin()
+    
+    def get_funding_rate(self, market: str) -> Dict[str, Any]:
+        """获取资金费率（委托给 perp 模块）"""
+        return self.perp.get_funding_rate(market)
+    
+    def get_market_stats(self, market: str) -> Dict[str, Any]:
+        """获取市场统计（委托给 perp 模块）"""
+        return self.perp.get_open_interest(market)
+    
+    def update_order(
+        self,
+        order_id: str,
+        price: Optional[str] = None,
+        size: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """修改订单（委托给 perp 模块）"""
+        return self.perp.update_order(order_id, price or "", size)
+    
+    def batch_place_orders(self, orders: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """批量下单（委托给 perp 模块）"""
+        return self.perp.batch_place_orders(orders)
+    
+    def set_tpsl(
+        self,
+        market: str,
+        tp_price: Optional[str] = None,
+        sl_price: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """设置止盈止损（委托给 perp 模块）"""
+        return self.perp.set_tpsl(market, tp_price, sl_price)
+    
+    def get_leverage(self, market: str) -> Dict[str, Any]:
+        """获取杠杆设置（委托给 perp 模块）"""
+        return self.perp.get_leverage(market)
+    
+    def set_leverage(self, market: str, leverage: int) -> Dict[str, Any]:
+        """设置杠杆（委托给 perp 模块）"""
+        return self.perp.set_leverage(market, leverage)
+    
+    def get_sub_accounts(self) -> List[Dict[str, Any]]:
+        """获取子账户（委托给 account 模块的 API Keys 列表）"""
+        return self.account.get_api_keys()
+    
+    def get_deposit_address(self, asset: str, chain: str = "solana") -> Dict[str, Any]:
+        """获取充值地址（委托给 account 模块）"""
+        return self.account.initiate_deposit(asset, chain)
+    
+    def withdraw(
+        self,
+        asset: str,
+        amount: str,
+        address: str,
+        memo: Optional[str] = None,
+        chain: str = "solana"
+    ) -> Dict[str, Any]:
+        """提现（委托给 account 模块）"""
+        return self.account.request_withdrawal(asset, amount, address, chain)
+    
+    def get_deposit_history(
+        self,
+        asset: Optional[str] = None,
+        limit: int = 50
+    ) -> List[Dict[str, Any]]:
+        """获取充值历史（委托给 account 模块）"""
+        return self.account.get_deposits()
+    
+    def get_withdraw_history(
+        self,
+        asset: Optional[str] = None,
+        limit: int = 50
+    ) -> List[Dict[str, Any]]:
+        """获取提现历史（委托给 account 模块）"""
+        return self.account.get_withdrawals()
+    
+    def get_order_history(
+        self,
+        market: Optional[str] = None,
+        limit: int = 100
+    ) -> List[Dict[str, Any]]:
+        """获取历史订单（委托给 perp 模块）"""
+        return self.perp.get_order_history(market=market, limit=limit)
+    
+    def get_trade_history(
+        self,
+        market: Optional[str] = None,
+        limit: int = 100
+    ) -> List[Dict[str, Any]]:
+        """获取成交历史（委托给 perp 模块）"""
+        return self.perp.get_trade_history(market=market, limit=limit)
+    
+    def get_funding_history(
+        self,
+        market: Optional[str] = None,
+        limit: int = 100
+    ) -> List[Dict[str, Any]]:
+        """获取资金费历史（委托给 perp 模块）"""
+        return self.perp.get_user_funding_history(market=market, limit=limit)
+    
+    def get_liquidation_history(self, limit: int = 100) -> List[Dict[str, Any]]:
+        """获取强平历史（委托给 perp 模块）"""
+        return self.perp.get_liquidation_history()
+    
+    def get_pnl_summary(self, period: str = "30d") -> Dict[str, Any]:
+        """获取盈亏汇总（委托给 perp 模块）"""
+        return self.perp.get_pnl_summary()
+    
+    def get_smart_adl_config(self) -> Dict[str, Any]:
+        """获取 Smart ADL 配置"""
+        return self._request("GET", "/api/v1/smart-adl/config")
+    
+    def update_smart_adl_config(
+        self,
+        enabled: Optional[bool] = None,
+        mode: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """更新 Smart ADL 配置"""
+        data = {}
+        if enabled is not None:
+            data["enabled"] = enabled
+        if mode is not None:
+            data["mode"] = mode
+        return self._request("PUT", "/api/v1/smart-adl/config", data=data)
+    
+    def get_protection_pool(self) -> List[Dict[str, Any]]:
+        """获取保护池"""
+        result = self._request("GET", "/api/v1/smart-adl/protection-pool")
+        if isinstance(result, dict) and "data" in result:
+            return result["data"]
+        return []
+    
+    def get_smart_adl_history(self, limit: int = 50) -> List[Dict[str, Any]]:
+        """获取 Smart ADL 历史"""
+        result = self._request("GET", "/api/v1/smart-adl/history", params={"limit": limit})
+        if isinstance(result, dict) and "data" in result:
+            return result["data"]
+        return []

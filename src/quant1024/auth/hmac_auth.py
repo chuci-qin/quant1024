@@ -1,13 +1,13 @@
 """
 Authentication for 1024ex API
 
-Supports HMAC-SHA256 authentication as per OpenAPI spec:
-- Header: X-EXCHANGE-API-KEY (API Key)
+Supports HMAC-SHA256 authentication as per Gateway specification:
+- Header: X-API-KEY (API Key) - also accepts X-TRADING-API-KEY
 - Header: X-SIGNATURE (HMAC-SHA256 signature)
 - Header: X-TIMESTAMP (Unix timestamp in milliseconds)
 - Header: X-RECV-WINDOW (Optional, default 5000ms)
 
-API Documentation: https://api.1024ex.com/api-docs/openapi.json
+Signature = HMAC-SHA256(secret_key, timestamp + method + path + body)
 """
 
 import hmac
@@ -62,8 +62,8 @@ def get_auth_headers(
     """
     生成 HMAC-SHA256 认证 Headers
     
-    符合 1024 Exchange API 规范:
-    - X-EXCHANGE-API-KEY: API Key
+    符合 1024 Exchange Gateway 规范:
+    - X-API-KEY: API Key (服务器也接受 X-TRADING-API-KEY)
     - X-SIGNATURE: HMAC-SHA256(secret_key, timestamp + method + path + body)
     - X-TIMESTAMP: Unix timestamp in milliseconds
     - X-RECV-WINDOW: Request validity window (default 5000ms)
@@ -84,7 +84,7 @@ def get_auth_headers(
     
     return {
         "Content-Type": "application/json",
-        "X-EXCHANGE-API-KEY": api_key,
+        "X-API-KEY": api_key,
         "X-SIGNATURE": signature,
         "X-TIMESTAMP": timestamp,
         "X-RECV-WINDOW": str(recv_window)
@@ -102,9 +102,9 @@ def get_simple_auth_headers(api_key: str) -> Dict[str, str]:
         api_key: Exchange API Key
     
     Returns:
-        包含 X-EXCHANGE-API-KEY 的 Headers 字典
+        包含 X-API-KEY 的 Headers 字典
     """
     return {
-        "X-EXCHANGE-API-KEY": api_key,
+        "X-API-KEY": api_key,
         "Content-Type": "application/json"
     }
