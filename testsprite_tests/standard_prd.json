@@ -1,0 +1,225 @@
+{
+  "meta": {
+    "project": "quant1024",
+    "date": "2026-01-21",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "quant1024 is a multi-source quantitative trading toolkit designed for structured data retrieval and real-time trading. It supports multiple exchanges, financial data providers, and blockchain sources, providing unified and standardized interfaces for market data, trading, and position management within a modular Python backend ecosystem.",
+  "core_goals": [
+    "Provide an extensible base class for creating and backtesting custom quantitative trading strategies.",
+    "Facilitate performance evaluation through utility functions calculating returns and Sharpe ratio.",
+    "Enable seamless integration with multiple exchanges via a unified interface and modular API design.",
+    "Aggregate multi-source market and financial data for analysis and backtesting with adapters supporting exchanges, Yahoo Finance, and blockchain data.",
+    "Support live trading with real-time market data, WebSocket, and Webhook integrations.",
+    "Monitor trading operations in real-time with runtime reporting and configurable monitoring tools.",
+    "Ensure robust and informative exception handling for API, trading, and authentication errors."
+  ],
+  "key_features": [
+    "QuantStrategy Abstract Base Class for defining custom trading strategies with signal generation and position calculation methods.",
+    "Utility functions for accurately calculating returns and Sharpe ratio, handling edge cases such as empty or single-value data.",
+    "Multi-exchange support including the 1024 Exchange with modular Perp, Spot, Prediction, Championship, and Account trading modules.",
+    "Unified interfaces for retrieving market data, trading operations, managing positions, and advanced order types.",
+    "Multi-source Data Retrieval system with adapters for exchanges, financial data providers, and blockchain data sources.",
+    "Live Trading components including LiveTrader and start_trading entry point supporting WebSocket and Webhook integration for real-time execution.",
+    "Monitoring and reporting tools with RuntimeReporter and RuntimeConfig for tracking trading activity and system state.",
+    "Comprehensive exception hierarchy to manage authentication, rate limits, invalid inputs, margin issues, order and market errors, improving reliability and debuggability."
+  ],
+  "user_flow_summary": [
+    "User creates a custom trading strategy by inheriting from QuantStrategy, implementing generate_signals() and calculate_position().",
+    "User backtests the strategy using historical data via backtest() to evaluate performance.",
+    "User utilizes utility functions to calculate returns and Sharpe ratio from price series for performance measurement.",
+    "User connects to exchanges like 1024 Exchange through the BaseExchange interface and accesses modular APIs for different trading functionalities.",
+    "User retrieves market and financial data from multiple sources using DataRetriever and BacktestDataset with support for different data adapters.",
+    "User initiates live trading sessions via LiveTrader, receiving real-time market data through WebSocket and managing orders with Webhook callbacks.",
+    "User monitors trading activities and runtime state in real-time using RuntimeReporter and configures monitoring behaviors with RuntimeConfig.",
+    "Application gracefully handles exceptions via custom exception classes providing clear error messaging without crashing the system."
+  ],
+  "validation_criteria": [
+    "Custom strategies must inherit QuantStrategy and implement required methods generate_signals() and calculate_position().",
+    "Backtesting executes successfully producing meaningful performance outputs.",
+    "Utility functions calculate_returns() and calculate_sharpe_ratio() handle edge cases correctly and produce accurate results.",
+    "Exchange integration through Exchange1024ex supports authentication, modular API access, and trading operations.",
+    "Data retrieval aggregates data from multiple sources with standardized format and error handling.",
+    "Live trading sessions start successfully, process real-time data feeds, and complete trade executions.",
+    "Monitoring tools report trading activity reliably and support configuration adjustments at runtime.",
+    "All custom exceptions derive from Quant1024Exception with informative messages and do not cause application crashes."
+  ],
+  "code_summary": {
+    "projectName": "quant1024",
+    "projectType": "backend",
+    "version": "0.4.0",
+    "description": "Multi-source quantitative trading toolkit for structured data retrieval and real-time trading - supports exchanges, financial data providers, and blockchain sources",
+    "techStack": {
+      "language": "Python",
+      "languageVersion": ">=3.8",
+      "framework": null,
+      "buildTool": "hatchling",
+      "packageManager": "pip/uv",
+      "dependencies": [
+        "requests>=2.31.0",
+        "pydantic>=2.0.0",
+        "pandas>=2.0.0",
+        "numpy>=1.24.0"
+      ],
+      "devDependencies": [
+        "pytest>=7.4.0",
+        "pytest-cov>=4.1.0",
+        "responses>=0.23.0",
+        "yfinance>=0.2.0"
+      ],
+      "optionalDependencies": {
+        "yahoo": [
+          "yfinance>=0.2.0"
+        ],
+        "blockchain": [
+          "web3>=6.0.0"
+        ]
+      }
+    },
+    "features": [
+      {
+        "name": "QuantStrategy Abstract Base Class",
+        "description": "Abstract base class for creating custom trading strategies with signal generation and position calculation",
+        "files": [
+          "src/quant1024/core.py"
+        ],
+        "exports": [
+          "QuantStrategy"
+        ]
+      },
+      {
+        "name": "Utility Functions",
+        "description": "Calculate returns and Sharpe ratio for backtesting and analysis",
+        "files": [
+          "src/quant1024/core.py"
+        ],
+        "exports": [
+          "calculate_returns",
+          "calculate_sharpe_ratio"
+        ]
+      },
+      {
+        "name": "Exchange Integration",
+        "description": "Multi-exchange support with unified interface for 1024 Exchange and others",
+        "files": [
+          "src/quant1024/exchanges/base.py",
+          "src/quant1024/exchanges/exchange_1024ex.py"
+        ],
+        "exports": [
+          "BaseExchange",
+          "Exchange1024ex"
+        ]
+      },
+      {
+        "name": "Modular API Architecture",
+        "description": "Modular API with separate modules for Perp, Spot, Prediction, Championship, and Account",
+        "files": [
+          "src/quant1024/exchanges/modules/perp.py",
+          "src/quant1024/exchanges/modules/spot.py",
+          "src/quant1024/exchanges/modules/prediction.py",
+          "src/quant1024/exchanges/modules/championship.py",
+          "src/quant1024/exchanges/modules/account.py"
+        ],
+        "exports": [
+          "PerpModule",
+          "SpotModule",
+          "PredictionModule",
+          "ChampionshipModule",
+          "AccountModule"
+        ]
+      },
+      {
+        "name": "Unified Interfaces",
+        "description": "Standardized interfaces for market data, trading, positions, and advanced orders",
+        "files": [
+          "src/quant1024/interfaces/market_data.py",
+          "src/quant1024/interfaces/trading.py",
+          "src/quant1024/interfaces/positions.py",
+          "src/quant1024/interfaces/advanced_orders.py"
+        ],
+        "exports": [
+          "IMarketData",
+          "ITrading",
+          "IPositions",
+          "IAdvancedOrders"
+        ]
+      },
+      {
+        "name": "Data Retrieval",
+        "description": "Multi-source data retrieval with adapters for different data sources",
+        "files": [
+          "src/quant1024/data/retriever.py",
+          "src/quant1024/data/dataset.py",
+          "src/quant1024/data/adapters/"
+        ],
+        "exports": [
+          "DataRetriever",
+          "BacktestDataset"
+        ]
+      },
+      {
+        "name": "Live Trading",
+        "description": "Real-time trading support with WebSocket and Webhook integration",
+        "files": [
+          "src/quant1024/live_trading.py"
+        ],
+        "exports": [
+          "start_trading",
+          "LiveTrader"
+        ]
+      },
+      {
+        "name": "Monitor Feeds",
+        "description": "Runtime monitoring and reporting for trading operations",
+        "files": [
+          "src/quant1024/monitor_feeds/runtime_reporter.py",
+          "src/quant1024/monitor_feeds/types.py"
+        ],
+        "exports": [
+          "RuntimeConfig",
+          "RuntimeReporter"
+        ]
+      },
+      {
+        "name": "Exception Handling",
+        "description": "Custom exceptions for API errors, authentication, rate limits, and trading errors",
+        "files": [
+          "src/quant1024/exceptions.py"
+        ],
+        "exports": [
+          "Quant1024Exception",
+          "AuthenticationError",
+          "RateLimitError",
+          "InvalidParameterError",
+          "InsufficientMarginError",
+          "OrderNotFoundError",
+          "MarketNotFoundError",
+          "APIError"
+        ]
+      },
+      {
+        "name": "HMAC Authentication",
+        "description": "HMAC-based authentication for secure API access",
+        "files": [
+          "src/quant1024/auth/hmac_auth.py"
+        ],
+        "exports": []
+      }
+    ],
+    "entryPoints": {
+      "main": "src/quant1024/__init__.py",
+      "tests": "tests/"
+    },
+    "existingTests": {
+      "framework": "pytest",
+      "testDir": "tests/",
+      "testFiles": [
+        "tests/test_core.py",
+        "tests/test_1024ex.py",
+        "tests/test_data_retrieval.py"
+      ]
+    },
+    "apiEndpoints": null,
+    "notes": "This is a Python library/SDK for quantitative trading. It does not have HTTP API endpoints but provides programmatic APIs for trading strategies, data retrieval, and exchange integration."
+  }
+}

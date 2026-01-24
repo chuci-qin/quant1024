@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "backend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:8089",
+  "backendAuthType": "public",
+  "executionArgs": {
+    "projectName": "quant1024",
+    "projectPath": "/Users/patrick/Developer/1024ex/quant1024",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-oWdjcnDXF83cv2W011HBHJjh6ne3I9PYS3mvWZBmQQloEn6vBRkFLXKBhLKiBkR1AWd7-EV3WzmdBSw57VUv8VKtgUOt2vi8OkFwnPK1HopaqCs9wMz4WK7jy4FuYoy0DnI"
+    }
+  }
+}

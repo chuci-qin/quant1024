@@ -1,0 +1,42 @@
+[
+  {
+    "id": "TC001",
+    "title": "test_custom_strategy_creation_and_signal_generation",
+    "description": "Verify that users can create custom trading strategies by inheriting from QuantStrategy and correctly implement generate_signals() and calculate_position() methods."
+  },
+  {
+    "id": "TC002",
+    "title": "test_backtesting_execution_and_performance_output",
+    "description": "Ensure that the backtest() function executes successfully on historical data and produces meaningful performance metrics such as returns and Sharpe ratio."
+  },
+  {
+    "id": "TC003",
+    "title": "test_utility_functions_for_returns_and_sharpe_ratio",
+    "description": "Test the utility functions calculate_returns() and calculate_sharpe_ratio() for accurate calculations including handling edge cases like empty or single-value data series."
+  },
+  {
+    "id": "TC004",
+    "title": "test_exchange_integration_and_authentication",
+    "description": "Validate that the Exchange1024ex integration supports authentication, modular API access for Perp, Spot, Prediction, Championship, and Account modules, and trading operations."
+  },
+  {
+    "id": "TC005",
+    "title": "test_data_retrieval_from_multiple_sources",
+    "description": "Check that the DataRetriever and BacktestDataset correctly aggregate market and financial data from multiple sources with standardized formats and proper error handling."
+  },
+  {
+    "id": "TC006",
+    "title": "test_live_trading_session_and_real_time_data_processing",
+    "description": "Verify that live trading sessions can be started using start_trading and LiveTrader, process real-time market data via WebSocket, and execute trades with Webhook callbacks."
+  },
+  {
+    "id": "TC007",
+    "title": "test_runtime_monitoring_and_reporting_tools",
+    "description": "Ensure that RuntimeReporter and RuntimeConfig provide reliable real-time monitoring of trading activities and allow configuration adjustments at runtime."
+  },
+  {
+    "id": "TC008",
+    "title": "test_custom_exception_handling_and_error_messages",
+    "description": "Test that all custom exceptions derived from Quant1024Exception provide informative error messages and do not cause the application to crash during API, trading, or authentication errors."
+  }
+]
