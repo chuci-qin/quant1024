@@ -1,19 +1,62 @@
 name: Publish to PyPI
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'pyproject.toml'  # Only trigger when pyproject.toml changes
   release:
     types: [published]
-  # 或者使用 tag 触发
-  # push:
-  #   tags:
-  #     - 'v*'
 
 permissions:
   contents: read
 
 jobs:
+  check-version:
+    name: Check if version changed
+    runs-on: ubuntu-latest
+    outputs:
+      should_publish: ${{ steps.check.outputs.should_publish }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need previous commit to compare
+      
+      - name: Check version change
+        id: check
+        run: |
+          # Get current version from pyproject.toml
+          CURRENT_VERSION=$(grep -m1 'version = "' pyproject.toml | sed 's/.*version = "\(.*\)"/\1/')
+          echo "Current version: $CURRENT_VERSION"
+          
+          # For release events, always publish
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+            echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # For push events, check if version changed
+          git show HEAD~1:pyproject.toml > /tmp/old_pyproject.toml 2>/dev/null || echo 'version = "0.0.0"' > /tmp/old_pyproject.toml
+          OLD_VERSION=$(grep -m1 'version = "' /tmp/old_pyproject.toml | sed 's/.*version = "\(.*\)"/\1/' || echo "0.0.0")
+          echo "Previous version: $OLD_VERSION"
+          
+          if [ "$CURRENT_VERSION" != "$OLD_VERSION" ]; then
+            echo "Version changed from $OLD_VERSION to $CURRENT_VERSION"
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+            echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "Version unchanged, skipping publish"
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+            echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          fi
+
   test:
     name: Run tests
+    needs: check-version
+    if: needs.check-version.outputs.should_publish == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +76,8 @@ jobs:
 
   build:
     name: Build distribution
-    needs: test
+    needs: [check-version, test]
+    if: needs.check-version.outputs.should_publish == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -57,7 +101,8 @@ jobs:
 
   publish-to-pypi:
     name: Publish to PyPI
-    needs: build
+    needs: [check-version, build]
+    if: needs.check-version.outputs.should_publish == 'true'
     runs-on: ubuntu-latest
     environment:
       name: release
@@ -73,26 +118,8 @@ jobs:
       
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-
-  publish-to-testpypi:
-    name: Publish to TestPyPI (optional)
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/test-v')
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/p/quant1024
-    permissions:
-      id-token: write
-    steps:
-      - name: Download distributions
-        uses: actions/download-artifact@v4
-        with:
-          name: python-package-distributions
-          path: dist/
       
-      - name: Publish to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
-
+      - name: Published successfully
+        run: |
+          echo "🎉 Successfully published quant1024 v${{ needs.check-version.outputs.version }} to PyPI!"
+          echo "Install with: pip install quant1024==${{ needs.check-version.outputs.version }}"
