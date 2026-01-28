@@ -53,30 +53,30 @@ jobs:
             echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
           fi
 
-  # test:
-  #   name: Run tests
-  #   needs: check-version
-  #   if: needs.check-version.outputs.should_publish == 'true'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v5
-  #       with:
-  #         python-version: '3.11'
-  #     
-  #     - name: Install dependencies
-  #       run: |
-  #         python -m pip install --upgrade pip
-  #         pip install -e ".[dev]"
-  #     
-  #     - name: Run tests
-  #       run: pytest tests/ -v
+  test:
+    name: Run tests
+    needs: check-version
+    if: needs.check-version.outputs.should_publish == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      
+      - name: Run tests
+        run: pytest tests/ -v
 
   build:
     name: Build distribution
-    needs: check-version
+    needs: [check-version, test]
     if: needs.check-version.outputs.should_publish == 'true'
     runs-on: ubuntu-latest
     steps:

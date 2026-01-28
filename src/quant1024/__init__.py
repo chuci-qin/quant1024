@@ -10,7 +10,7 @@ paths (e.g., `from quant1024.core import ...`), they are not part of the
 public API and may change without notice.
 """
 
-__version__ = "0.5.3"
+__version__ = "0.5.4"
 
 # Define public API
 __all__ = ["Exchange1024ex", "qc"]
