@@ -1,6 +1,6 @@
 [project]
 name = "quant1024"
-version = "0.5.0"
+version = "0.5.1"
 description = "Multi-source quantitative trading toolkit for structured data retrieval and real-time trading - supports exchanges, financial data providers, and blockchain sources"
 authors = [
     {name = "1024 Exchange", email = "1024exchange@gmail.com"}

@@ -13,7 +13,7 @@ import sys
 import importlib.abc
 import importlib.machinery
 
-__version__ = "0.5.0"
+__version__ = "0.5.1"
 
 
 class Quant1024ImportBlocker(importlib.abc.MetaPathFinder, importlib.abc.Loader):
