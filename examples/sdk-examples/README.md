@@ -10,6 +10,7 @@
 | `sdk_usage_example.py` | SDK 基本使用示例 |
 | `story_test_flows.py` | 基于测试故事的完整业务流程示例 |
 | `price_trigger_buy.py` | 价格触发自动购买脚本 - 监控价格并在到达目标时自动下单 |
+| `dual_ma_backtest.py` | 🆕 双均线策略回测 - 支持多数据源、完整统计指标、可视化 |
 
 ## 快速开始
 
@@ -152,6 +153,87 @@ exchange.account.get_overview()
 exchange.account.get_perp_margin()
 exchange.account.deposit(...)
 ```
+
+## 双均线策略回测
+
+`dual_ma_backtest.py` 是一个完整的双均线交叉策略回测工具，**使用 quant1024 SDK 的 `DataRetriever` 获取数据**，支持多数据源和详细的回测报告。
+
+### 策略原理
+
+- **金叉买入**: 当短期均线上穿长期均线时，开多仓
+- **死叉卖出**: 当短期均线下穿长期均线时，平仓
+
+### 基本用法
+
+```bash
+# 默认参数回测 (使用 SDK 的 DataRetriever 获取数据)
+python dual_ma_backtest.py
+
+# 自定义均线参数
+python dual_ma_backtest.py --short-ma 10 --long-ma 50
+
+# 回测其他标的
+python dual_ma_backtest.py --symbol ETH-USD --days 365
+
+# 导出 Markdown 报告
+python dual_ma_backtest.py --report backtest_report.md
+
+# 导出交易记录到 CSV
+python dual_ma_backtest.py --export-trades trades.csv
+
+# 使用 1024ex 数据源 (需要 API 配置)
+python dual_ma_backtest.py --source 1024ex --symbol BTC-PERP
+```
+
+### 数据获取
+
+脚本使用 **quant1024 SDK 的 `DataRetriever`** 类获取数据：
+
+```python
+from quant1024 import DataRetriever
+
+# SDK 统一数据获取接口
+data_retriever = DataRetriever(source="yahoo", enable_cache=True)
+data = data_retriever.get_klines(
+    symbol="BTC-USD",
+    interval="1d",
+    days=365,
+    fill_missing=True,
+    validate_data=True
+)
+```
+
+### 参数说明
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `--source` | yahoo | 数据源 (SDK 支持: yahoo, 1024ex, binance) |
+| `--symbol` | BTC-USD | 交易标的 (1024ex使用BTC-PERP) |
+| `--interval` | 1d | K线周期 |
+| `--days` | 180 | 回测天数 |
+| `--short-ma` | 5 | 短期均线周期 |
+| `--long-ma` | 20 | 长期均线周期 |
+| `--capital` | 10000 | 初始资金 |
+| `--position-size` | 1.0 | 仓位比例 (0~1) |
+| `--slippage` | 0.001 | 滑点 (0.1%) |
+| `--commission` | 0.001 | 手续费 (0.1%) |
+| `--config` | - | API 配置文件路径 (1024ex需要) |
+| `--report` | - | 导出 Markdown 报告 |
+| `--export-trades` | - | 导出交易记录 CSV |
+| `--plot` | false | 显示图表 |
+| `--output` | - | 保存图表到文件 |
+
+### 回测报告指标
+
+- **收益指标**: 总收益率、年化收益
+- **风险指标**: 夏普比率、最大回撤、波动率
+- **交易统计**: 总交易次数、胜率、盈亏比
+- **盈亏统计**: 平均盈利/亏损、最大盈利/亏损
+- **交易记录**: 每笔交易的详细记录
+
+### 示例报告
+
+参考 [final_report.md](./final_report.md) 查看示例报告。
 
 ## 环境配置
 

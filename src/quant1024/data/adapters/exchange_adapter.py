@@ -25,7 +25,7 @@ class ExchangeAdapter(BaseAdapter):
             from ...exchanges import Exchange1024ex
             self.client = Exchange1024ex(
                 api_key=credentials.get('api_key', ''),
-                api_secret=credentials.get('api_secret', ''),
+                secret_key=credentials.get('api_secret', credentials.get('secret_key', '')),
             )
         else:
             raise NotImplementedError(f"交易所 '{source}' 还未实现")
