@@ -1,13 +1,30 @@
 """
-Authentication for 1024ex API
+Authentication for 1024ex Public API
 
-Supports HMAC-SHA256 authentication as per Gateway specification:
-- Header: X-API-KEY (API Key) - also accepts X-TRADING-API-KEY
-- Header: X-SIGNATURE (HMAC-SHA256 signature)
-- Header: X-TIMESTAMP (Unix timestamp in milliseconds)
-- Header: X-RECV-WINDOW (Optional, default 5000ms)
+Implements HMAC-SHA256 authentication as per 1024 Exchange Public API v4.1.0 specification.
 
-Signature = HMAC-SHA256(secret_key, timestamp + method + path + body)
+## Headers Required for Authenticated Endpoints
+
+- `X-API-KEY` or `X-TRADING-API-KEY`: Your Trading API Key
+- `X-SIGNATURE`: HMAC-SHA256 signature (hex-encoded)
+- `X-TIMESTAMP`: Unix timestamp in milliseconds
+
+## Signature Calculation
+
+```
+message = timestamp + METHOD + path + body
+signature = hex(HMAC-SHA256(secret_key, message))
+```
+
+Where:
+- `timestamp`: Unix timestamp in milliseconds (string)
+- `METHOD`: HTTP method in UPPERCASE (GET, POST, PUT, DELETE)
+- `path`: API endpoint path (e.g., /api/v1/perp/orders)
+- `body`: Request body JSON string (empty string for GET requests)
+
+## Timestamp Validation
+
+The timestamp must be within 30 seconds of the server time.
 """
 
 import hmac
@@ -24,24 +41,34 @@ def generate_signature(
     body: str = ""
 ) -> str:
     """
-    生成 HMAC-SHA256 签名
+    Generate HMAC-SHA256 signature for API authentication.
     
-    Signature = HMAC-SHA256(secret_key, timestamp + method + path + body)
+    Formula: signature = hex(HMAC-SHA256(secret_key, timestamp + METHOD + path + body))
     
     Args:
-        secret_key: API Secret Key
-        timestamp: 时间戳（毫秒字符串）
-        method: HTTP 方法（GET, POST, PUT, DELETE）
-        path: API 路径（如 /api/v1/orders）
-        body: 请求体（JSON 字符串，GET 请求为空）
+        secret_key: Trading API Secret Key
+        timestamp: Unix timestamp in milliseconds (string)
+        method: HTTP method (will be converted to uppercase)
+        path: API endpoint path (e.g., /api/v1/perp/orders)
+        body: Request body JSON string (empty for GET requests)
     
     Returns:
-        HMAC-SHA256 签名（十六进制字符串）
-    """
-    # 构造签名消息：timestamp + method + path + body
-    message = f"{timestamp}{method}{path}{body}"
+        HMAC-SHA256 signature as hex string
     
-    # 生成 HMAC-SHA256 签名
+    Example:
+        >>> sig = generate_signature(
+        ...     secret_key="abc123",
+        ...     timestamp="1735084800000",
+        ...     method="POST",
+        ...     path="/api/v1/perp/orders",
+        ...     body='{"market":"BTC-USDC","side":"long"}'
+        ... )
+    """
+    # Build signature message: timestamp + METHOD(uppercase) + path + body
+    # Backend uses method.to_uppercase() so we must match
+    message = f"{timestamp}{method.upper()}{path}{body}"
+    
+    # Generate HMAC-SHA256 signature
     signature = hmac.new(
         secret_key.encode('utf-8'),
         message.encode('utf-8'),
@@ -56,55 +83,95 @@ def get_auth_headers(
     secret_key: str,
     method: str,
     path: str,
-    body: str = "",
-    recv_window: int = 5000
+    body: str = ""
 ) -> Dict[str, str]:
     """
-    生成 HMAC-SHA256 认证 Headers
+    Generate authentication headers for 1024 Exchange API.
     
-    符合 1024 Exchange Gateway 规范:
-    - X-API-KEY: API Key (服务器也接受 X-TRADING-API-KEY)
-    - X-SIGNATURE: HMAC-SHA256(secret_key, timestamp + method + path + body)
+    Complies with 1024 Exchange Public API v4.1.0 specification:
+    - X-TRADING-API-KEY: Your Trading API Key
+    - X-SIGNATURE: HMAC-SHA256 signature
     - X-TIMESTAMP: Unix timestamp in milliseconds
-    - X-RECV-WINDOW: Request validity window (default 5000ms)
     
     Args:
-        api_key: Exchange API Key
-        secret_key: Exchange Secret Key
-        method: HTTP 方法 (GET, POST, PUT, DELETE)
-        path: API 路径 (如 /api/v1/orders)
-        body: 请求体 JSON 字符串 (GET 请求为空)
-        recv_window: 请求有效窗口（毫秒，默认 5000）
+        api_key: Trading API Key (starts with "1024_" prefix)
+        secret_key: Trading API Secret Key
+        method: HTTP method (GET, POST, PUT, DELETE)
+        path: API endpoint path (e.g., /api/v1/perp/orders)
+        body: Request body JSON string (empty for GET requests)
     
     Returns:
-        包含完整认证信息的 Headers 字典
+        Dict with complete authentication headers
+    
+    Example:
+        >>> headers = get_auth_headers(
+        ...     api_key="1024_abc123...",
+        ...     secret_key="secret123...",
+        ...     method="GET",
+        ...     path="/api/v1/perp/positions",
+        ...     body=""
+        ... )
+        >>> # Use headers in request
+        >>> requests.get(url, headers=headers)
+    
+    Note:
+        The timestamp is validated by the server (must be within 30 seconds).
+        Method is automatically converted to uppercase for signature.
     """
     timestamp = str(int(time.time() * 1000))
     signature = generate_signature(secret_key, timestamp, method, path, body)
     
     return {
         "Content-Type": "application/json",
-        "X-API-KEY": api_key,
+        "X-TRADING-API-KEY": api_key,
         "X-SIGNATURE": signature,
         "X-TIMESTAMP": timestamp,
-        "X-RECV-WINDOW": str(recv_window)
     }
 
 
 def get_simple_auth_headers(api_key: str) -> Dict[str, str]:
     """
-    生成简单 API Key 认证 Headers（仅用于公开端点或测试）
+    Generate simple API Key headers (for public endpoints or testing only).
     
-    注意：大部分需要认证的端点都需要 HMAC 签名，
-    请优先使用 get_auth_headers() 函数。
+    WARNING: Most authenticated endpoints require HMAC signature.
+    Use get_auth_headers() instead for authenticated requests.
     
     Args:
-        api_key: Exchange API Key
+        api_key: Trading API Key
     
     Returns:
-        包含 X-API-KEY 的 Headers 字典
+        Dict with X-TRADING-API-KEY header
     """
     return {
-        "X-API-KEY": api_key,
+        "X-TRADING-API-KEY": api_key,
         "Content-Type": "application/json"
     }
+
+
+def verify_signature(
+    secret_key: str,
+    timestamp: str,
+    method: str,
+    path: str,
+    body: str,
+    signature: str
+) -> bool:
+    """
+    Verify an HMAC-SHA256 signature.
+    
+    Useful for testing or webhook verification.
+    
+    Args:
+        secret_key: Trading API Secret Key
+        timestamp: Unix timestamp in milliseconds (string)
+        method: HTTP method
+        path: API endpoint path
+        body: Request body JSON string
+        signature: Signature to verify (hex string)
+    
+    Returns:
+        True if signature is valid, False otherwise
+    """
+    expected = generate_signature(secret_key, timestamp, method, path, body)
+    # Use constant-time comparison to prevent timing attacks
+    return hmac.compare_digest(expected, signature)

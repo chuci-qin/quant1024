@@ -1,14 +1,19 @@
 """
-1024ex Exchange connector
+1024ex Exchange Connector
 
-Implements the 1024 Exchange Public API v2.6.0
+Implements the 1024 Exchange Public API v4.1.0
 Supports modular architecture with separate modules for Perp, Spot, Prediction, Championship, and Account.
 
 Authentication: HMAC-SHA256 signature
-- Header: X-EXCHANGE-API-KEY (API Key)
+- Header: X-TRADING-API-KEY (Trading API Key)
 - Header: X-SIGNATURE (HMAC-SHA256 signature)
 - Header: X-TIMESTAMP (Unix timestamp in milliseconds)
-- Header: X-RECV-WINDOW (Optional, default 5000ms)
+
+Signature formula:
+    message = timestamp + METHOD + path + body
+    signature = hex(HMAC-SHA256(secret_key, message))
+
+Note: Timestamp must be within 30 seconds of server time.
 
 API Documentation: https://api.1024ex.com/api-docs/openapi.json
 """
@@ -40,30 +45,30 @@ from ..exceptions import (
 
 class Exchange1024ex(BaseExchange):
     """
-    1024 Exchange 连接器
+    1024 Exchange Connector
     
-    采用模块化架构，通过 exchange.perp.xxx() 风格访问各模块 API。
+    Modular architecture with access to various APIs via exchange.perp.xxx() style.
     
-    模块:
-        - perp: 永续合约交易 (PerpModule)
-        - spot: 现货交易 (SpotModule)
-        - prediction: 预测市场 (PredictionModule)
-        - championship: 锦标赛排行榜 (ChampionshipModule)
-        - account: 账户管理 (AccountModule)
+    Modules:
+        - perp: Perpetual futures trading (PerpModule)
+        - spot: Spot trading (SpotModule)
+        - prediction: Prediction markets (PredictionModule)
+        - championship: Championship leaderboard (ChampionshipModule)
+        - account: Account management (AccountModule)
     
-    认证方式: HMAC-SHA256 签名认证
+    Authentication: HMAC-SHA256 signature
     
     Example:
-        >>> exchange = Exchange1024ex(api_key="xxx", secret_key="xxx")
+        >>> exchange = Exchange1024ex(api_key="1024_xxx", secret_key="xxx")
         >>> 
-        >>> # 永续合约
+        >>> # Perpetual futures
         >>> exchange.perp.get_ticker("BTC-USDC")
         >>> exchange.perp.place_order(market="BTC-USDC", side="long", size="0.1")
         >>> 
-        >>> # 现货
+        >>> # Spot trading
         >>> exchange.spot.get_balances()
         >>> 
-        >>> # 预测市场
+        >>> # Prediction markets
         >>> exchange.prediction.list_markets(category="crypto")
     """
     
@@ -76,17 +81,17 @@ class Exchange1024ex(BaseExchange):
         max_retries: int = 3
     ):
         """
-        初始化 1024ex 客户端
+        Initialize 1024ex client.
         
         Args:
-            api_key: Exchange API Key（X-EXCHANGE-API-KEY header）
-            secret_key: Exchange Secret Key（用于生成 HMAC-SHA256 签名）
-            base_url: API 基础 URL (默认生产环境)
-                - 生产环境: https://api.1024ex.com
-                - 测试网: https://testnet-api.1024ex.com
-                - 本地开发: http://localhost:8090
-            timeout: 请求超时时间（秒）
-            max_retries: 最大重试次数
+            api_key: Trading API Key (for X-TRADING-API-KEY header)
+            secret_key: Trading API Secret Key (for HMAC-SHA256 signature)
+            base_url: API base URL (default: production)
+                - Production: https://api.1024ex.com
+                - Testnet: https://testnet-api.1024ex.com
+                - Local dev: http://localhost:8090
+            timeout: Request timeout in seconds
+            max_retries: Maximum retry attempts for failed requests
         """
         super().__init__(api_key, secret_key, base_url)
         self.secret_key = secret_key
@@ -94,41 +99,41 @@ class Exchange1024ex(BaseExchange):
         self.max_retries = max_retries
         self.session = requests.Session()
         
-        # 初始化模块
+        # Initialize modules
         self._perp = PerpModule(self)
         self._spot = SpotModule(self)
         self._prediction = PredictionModule(self)
         self._championship = ChampionshipModule(self)
         self._account = AccountModule(self)
     
-    # ========== 模块访问器 ==========
+    # ========== Module Accessors ==========
     
     @property
     def perp(self) -> PerpModule:
-        """永续合约模块"""
+        """Perpetual futures trading module"""
         return self._perp
     
     @property
     def spot(self) -> SpotModule:
-        """现货交易模块"""
+        """Spot trading module"""
         return self._spot
     
     @property
     def prediction(self) -> PredictionModule:
-        """预测市场模块"""
+        """Prediction markets module"""
         return self._prediction
     
     @property
     def championship(self) -> ChampionshipModule:
-        """锦标赛模块"""
+        """Championship leaderboard module"""
         return self._championship
     
     @property
     def account(self) -> AccountModule:
-        """账户管理模块"""
+        """Account management module"""
         return self._account
     
-    # ========== HTTP 请求层 ==========
+    # ========== HTTP Request Layer ==========
     
     def _request(
         self,
@@ -139,34 +144,34 @@ class Exchange1024ex(BaseExchange):
         auth_required: bool = True
     ) -> Dict[str, Any]:
         """
-        发送 HTTP 请求
+        Send HTTP request to the API.
         
         Args:
-            method: HTTP 方法
-            path: API 路径
-            params: URL 参数
-            data: 请求体数据
-            auth_required: 是否需要认证
+            method: HTTP method (GET, POST, PUT, DELETE)
+            path: API endpoint path
+            params: URL query parameters
+            data: Request body data
+            auth_required: Whether authentication is required
         
         Returns:
-            API 响应数据
+            API response data
         
         Raises:
-            APIError: API 错误
-            AuthenticationError: 认证错误
-            RateLimitError: 速率限制
+            APIError: General API error
+            AuthenticationError: Authentication failed
+            RateLimitError: Rate limit exceeded
         """
         url = urljoin(self.base_url, path)
         
-        # 构造请求体
+        # Build request body
         body = ""
         if data:
             body = json.dumps(data)
         
-        # 构造认证 Headers
+        # Build authentication headers
         if auth_required and self.api_key:
             if self.secret_key:
-                # 使用 HMAC-SHA256 签名认证（推荐）
+                # Use HMAC-SHA256 signature authentication (recommended)
                 headers = get_auth_headers(
                     api_key=self.api_key,
                     secret_key=self.secret_key,
@@ -175,12 +180,12 @@ class Exchange1024ex(BaseExchange):
                     body=body
                 )
             else:
-                # 仅 API Key 认证（用于公开端点或测试）
+                # API Key only (for public endpoints or testing)
                 headers = get_simple_auth_headers(self.api_key)
         else:
             headers = {"Content-Type": "application/json"}
         
-        # 发送请求（带重试）
+        # Send request with retry logic
         last_exception = None
         for attempt in range(self.max_retries):
             try:
@@ -193,14 +198,14 @@ class Exchange1024ex(BaseExchange):
                     timeout=self.timeout
                 )
                 
-                # 处理 HTTP 错误
+                # Handle HTTP errors
                 if response.status_code == 401:
-                    raise AuthenticationError("认证失败，请检查 API Key")
+                    raise AuthenticationError("Authentication failed. Please check your API Key and Secret.")
                 elif response.status_code == 429:
                     retry_after = int(response.headers.get('Retry-After', 60))
-                    raise RateLimitError(f"速率限制，请等待 {retry_after} 秒")
+                    raise RateLimitError(f"Rate limited. Please wait {retry_after} seconds.")
                 elif response.status_code == 404:
-                    raise MarketNotFoundError("资源未找到")
+                    raise MarketNotFoundError("Resource not found")
                 elif response.status_code >= 400:
                     try:
                         error_data = response.json()
@@ -209,7 +214,7 @@ class Exchange1024ex(BaseExchange):
                         error_msg = f'HTTP {response.status_code}'
                     raise APIError(error_msg)
                 
-                # 解析响应
+                # Parse response
                 try:
                     result = response.json()
                     return result
@@ -219,13 +224,13 @@ class Exchange1024ex(BaseExchange):
             except (requests.ConnectionError, requests.Timeout) as e:
                 last_exception = e
                 if attempt < self.max_retries - 1:
-                    time.sleep(2 ** attempt)  # 指数退避
+                    time.sleep(2 ** attempt)  # Exponential backoff
                     continue
                 else:
-                    raise APIError(f"请求失败: {str(e)}")
+                    raise APIError(f"Request failed: {str(e)}")
             
             except RateLimitError:
-                raise  # 速率限制不重试
+                raise  # Don't retry rate limit errors
             
             except Exception as e:
                 if attempt == self.max_retries - 1:
@@ -233,12 +238,12 @@ class Exchange1024ex(BaseExchange):
                 time.sleep(2 ** attempt)
         
         if last_exception:
-            raise APIError(f"请求失败: {str(last_exception)}")
+            raise APIError(f"Request failed: {str(last_exception)}")
         
         return {}
     
-    # ========== 系统接口（3个）==========
-    # 这些是全局接口，保留在主客户端
+    # ========== System Endpoints (3) ==========
+    # Global endpoints, kept on main client
     
     def get_server_time(self) -> Dict[str, Any]:
         """
@@ -274,27 +279,27 @@ class Exchange1024ex(BaseExchange):
         """
         return self._request("GET", "/api/v1/exchange-info", auth_required=False)
     
-    # ========== 向后兼容的便捷方法 ==========
-    # 委托给 perp 模块，保持旧 API 兼容
+    # ========== Backward-Compatible Convenience Methods ==========
+    # Delegates to perp/account modules for legacy API compatibility
     
     def get_markets(self) -> List[Dict[str, Any]]:
-        """获取所有市场（委托给 perp 模块）"""
+        """Get all markets (delegates to perp module)"""
         return self.perp.get_markets()
     
     def get_market(self, market: str) -> Dict[str, Any]:
-        """获取单个市场信息（委托给 perp 模块）"""
+        """Get single market info (delegates to perp module)"""
         return self.perp.get_market(market)
     
     def get_ticker(self, market: str) -> Dict[str, Any]:
-        """获取24小时行情（委托给 perp 模块）"""
+        """Get 24h ticker (delegates to perp module)"""
         return self.perp.get_ticker(market)
     
     def get_orderbook(self, market: str, depth: int = 20) -> Dict[str, Any]:
-        """获取订单簿（委托给 perp 模块）"""
+        """Get orderbook (delegates to perp module)"""
         return self.perp.get_orderbook(market, depth)
     
     def get_trades(self, market: str, limit: int = 50) -> List[Dict[str, Any]]:
-        """获取最近成交（委托给 perp 模块）"""
+        """Get recent trades (delegates to perp module)"""
         return self.perp.get_trades(market, limit)
     
     def get_klines(
@@ -305,7 +310,7 @@ class Exchange1024ex(BaseExchange):
         end_time: Optional[int] = None,
         limit: int = 100
     ) -> List[Dict[str, Any]]:
-        """获取K线数据（委托给 perp 模块）"""
+        """Get candlestick data (delegates to perp module)"""
         return self.perp.get_klines(market, interval, start_time, end_time, limit)
     
     def place_order(
@@ -321,7 +326,7 @@ class Exchange1024ex(BaseExchange):
         time_in_force: str = "GTC",
         client_order_id: Optional[str] = None
     ) -> Dict[str, Any]:
-        """下单（委托给 perp 模块）"""
+        """Place order (delegates to perp module)"""
         return self.perp.place_order(
             market=market,
             side=side,
@@ -336,11 +341,11 @@ class Exchange1024ex(BaseExchange):
         )
     
     def cancel_order(self, order_id: str) -> Dict[str, Any]:
-        """撤单（委托给 perp 模块）"""
+        """Cancel order (delegates to perp module)"""
         return self.perp.cancel_order(order_id)
     
     def cancel_all_orders(self, market: Optional[str] = None) -> Dict[str, Any]:
-        """批量撤单（委托给 perp 模块）"""
+        """Cancel all orders (delegates to perp module)"""
         return self.perp.cancel_all_orders(market)
     
     def get_orders(
@@ -348,31 +353,31 @@ class Exchange1024ex(BaseExchange):
         market: Optional[str] = None,
         status: Optional[str] = None
     ) -> List[Dict[str, Any]]:
-        """获取当前委托（委托给 perp 模块）"""
+        """Get open orders (delegates to perp module)"""
         return self.perp.get_orders(market, status)
     
     def get_order(self, order_id: str) -> Dict[str, Any]:
-        """获取订单详情（委托给 perp 模块）"""
+        """Get order details (delegates to perp module)"""
         return self.perp.get_order(order_id)
     
     def get_positions(self, market: Optional[str] = None) -> List[Dict[str, Any]]:
-        """获取持仓（委托给 perp 模块）"""
+        """Get positions (delegates to perp module)"""
         return self.perp.get_positions(market)
     
     def get_balance(self) -> Dict[str, Any]:
-        """获取账户余额（委托给 account 模块）"""
+        """Get account balance (delegates to account module)"""
         return self.account.get_overview()
     
     def get_margin(self) -> Dict[str, Any]:
-        """获取保证金信息（委托给 account 模块）"""
+        """Get margin info (delegates to account module)"""
         return self.account.get_perp_margin()
     
     def get_funding_rate(self, market: str) -> Dict[str, Any]:
-        """获取资金费率（委托给 perp 模块）"""
+        """Get funding rate (delegates to perp module)"""
         return self.perp.get_funding_rate(market)
     
     def get_market_stats(self, market: str) -> Dict[str, Any]:
-        """获取市场统计（委托给 perp 模块）"""
+        """Get market stats (delegates to perp module)"""
         return self.perp.get_open_interest(market)
     
     def update_order(
@@ -381,11 +386,11 @@ class Exchange1024ex(BaseExchange):
         price: Optional[str] = None,
         size: Optional[str] = None
     ) -> Dict[str, Any]:
-        """修改订单（委托给 perp 模块）"""
+        """Update order (delegates to perp module)"""
         return self.perp.update_order(order_id, price or "", size)
     
     def batch_place_orders(self, orders: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """批量下单（委托给 perp 模块）"""
+        """Batch place orders (delegates to perp module)"""
         return self.perp.batch_place_orders(orders)
     
     def set_tpsl(
@@ -394,23 +399,23 @@ class Exchange1024ex(BaseExchange):
         tp_price: Optional[str] = None,
         sl_price: Optional[str] = None
     ) -> Dict[str, Any]:
-        """设置止盈止损（委托给 perp 模块）"""
+        """Set take-profit/stop-loss (delegates to perp module)"""
         return self.perp.set_tpsl(market, tp_price, sl_price)
     
     def get_leverage(self, market: str) -> Dict[str, Any]:
-        """获取杠杆设置（委托给 perp 模块）"""
+        """Get leverage setting (delegates to perp module)"""
         return self.perp.get_leverage(market)
     
     def set_leverage(self, market: str, leverage: int) -> Dict[str, Any]:
-        """设置杠杆（委托给 perp 模块）"""
+        """Set leverage (delegates to perp module)"""
         return self.perp.set_leverage(market, leverage)
     
     def get_sub_accounts(self) -> List[Dict[str, Any]]:
-        """获取子账户（委托给 account 模块的 API Keys 列表）"""
+        """Get sub-accounts (delegates to account module's API keys list)"""
         return self.account.get_api_keys()
     
     def get_deposit_address(self, asset: str, chain: str = "solana") -> Dict[str, Any]:
-        """获取充值地址（委托给 account 模块）"""
+        """Get deposit address (delegates to account module)"""
         return self.account.initiate_deposit(asset, chain)
     
     def withdraw(
@@ -421,7 +426,7 @@ class Exchange1024ex(BaseExchange):
         memo: Optional[str] = None,
         chain: str = "solana"
     ) -> Dict[str, Any]:
-        """提现（委托给 account 模块）"""
+        """Withdraw funds (delegates to account module)"""
         return self.account.request_withdrawal(asset, amount, address, chain)
     
     def get_deposit_history(
@@ -429,7 +434,7 @@ class Exchange1024ex(BaseExchange):
         asset: Optional[str] = None,
         limit: int = 50
     ) -> List[Dict[str, Any]]:
-        """获取充值历史（委托给 account 模块）"""
+        """Get deposit history (delegates to account module)"""
         return self.account.get_deposits()
     
     def get_withdraw_history(
@@ -437,7 +442,7 @@ class Exchange1024ex(BaseExchange):
         asset: Optional[str] = None,
         limit: int = 50
     ) -> List[Dict[str, Any]]:
-        """获取提现历史（委托给 account 模块）"""
+        """Get withdrawal history (delegates to account module)"""
         return self.account.get_withdrawals()
     
     def get_order_history(
@@ -445,7 +450,7 @@ class Exchange1024ex(BaseExchange):
         market: Optional[str] = None,
         limit: int = 100
     ) -> List[Dict[str, Any]]:
-        """获取历史订单（委托给 perp 模块）"""
+        """Get order history (delegates to perp module)"""
         return self.perp.get_order_history(market=market, limit=limit)
     
     def get_trade_history(
@@ -453,7 +458,7 @@ class Exchange1024ex(BaseExchange):
         market: Optional[str] = None,
         limit: int = 100
     ) -> List[Dict[str, Any]]:
-        """获取成交历史（委托给 perp 模块）"""
+        """Get trade history (delegates to perp module)"""
         return self.perp.get_trade_history(market=market, limit=limit)
     
     def get_funding_history(
@@ -461,19 +466,19 @@ class Exchange1024ex(BaseExchange):
         market: Optional[str] = None,
         limit: int = 100
     ) -> List[Dict[str, Any]]:
-        """获取资金费历史（委托给 perp 模块）"""
+        """Get funding payment history (delegates to perp module)"""
         return self.perp.get_user_funding_history(market=market, limit=limit)
     
     def get_liquidation_history(self, limit: int = 100) -> List[Dict[str, Any]]:
-        """获取强平历史（委托给 perp 模块）"""
+        """Get liquidation history (delegates to perp module)"""
         return self.perp.get_liquidation_history()
     
     def get_pnl_summary(self, period: str = "30d") -> Dict[str, Any]:
-        """获取盈亏汇总（委托给 perp 模块）"""
+        """Get PnL summary (delegates to perp module)"""
         return self.perp.get_pnl_summary()
     
     def get_smart_adl_config(self) -> Dict[str, Any]:
-        """获取 Smart ADL 配置"""
+        """Get Smart ADL configuration"""
         return self._request("GET", "/api/v1/smart-adl/config")
     
     def update_smart_adl_config(
@@ -481,7 +486,7 @@ class Exchange1024ex(BaseExchange):
         enabled: Optional[bool] = None,
         mode: Optional[str] = None
     ) -> Dict[str, Any]:
-        """更新 Smart ADL 配置"""
+        """Update Smart ADL configuration"""
         data = {}
         if enabled is not None:
             data["enabled"] = enabled
@@ -490,14 +495,14 @@ class Exchange1024ex(BaseExchange):
         return self._request("PUT", "/api/v1/smart-adl/config", data=data)
     
     def get_protection_pool(self) -> List[Dict[str, Any]]:
-        """获取保护池"""
+        """Get protection pool"""
         result = self._request("GET", "/api/v1/smart-adl/protection-pool")
         if isinstance(result, dict) and "data" in result:
             return result["data"]
         return []
     
     def get_smart_adl_history(self, limit: int = 50) -> List[Dict[str, Any]]:
-        """获取 Smart ADL 历史"""
+        """Get Smart ADL history"""
         result = self._request("GET", "/api/v1/smart-adl/history", params={"limit": limit})
         if isinstance(result, dict) and "data" in result:
             return result["data"]
