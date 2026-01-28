@@ -118,7 +118,7 @@ jobs:
       
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-      
+
       - name: Published successfully
         run: |
           echo "🎉 Successfully published quant1024 v${{ needs.check-version.outputs.version }} to PyPI!"

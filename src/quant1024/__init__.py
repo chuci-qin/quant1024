@@ -10,7 +10,7 @@ paths (e.g., `from quant1024.core import ...`), they are not part of the
 public API and may change without notice.
 """
 
-__version__ = "0.5.4"
+__version__ = "0.5.5"
 
 # Define public API
 __all__ = ["Exchange1024ex", "qc"]
@@ -60,8 +60,8 @@ def __getattr__(name: str):
         return Exchange1024ex
     
     if name == "qc":
-        from . import qc as qc_module
-        return qc_module
+        import importlib
+        return importlib.import_module("quant1024.qc")
     
     raise AttributeError(
         f"module 'quant1024' has no attribute '{name}'. "

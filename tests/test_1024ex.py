@@ -160,7 +160,7 @@ def test_get_ticker(client):
     """Test get ticker"""
     responses.add(
         responses.GET,
-        "https://api.1024ex.com/api/v1/perp/ticker/BTC-USDC",
+        "https://api.1024ex.com/api/v1/perp/markets/BTC-USDC/ticker",
         json={
             "market": "BTC-USDC",
             "last_price": "60000.00",
@@ -181,7 +181,7 @@ def test_authentication_error(client):
     """Test authentication error"""
     responses.add(
         responses.GET,
-        "https://api.1024ex.com/api/v1/account/overview",
+        "https://api.1024ex.com/api/v1/accounts/me/overview",
         status=401
     )
     
