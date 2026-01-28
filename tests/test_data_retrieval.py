@@ -1,14 +1,16 @@
 """
-测试 Data Retrieval 模块 (v0.3.0)
+Test Data Retrieval module (v0.3.0)
 
-包含 DataRetriever 和 BacktestDataset 的测试
+Tests for DataRetriever and BacktestDataset (internal modules, not public API).
 """
 
 import pytest
 import pandas as pd
 import responses
 from datetime import datetime, timedelta
-from quant1024 import DataRetriever, BacktestDataset
+# Import from internal modules directly (not public API)
+from quant1024.data.retriever import DataRetriever
+from quant1024.data.dataset import BacktestDataset
 from quant1024.exceptions import InvalidParameterError
 
 

@@ -1,0 +1,5939 @@
+{
+  "project_id": 27759725,
+  "backtest_id": "a61d1f32651722d74dd98c6da5d339c2",
+  "url": "https://www.quantconnect.com/project/27759725",
+  "summary": {
+    "start_equity": "1000000",
+    "end_equity": "1059943.62",
+    "net_profit": "5.994%",
+    "total_fees": "$88.97",
+    "total_return": "5.994%",
+    "psr": "92.526%"
+  },
+  "statistics": {
+    "Total Orders": "79",
+    "Average Win": "0.07%",
+    "Average Loss": "-0.07%",
+    "Compounding Annual Return": "19.255%",
+    "Drawdown": "1.500%",
+    "Expectancy": "0.711",
+    "Start Equity": "1000000",
+    "End Equity": "1059943.62",
+    "Net Profit": "5.994%",
+    "Sharpe Ratio": "1.814",
+    "Sortino Ratio": "3.116",
+    "Probabilistic Sharpe Ratio": "92.526%",
+    "Loss Rate": "15%",
+    "Win Rate": "85%",
+    "Profit-Loss Ratio": "1.01",
+    "Alpha": "0.038",
+    "Beta": "0.117",
+    "Annual Standard Deviation": "0.042",
+    "Annual Variance": "0.002",
+    "Information Ratio": "-2.395",
+    "Tracking Error": "0.105",
+    "Treynor Ratio": "0.652",
+    "Total Fees": "$88.97",
+    "Estimated Strategy Capacity": "$0",
+    "Lowest Capacity Asset": "AAPL R735QTJ8XC9X",
+    "Portfolio Turnover": "1.27%",
+    "Drawdown Recovery": "7"
+  },
+  "risk_metrics": {
+    "alpha": "0.038",
+    "beta": "0.117",
+    "sharpe_ratio": "1.814",
+    "sortino_ratio": "3.116",
+    "treynor_ratio": "0.652",
+    "max_drawdown": "1.500%",
+    "var": "N/A"
+  },
+  "charts": {
+    "equity_curve": [],
+    "drawdown_curve": [],
+    "raw_charts": [
+      "Strategy Equity",
+      "Benchmark",
+      "Portfolio Margin",
+      "Assets Sales Volume",
+      "Drawdown",
+      "Portfolio Turnover",
+      "Exposure",
+      "Capacity"
+    ]
+  },
+  "orders": [
+    {
+      "type": 0,
+      "id": 1,
+      "contingentId": 0,
+      "brokerId": [
+        "1"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 209.56876899,
+      "priceCurrency": "USD",
+      "time": "2025-07-09T14:00:00Z",
+      "createdTime": "2025-07-09T14:00:00Z",
+      "lastFillTime": "2025-07-09T14:00:00Z",
+      "quantity": 407.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 85294.48897893,
+      "orderSubmissionData": {
+        "bidPrice": 209.56876899,
+        "askPrice": 209.56876899,
+        "lastPrice": 209.56876899
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-1-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 1,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1752069600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 407.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-1-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 1,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1752069600.0,
+          "status": "filled",
+          "orderFeeAmount": 2.035,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 209.56876899,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 407.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 407.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 2,
+      "contingentId": 0,
+      "brokerId": [
+        "2"
+      ],
+      "symbol": {
+        "value": "MSFT",
+        "id": "MSFT R735QTJ8XC9X",
+        "permtick": "MSFT"
+      },
+      "price": 494.878701294,
+      "priceCurrency": "USD",
+      "time": "2025-07-09T14:00:00Z",
+      "createdTime": "2025-07-09T14:00:00Z",
+      "lastFillTime": "2025-07-09T14:00:00Z",
+      "quantity": 172.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 85119.136622568,
+      "orderSubmissionData": {
+        "bidPrice": 494.878701294,
+        "askPrice": 494.878701294,
+        "lastPrice": 494.878701294
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-2-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 2,
+          "orderEventId": 1,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1752069600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 172.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-2-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 2,
+          "orderEventId": 2,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1752069600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 494.878701294,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 172.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 172.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 3,
+      "contingentId": 0,
+      "brokerId": [
+        "3"
+      ],
+      "symbol": {
+        "value": "GOOGL",
+        "id": "GOOG T1AZ164W5VTX",
+        "permtick": "GOOGL"
+      },
+      "price": 174.090317388,
+      "priceCurrency": "USD",
+      "time": "2025-07-09T14:00:00Z",
+      "createdTime": "2025-07-09T14:00:00Z",
+      "lastFillTime": "2025-07-09T14:00:00Z",
+      "quantity": 491.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 85478.345837508,
+      "orderSubmissionData": {
+        "bidPrice": 174.090317388,
+        "askPrice": 174.090317388,
+        "lastPrice": 174.090317388
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-3-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 3,
+          "orderEventId": 1,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1752069600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 491.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-3-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 3,
+          "orderEventId": 2,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1752069600.0,
+          "status": "filled",
+          "orderFeeAmount": 2.455,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 174.090317388,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 491.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 491.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 4,
+      "contingentId": 0,
+      "brokerId": [
+        "4"
+      ],
+      "symbol": {
+        "value": "AMZN",
+        "id": "AMZN R735QTJ8XC9X",
+        "permtick": "AMZN"
+      },
+      "price": 219.36,
+      "priceCurrency": "USD",
+      "time": "2025-07-09T14:00:00Z",
+      "createdTime": "2025-07-09T14:00:00Z",
+      "lastFillTime": "2025-07-09T14:00:00Z",
+      "quantity": 389.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 85331.04,
+      "orderSubmissionData": {
+        "bidPrice": 219.36,
+        "askPrice": 219.36,
+        "lastPrice": 219.36
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-4-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 4,
+          "orderEventId": 1,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1752069600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 389.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-4-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 4,
+          "orderEventId": 2,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1752069600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.945,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 219.36,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 389.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 389.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 5,
+      "contingentId": 0,
+      "brokerId": [
+        "5"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 159.982064,
+      "priceCurrency": "USD",
+      "time": "2025-07-09T14:00:00Z",
+      "createdTime": "2025-07-09T14:00:00Z",
+      "lastFillTime": "2025-07-09T14:00:00Z",
+      "quantity": 534.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 85430.422176,
+      "orderSubmissionData": {
+        "bidPrice": 159.982064,
+        "askPrice": 159.982064,
+        "lastPrice": 159.982064
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-5-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 5,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1752069600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 534.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-5-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 5,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1752069600.0,
+          "status": "filled",
+          "orderFeeAmount": 2.67,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 159.982064,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 534.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 534.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 6,
+      "contingentId": 0,
+      "brokerId": [
+        "6"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 719.596994437,
+      "priceCurrency": "USD",
+      "time": "2025-07-09T14:00:00Z",
+      "createdTime": "2025-07-09T14:00:00Z",
+      "lastFillTime": "2025-07-09T14:00:00Z",
+      "quantity": 118.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 84912.445343566,
+      "orderSubmissionData": {
+        "bidPrice": 719.596994437,
+        "askPrice": 719.596994437,
+        "lastPrice": 719.596994437
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-6-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 6,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1752069600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 118.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-6-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 6,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1752069600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 719.596994437,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 118.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 118.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 7,
+      "contingentId": 0,
+      "brokerId": [
+        "7"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 297.81,
+      "priceCurrency": "USD",
+      "time": "2025-07-09T14:00:00Z",
+      "createdTime": "2025-07-09T14:00:00Z",
+      "lastFillTime": "2025-07-09T14:00:00Z",
+      "quantity": 287.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 85471.47,
+      "orderSubmissionData": {
+        "bidPrice": 297.81,
+        "askPrice": 297.81,
+        "lastPrice": 297.81
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-7-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 7,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1752069600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 287.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-7-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 7,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1752069600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.435,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 297.81,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 287.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 287.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 8,
+      "contingentId": 0,
+      "brokerId": [
+        "8"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 550.990522912,
+      "priceCurrency": "USD",
+      "time": "2025-07-09T14:00:00Z",
+      "createdTime": "2025-07-09T14:00:00Z",
+      "lastFillTime": "2025-07-09T14:00:00Z",
+      "quantity": -1086.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -598375.707882432,
+      "orderSubmissionData": {
+        "bidPrice": 550.990522912,
+        "askPrice": 550.990522912,
+        "lastPrice": 550.990522912
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-8-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 8,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1752069600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -1086.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-8-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 8,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1752069600.0,
+          "status": "filled",
+          "orderFeeAmount": 5.43,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 550.990522912,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -1086.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -1086.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 9,
+      "contingentId": 0,
+      "brokerId": [
+        "9"
+      ],
+      "symbol": {
+        "value": "GOOGL",
+        "id": "GOOG T1AZ164W5VTX",
+        "permtick": "GOOGL"
+      },
+      "price": 181.7185006,
+      "priceCurrency": "USD",
+      "time": "2025-07-16T14:00:00Z",
+      "createdTime": "2025-07-16T14:00:00Z",
+      "lastFillTime": "2025-07-16T14:00:00Z",
+      "quantity": -16.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2907.4960096,
+      "orderSubmissionData": {
+        "bidPrice": 181.7185006,
+        "askPrice": 181.7185006,
+        "lastPrice": 181.7185006
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-9-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 9,
+          "orderEventId": 1,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1752674400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -16.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-9-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 9,
+          "orderEventId": 2,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1752674400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 181.7185006,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -16.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -16.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 10,
+      "contingentId": 0,
+      "brokerId": [
+        "10"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 170.68086453,
+      "priceCurrency": "USD",
+      "time": "2025-07-16T14:00:00Z",
+      "createdTime": "2025-07-16T14:00:00Z",
+      "lastFillTime": "2025-07-16T14:00:00Z",
+      "quantity": -28.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -4779.06420684,
+      "orderSubmissionData": {
+        "bidPrice": 170.68086453,
+        "askPrice": 170.68086453,
+        "lastPrice": 170.68086453
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-10-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 10,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1752674400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -28.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-10-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 10,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1752674400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 170.68086453,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -28.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -28.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 11,
+      "contingentId": 0,
+      "brokerId": [
+        "11"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 709.332300329,
+      "priceCurrency": "USD",
+      "time": "2025-07-16T14:00:00Z",
+      "createdTime": "2025-07-16T14:00:00Z",
+      "lastFillTime": "2025-07-16T14:00:00Z",
+      "quantity": 3.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2127.996900987,
+      "orderSubmissionData": {
+        "bidPrice": 709.332300329,
+        "askPrice": 709.332300329,
+        "lastPrice": 709.332300329
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-11-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 11,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1752674400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 3.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-11-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 11,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1752674400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 709.332300329,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 3.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 3.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 12,
+      "contingentId": 0,
+      "brokerId": [
+        "12"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 310.78,
+      "priceCurrency": "USD",
+      "time": "2025-07-16T14:00:00Z",
+      "createdTime": "2025-07-16T14:00:00Z",
+      "lastFillTime": "2025-07-16T14:00:00Z",
+      "quantity": -9.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2797.02,
+      "orderSubmissionData": {
+        "bidPrice": 310.78,
+        "askPrice": 310.78,
+        "lastPrice": 310.78
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-12-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 12,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1752674400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -9.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-12-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 12,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1752674400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 310.78,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -9.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -9.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 13,
+      "contingentId": 0,
+      "brokerId": [
+        "13"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 555.359821696,
+      "priceCurrency": "USD",
+      "time": "2025-07-16T14:00:00Z",
+      "createdTime": "2025-07-16T14:00:00Z",
+      "lastFillTime": "2025-07-16T14:00:00Z",
+      "quantity": -3.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -1666.079465088,
+      "orderSubmissionData": {
+        "bidPrice": 555.359821696,
+        "askPrice": 555.359821696,
+        "lastPrice": 555.359821696
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-13-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 13,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1752674400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -3.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-13-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 13,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1752674400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 555.359821696,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -3.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -3.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 14,
+      "contingentId": 0,
+      "brokerId": [
+        "14"
+      ],
+      "symbol": {
+        "value": "GOOGL",
+        "id": "GOOG T1AZ164W5VTX",
+        "permtick": "GOOGL"
+      },
+      "price": 191.044054422,
+      "priceCurrency": "USD",
+      "time": "2025-07-23T14:00:00Z",
+      "createdTime": "2025-07-23T14:00:00Z",
+      "lastFillTime": "2025-07-23T14:00:00Z",
+      "quantity": -21.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -4011.925142862,
+      "orderSubmissionData": {
+        "bidPrice": 191.044054422,
+        "askPrice": 191.044054422,
+        "lastPrice": 191.044054422
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-14-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 14,
+          "orderEventId": 1,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1753279200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -21.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-14-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 14,
+          "orderEventId": 2,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1753279200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 191.044054422,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -21.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/22/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -21.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 15,
+      "contingentId": 0,
+      "brokerId": [
+        "15"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 167.011275937,
+      "priceCurrency": "USD",
+      "time": "2025-07-23T14:00:00Z",
+      "createdTime": "2025-07-23T14:00:00Z",
+      "lastFillTime": "2025-07-23T14:00:00Z",
+      "quantity": 14.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2338.157863118,
+      "orderSubmissionData": {
+        "bidPrice": 167.011275937,
+        "askPrice": 167.011275937,
+        "lastPrice": 167.011275937
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-15-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 15,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1753279200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 14.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-15-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 15,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1753279200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 167.011275937,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 14.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/22/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 14.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 16,
+      "contingentId": 0,
+      "brokerId": [
+        "16"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 332.11,
+      "priceCurrency": "USD",
+      "time": "2025-07-23T14:00:00Z",
+      "createdTime": "2025-07-23T14:00:00Z",
+      "lastFillTime": "2025-07-23T14:00:00Z",
+      "quantity": -17.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -5645.87,
+      "orderSubmissionData": {
+        "bidPrice": 332.11,
+        "askPrice": 332.11,
+        "lastPrice": 332.11
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-16-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 16,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1753279200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -17.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-16-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 16,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1753279200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 332.11,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -17.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/22/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -17.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 17,
+      "contingentId": 0,
+      "brokerId": [
+        "17"
+      ],
+      "symbol": {
+        "value": "AMZN",
+        "id": "AMZN R735QTJ8XC9X",
+        "permtick": "AMZN"
+      },
+      "price": 231.01,
+      "priceCurrency": "USD",
+      "time": "2025-07-30T14:00:00Z",
+      "createdTime": "2025-07-30T14:00:00Z",
+      "lastFillTime": "2025-07-30T14:00:00Z",
+      "quantity": -14.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3234.14,
+      "orderSubmissionData": {
+        "bidPrice": 231.01,
+        "askPrice": 231.01,
+        "lastPrice": 231.01
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-17-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 17,
+          "orderEventId": 1,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1753884000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -14.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-17-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 17,
+          "orderEventId": 2,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1753884000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 231.01,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -14.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/29/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -14.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 18,
+      "contingentId": 0,
+      "brokerId": [
+        "18"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 175.490325329,
+      "priceCurrency": "USD",
+      "time": "2025-07-30T14:00:00Z",
+      "createdTime": "2025-07-30T14:00:00Z",
+      "lastFillTime": "2025-07-30T14:00:00Z",
+      "quantity": -26.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -4562.748458554,
+      "orderSubmissionData": {
+        "bidPrice": 175.490325329,
+        "askPrice": 175.490325329,
+        "lastPrice": 175.490325329
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-18-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 18,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1753884000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -26.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-18-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 18,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1753884000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 175.490325329,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -26.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 07/29/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -26.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 19,
+      "contingentId": 0,
+      "brokerId": [
+        "19"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 698.95777,
+      "priceCurrency": "USD",
+      "time": "2025-07-30T14:00:00Z",
+      "createdTime": "2025-07-30T14:00:00Z",
+      "lastFillTime": "2025-07-30T14:00:00Z",
+      "quantity": 3.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2096.87331,
+      "orderSubmissionData": {
+        "bidPrice": 698.95777,
+        "askPrice": 698.95777,
+        "lastPrice": 698.95777
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-19-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 19,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1753884000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 3.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-19-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 19,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1753884000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 698.95777,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 3.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/29/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 3.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 20,
+      "contingentId": 0,
+      "brokerId": [
+        "20"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 321.2,
+      "priceCurrency": "USD",
+      "time": "2025-07-30T14:00:00Z",
+      "createdTime": "2025-07-30T14:00:00Z",
+      "lastFillTime": "2025-07-30T14:00:00Z",
+      "quantity": 9.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2890.8,
+      "orderSubmissionData": {
+        "bidPrice": 321.2,
+        "askPrice": 321.2,
+        "lastPrice": 321.2
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-20-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 20,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1753884000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 9.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-20-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 20,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1753884000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 321.2,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 9.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/29/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 9.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 21,
+      "contingentId": 0,
+      "brokerId": [
+        "21"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 565.874070368,
+      "priceCurrency": "USD",
+      "time": "2025-07-30T14:00:00Z",
+      "createdTime": "2025-07-30T14:00:00Z",
+      "lastFillTime": "2025-07-30T14:00:00Z",
+      "quantity": 17.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 9619.859196256,
+      "orderSubmissionData": {
+        "bidPrice": 565.874070368,
+        "askPrice": 565.874070368,
+        "lastPrice": 565.874070368
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-21-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 21,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1753884000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 17.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-21-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 21,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1753884000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 565.874070368,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 17.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 07/29/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 17.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 22,
+      "contingentId": 0,
+      "brokerId": [
+        "22"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 202.49366508,
+      "priceCurrency": "USD",
+      "time": "2025-08-06T14:00:00Z",
+      "createdTime": "2025-08-06T14:00:00Z",
+      "lastFillTime": "2025-08-06T14:00:00Z",
+      "quantity": 23.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 4657.35429684,
+      "orderSubmissionData": {
+        "bidPrice": 202.49366508,
+        "askPrice": 202.49366508,
+        "lastPrice": 202.49366508
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-22-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 22,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1754488800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 23.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-22-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 22,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1754488800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 202.49366508,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 23.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 08/05/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 23.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 23,
+      "contingentId": 0,
+      "brokerId": [
+        "23"
+      ],
+      "symbol": {
+        "value": "MSFT",
+        "id": "MSFT R735QTJ8XC9X",
+        "permtick": "MSFT"
+      },
+      "price": 525.899550175,
+      "priceCurrency": "USD",
+      "time": "2025-08-06T14:00:00Z",
+      "createdTime": "2025-08-06T14:00:00Z",
+      "lastFillTime": "2025-08-06T14:00:00Z",
+      "quantity": -7.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3681.296851225,
+      "orderSubmissionData": {
+        "bidPrice": 525.899550175,
+        "askPrice": 525.899550175,
+        "lastPrice": 525.899550175
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-23-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 23,
+          "orderEventId": 1,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1754488800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -7.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-23-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 23,
+          "orderEventId": 2,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1754488800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 525.899550175,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -7.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/05/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -7.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 24,
+      "contingentId": 0,
+      "brokerId": [
+        "24"
+      ],
+      "symbol": {
+        "value": "AMZN",
+        "id": "AMZN R735QTJ8XC9X",
+        "permtick": "AMZN"
+      },
+      "price": 213.75,
+      "priceCurrency": "USD",
+      "time": "2025-08-06T14:00:00Z",
+      "createdTime": "2025-08-06T14:00:00Z",
+      "lastFillTime": "2025-08-06T14:00:00Z",
+      "quantity": 32.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 6840.0,
+      "orderSubmissionData": {
+        "bidPrice": 213.75,
+        "askPrice": 213.75,
+        "lastPrice": 213.75
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-24-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 24,
+          "orderEventId": 1,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1754488800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 32.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-24-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 24,
+          "orderEventId": 2,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1754488800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 213.75,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 32.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 08/05/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 32.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 25,
+      "contingentId": 0,
+      "brokerId": [
+        "25"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 762.323284406,
+      "priceCurrency": "USD",
+      "time": "2025-08-06T14:00:00Z",
+      "createdTime": "2025-08-06T14:00:00Z",
+      "lastFillTime": "2025-08-06T14:00:00Z",
+      "quantity": -10.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -7623.23284406,
+      "orderSubmissionData": {
+        "bidPrice": 762.323284406,
+        "askPrice": 762.323284406,
+        "lastPrice": 762.323284406
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-25-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 25,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1754488800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -10.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-25-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 25,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1754488800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 762.323284406,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -10.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/05/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -10.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 26,
+      "contingentId": 0,
+      "brokerId": [
+        "26"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 308.72,
+      "priceCurrency": "USD",
+      "time": "2025-08-06T14:00:00Z",
+      "createdTime": "2025-08-06T14:00:00Z",
+      "lastFillTime": "2025-08-06T14:00:00Z",
+      "quantity": 12.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 3704.64,
+      "orderSubmissionData": {
+        "bidPrice": 308.72,
+        "askPrice": 308.72,
+        "lastPrice": 308.72
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-26-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 26,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1754488800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 12.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-26-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 26,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1754488800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 308.72,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 12.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 08/05/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 12.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 27,
+      "contingentId": 0,
+      "brokerId": [
+        "27"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 558.901148336,
+      "priceCurrency": "USD",
+      "time": "2025-08-06T14:00:00Z",
+      "createdTime": "2025-08-06T14:00:00Z",
+      "lastFillTime": "2025-08-06T14:00:00Z",
+      "quantity": -20.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -11178.02296672,
+      "orderSubmissionData": {
+        "bidPrice": 558.901148336,
+        "askPrice": 558.901148336,
+        "lastPrice": 558.901148336
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-27-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 27,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1754488800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -20.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-27-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 27,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1754488800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 558.901148336,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -20.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/05/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -20.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 28,
+      "contingentId": 0,
+      "brokerId": [
+        "28"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 229.427583975,
+      "priceCurrency": "USD",
+      "time": "2025-08-13T14:00:00Z",
+      "createdTime": "2025-08-13T14:00:00Z",
+      "lastFillTime": "2025-08-13T14:00:00Z",
+      "quantity": -46.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -10553.66886285,
+      "orderSubmissionData": {
+        "bidPrice": 229.427583975,
+        "askPrice": 229.427583975,
+        "lastPrice": 229.427583975
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-28-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 28,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1755093600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -46.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-28-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 28,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1755093600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 229.427583975,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -46.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/12/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -46.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 29,
+      "contingentId": 0,
+      "brokerId": [
+        "29"
+      ],
+      "symbol": {
+        "value": "GOOGL",
+        "id": "GOOG T1AZ164W5VTX",
+        "permtick": "GOOGL"
+      },
+      "price": 203.025494022,
+      "priceCurrency": "USD",
+      "time": "2025-08-13T14:00:00Z",
+      "createdTime": "2025-08-13T14:00:00Z",
+      "lastFillTime": "2025-08-13T14:00:00Z",
+      "quantity": -20.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -4060.50988044,
+      "orderSubmissionData": {
+        "bidPrice": 203.025494022,
+        "askPrice": 203.025494022,
+        "lastPrice": 203.025494022
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-29-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 29,
+          "orderEventId": 1,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1755093600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -20.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-29-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 29,
+          "orderEventId": 2,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1755093600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 203.025494022,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -20.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/12/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -20.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 30,
+      "contingentId": 0,
+      "brokerId": [
+        "30"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 183.139467764,
+      "priceCurrency": "USD",
+      "time": "2025-08-13T14:00:00Z",
+      "createdTime": "2025-08-13T14:00:00Z",
+      "lastFillTime": "2025-08-13T14:00:00Z",
+      "quantity": -13.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2380.813080932,
+      "orderSubmissionData": {
+        "bidPrice": 183.139467764,
+        "askPrice": 183.139467764,
+        "lastPrice": 183.139467764
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-30-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 30,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1755093600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -13.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-30-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 30,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1755093600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 183.139467764,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -13.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/12/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -13.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 31,
+      "contingentId": 0,
+      "brokerId": [
+        "31"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 340.84,
+      "priceCurrency": "USD",
+      "time": "2025-08-13T14:00:00Z",
+      "createdTime": "2025-08-13T14:00:00Z",
+      "lastFillTime": "2025-08-13T14:00:00Z",
+      "quantity": -24.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -8180.16,
+      "orderSubmissionData": {
+        "bidPrice": 340.84,
+        "askPrice": 340.84,
+        "lastPrice": 340.84
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-31-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 31,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1755093600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -24.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-31-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 31,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1755093600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 340.84,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -24.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/12/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -24.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 32,
+      "contingentId": 0,
+      "brokerId": [
+        "32"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 578.63282184,
+      "priceCurrency": "USD",
+      "time": "2025-08-13T14:00:00Z",
+      "createdTime": "2025-08-13T14:00:00Z",
+      "lastFillTime": "2025-08-13T14:00:00Z",
+      "quantity": 25.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 14465.820546,
+      "orderSubmissionData": {
+        "bidPrice": 578.63282184,
+        "askPrice": 578.63282184,
+        "lastPrice": 578.63282184
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-32-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 32,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1755093600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 25.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-32-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 32,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1755093600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 578.63282184,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 25.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 08/12/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 25.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 33,
+      "contingentId": 0,
+      "brokerId": [
+        "33"
+      ],
+      "symbol": {
+        "value": "MSFT",
+        "id": "MSFT R735QTJ8XC9X",
+        "permtick": "MSFT"
+      },
+      "price": 507.982593449,
+      "priceCurrency": "USD",
+      "time": "2025-08-20T14:00:00Z",
+      "createdTime": "2025-08-20T14:00:00Z",
+      "lastFillTime": "2025-08-20T14:00:00Z",
+      "quantity": 8.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 4063.860747592,
+      "orderSubmissionData": {
+        "bidPrice": 507.982593449,
+        "askPrice": 507.982593449,
+        "lastPrice": 507.982593449
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-33-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 33,
+          "orderEventId": 1,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1755698400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 8.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-33-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 33,
+          "orderEventId": 2,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1755698400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 507.982593449,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 8.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 08/19/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 8.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 34,
+      "contingentId": 0,
+      "brokerId": [
+        "34"
+      ],
+      "symbol": {
+        "value": "AMZN",
+        "id": "AMZN R735QTJ8XC9X",
+        "permtick": "AMZN"
+      },
+      "price": 228.01,
+      "priceCurrency": "USD",
+      "time": "2025-08-20T14:00:00Z",
+      "createdTime": "2025-08-20T14:00:00Z",
+      "lastFillTime": "2025-08-20T14:00:00Z",
+      "quantity": -21.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -4788.21,
+      "orderSubmissionData": {
+        "bidPrice": 228.01,
+        "askPrice": 228.01,
+        "lastPrice": 228.01
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-34-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 34,
+          "orderEventId": 1,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1755698400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -21.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-34-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 34,
+          "orderEventId": 2,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1755698400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 228.01,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -21.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/19/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -21.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 35,
+      "contingentId": 0,
+      "brokerId": [
+        "35"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 175.620310756,
+      "priceCurrency": "USD",
+      "time": "2025-08-20T14:00:00Z",
+      "createdTime": "2025-08-20T14:00:00Z",
+      "lastFillTime": "2025-08-20T14:00:00Z",
+      "quantity": 21.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 3688.026525876,
+      "orderSubmissionData": {
+        "bidPrice": 175.620310756,
+        "askPrice": 175.620310756,
+        "lastPrice": 175.620310756
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-35-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 35,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1755698400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 21.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-35-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 35,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1755698400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 175.620310756,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 21.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 08/19/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 21.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 36,
+      "contingentId": 0,
+      "brokerId": [
+        "36"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 750.361121428,
+      "priceCurrency": "USD",
+      "time": "2025-08-20T14:00:00Z",
+      "createdTime": "2025-08-20T14:00:00Z",
+      "lastFillTime": "2025-08-20T14:00:00Z",
+      "quantity": 3.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2251.083364284,
+      "orderSubmissionData": {
+        "bidPrice": 750.361121428,
+        "askPrice": 750.361121428,
+        "lastPrice": 750.361121428
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-36-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 36,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1755698400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 3.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-36-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 36,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1755698400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 750.361121428,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 3.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 08/19/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 3.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 37,
+      "contingentId": 0,
+      "brokerId": [
+        "37"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 329.31,
+      "priceCurrency": "USD",
+      "time": "2025-08-20T14:00:00Z",
+      "createdTime": "2025-08-20T14:00:00Z",
+      "lastFillTime": "2025-08-20T14:00:00Z",
+      "quantity": 9.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2963.79,
+      "orderSubmissionData": {
+        "bidPrice": 329.31,
+        "askPrice": 329.31,
+        "lastPrice": 329.31
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-37-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 37,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1755698400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 9.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-37-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 37,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1755698400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 329.31,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 9.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 08/19/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 9.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 38,
+      "contingentId": 0,
+      "brokerId": [
+        "38"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 567.889135104,
+      "priceCurrency": "USD",
+      "time": "2025-08-20T14:00:00Z",
+      "createdTime": "2025-08-20T14:00:00Z",
+      "lastFillTime": "2025-08-20T14:00:00Z",
+      "quantity": -19.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -10789.893566976,
+      "orderSubmissionData": {
+        "bidPrice": 567.889135104,
+        "askPrice": 567.889135104,
+        "lastPrice": 567.889135104
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-38-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 38,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1755698400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -19.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-38-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 38,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1755698400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 567.889135104,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -19.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/19/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -19.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 39,
+      "contingentId": 0,
+      "brokerId": [
+        "39"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 181.749623583,
+      "priceCurrency": "USD",
+      "time": "2025-08-27T14:00:00Z",
+      "createdTime": "2025-08-27T14:00:00Z",
+      "lastFillTime": "2025-08-27T14:00:00Z",
+      "quantity": -14.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2544.494730162,
+      "orderSubmissionData": {
+        "bidPrice": 181.749623583,
+        "askPrice": 181.749623583,
+        "lastPrice": 181.749623583
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-39-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 39,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1756303200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -14.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-39-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 39,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1756303200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 181.749623583,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -14.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/26/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -14.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 40,
+      "contingentId": 0,
+      "brokerId": [
+        "40"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 351.67,
+      "priceCurrency": "USD",
+      "time": "2025-08-27T14:00:00Z",
+      "createdTime": "2025-08-27T14:00:00Z",
+      "lastFillTime": "2025-08-27T14:00:00Z",
+      "quantity": -15.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -5275.05,
+      "orderSubmissionData": {
+        "bidPrice": 351.67,
+        "askPrice": 351.67,
+        "lastPrice": 351.67
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-40-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 40,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1756303200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -15.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-40-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 40,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1756303200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 351.67,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -15.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 08/26/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -15.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 41,
+      "contingentId": 0,
+      "brokerId": [
+        "41"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 238.239041805,
+      "priceCurrency": "USD",
+      "time": "2025-09-04T14:00:00Z",
+      "createdTime": "2025-09-04T14:00:00Z",
+      "lastFillTime": "2025-09-04T14:00:00Z",
+      "quantity": -10.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2382.39041805,
+      "orderSubmissionData": {
+        "bidPrice": 238.239041805,
+        "askPrice": 238.239041805,
+        "lastPrice": 238.239041805
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-41-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 41,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1756994400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -10.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-41-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 41,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1756994400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 238.239041805,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -10.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/03/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -10.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 42,
+      "contingentId": 0,
+      "brokerId": [
+        "42"
+      ],
+      "symbol": {
+        "value": "GOOGL",
+        "id": "GOOG T1AZ164W5VTX",
+        "permtick": "GOOGL"
+      },
+      "price": 230.303238178,
+      "priceCurrency": "USD",
+      "time": "2025-09-04T14:00:00Z",
+      "createdTime": "2025-09-04T14:00:00Z",
+      "lastFillTime": "2025-09-04T14:00:00Z",
+      "quantity": -48.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -11054.555432544,
+      "orderSubmissionData": {
+        "bidPrice": 230.303238178,
+        "askPrice": 230.303238178,
+        "lastPrice": 230.303238178
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-42-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 42,
+          "orderEventId": 1,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1756994400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -48.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-42-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 42,
+          "orderEventId": 2,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1756994400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 230.303238178,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -48.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/03/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -48.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 43,
+      "contingentId": 0,
+      "brokerId": [
+        "43"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 170.600873498,
+      "priceCurrency": "USD",
+      "time": "2025-09-04T14:00:00Z",
+      "createdTime": "2025-09-04T14:00:00Z",
+      "lastFillTime": "2025-09-04T14:00:00Z",
+      "quantity": 34.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 5800.429698932,
+      "orderSubmissionData": {
+        "bidPrice": 170.600873498,
+        "askPrice": 170.600873498,
+        "lastPrice": 170.600873498
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-43-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 43,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1756994400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 34.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-43-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 43,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1756994400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 170.600873498,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 34.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/03/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 34.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 44,
+      "contingentId": 0,
+      "brokerId": [
+        "44"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 735.952606255,
+      "priceCurrency": "USD",
+      "time": "2025-09-04T14:00:00Z",
+      "createdTime": "2025-09-04T14:00:00Z",
+      "lastFillTime": "2025-09-04T14:00:00Z",
+      "quantity": 4.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2943.81042502,
+      "orderSubmissionData": {
+        "bidPrice": 735.952606255,
+        "askPrice": 735.952606255,
+        "lastPrice": 735.952606255
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-44-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 44,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1756994400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 4.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-44-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 44,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1756994400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 735.952606255,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 4.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/03/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 4.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 45,
+      "contingentId": 0,
+      "brokerId": [
+        "45"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 334.09,
+      "priceCurrency": "USD",
+      "time": "2025-09-04T14:00:00Z",
+      "createdTime": "2025-09-04T14:00:00Z",
+      "lastFillTime": "2025-09-04T14:00:00Z",
+      "quantity": 14.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 4677.26,
+      "orderSubmissionData": {
+        "bidPrice": 334.09,
+        "askPrice": 334.09,
+        "lastPrice": 334.09
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-45-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 45,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1756994400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 14.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-45-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 45,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1756994400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 334.09,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 14.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/03/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 14.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 46,
+      "contingentId": 0,
+      "brokerId": [
+        "46"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 568.677204976,
+      "priceCurrency": "USD",
+      "time": "2025-09-04T14:00:00Z",
+      "createdTime": "2025-09-04T14:00:00Z",
+      "lastFillTime": "2025-09-04T14:00:00Z",
+      "quantity": -10.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -5686.77204976,
+      "orderSubmissionData": {
+        "bidPrice": 568.677204976,
+        "askPrice": 568.677204976,
+        "lastPrice": 568.677204976
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-46-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 46,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1756994400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -10.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-46-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 46,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1756994400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 568.677204976,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -10.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/03/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -10.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 47,
+      "contingentId": 0,
+      "brokerId": [
+        "47"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 226.570353885,
+      "priceCurrency": "USD",
+      "time": "2025-09-11T14:00:00Z",
+      "createdTime": "2025-09-11T14:00:00Z",
+      "lastFillTime": "2025-09-11T14:00:00Z",
+      "quantity": 18.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 4078.26636993,
+      "orderSubmissionData": {
+        "bidPrice": 226.570353885,
+        "askPrice": 226.570353885,
+        "lastPrice": 226.570353885
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-47-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 47,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1757599200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 18.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-47-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 47,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1757599200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 226.570353885,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 18.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/10/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 18.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 48,
+      "contingentId": 0,
+      "brokerId": [
+        "48"
+      ],
+      "symbol": {
+        "value": "MSFT",
+        "id": "MSFT R735QTJ8XC9X",
+        "permtick": "MSFT"
+      },
+      "price": 499.435258803,
+      "priceCurrency": "USD",
+      "time": "2025-09-11T14:00:00Z",
+      "createdTime": "2025-09-11T14:00:00Z",
+      "lastFillTime": "2025-09-11T14:00:00Z",
+      "quantity": 4.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 1997.741035212,
+      "orderSubmissionData": {
+        "bidPrice": 499.435258803,
+        "askPrice": 499.435258803,
+        "lastPrice": 499.435258803
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-48-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 48,
+          "orderEventId": 1,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1757599200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 4.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-48-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 48,
+          "orderEventId": 2,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1757599200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 499.435258803,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 4.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/10/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 4.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 49,
+      "contingentId": 0,
+      "brokerId": [
+        "49"
+      ],
+      "symbol": {
+        "value": "GOOGL",
+        "id": "GOOG T1AZ164W5VTX",
+        "permtick": "GOOGL"
+      },
+      "price": 239.013654571,
+      "priceCurrency": "USD",
+      "time": "2025-09-11T14:00:00Z",
+      "createdTime": "2025-09-11T14:00:00Z",
+      "lastFillTime": "2025-09-11T14:00:00Z",
+      "quantity": -15.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3585.204818565,
+      "orderSubmissionData": {
+        "bidPrice": 239.013654571,
+        "askPrice": 239.013654571,
+        "lastPrice": 239.013654571
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-49-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 49,
+          "orderEventId": 1,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1757599200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -15.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-49-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 49,
+          "orderEventId": 2,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1757599200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 239.013654571,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -15.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/10/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -15.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 50,
+      "contingentId": 0,
+      "brokerId": [
+        "50"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 177.310121307,
+      "priceCurrency": "USD",
+      "time": "2025-09-11T14:00:00Z",
+      "createdTime": "2025-09-11T14:00:00Z",
+      "lastFillTime": "2025-09-11T14:00:00Z",
+      "quantity": -21.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3723.512547447,
+      "orderSubmissionData": {
+        "bidPrice": 177.310121307,
+        "askPrice": 177.310121307,
+        "lastPrice": 177.310121307
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-50-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 50,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1757599200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -21.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-50-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 50,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1757599200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 177.310121307,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -21.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/10/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -21.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 51,
+      "contingentId": 0,
+      "brokerId": [
+        "51"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 347.79,
+      "priceCurrency": "USD",
+      "time": "2025-09-11T14:00:00Z",
+      "createdTime": "2025-09-11T14:00:00Z",
+      "lastFillTime": "2025-09-11T14:00:00Z",
+      "quantity": -11.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3825.69,
+      "orderSubmissionData": {
+        "bidPrice": 347.79,
+        "askPrice": 347.79,
+        "lastPrice": 347.79
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-51-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 51,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1757599200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -11.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-51-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 51,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1757599200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 347.79,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -11.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/10/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -11.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 52,
+      "contingentId": 0,
+      "brokerId": [
+        "52"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 579.28123376,
+      "priceCurrency": "USD",
+      "time": "2025-09-11T14:00:00Z",
+      "createdTime": "2025-09-11T14:00:00Z",
+      "lastFillTime": "2025-09-11T14:00:00Z",
+      "quantity": 23.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 13323.46837648,
+      "orderSubmissionData": {
+        "bidPrice": 579.28123376,
+        "askPrice": 579.28123376,
+        "lastPrice": 579.28123376
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-52-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 52,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1757599200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 23.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-52-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 52,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1757599200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 579.28123376,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 23.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/10/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 23.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 53,
+      "contingentId": 0,
+      "brokerId": [
+        "53"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 238.758538185,
+      "priceCurrency": "USD",
+      "time": "2025-09-18T14:00:00Z",
+      "createdTime": "2025-09-18T14:00:00Z",
+      "lastFillTime": "2025-09-18T14:00:00Z",
+      "quantity": -13.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3103.860996405,
+      "orderSubmissionData": {
+        "bidPrice": 238.758538185,
+        "askPrice": 238.758538185,
+        "lastPrice": 238.758538185
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-53-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 53,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1758204000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -13.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-53-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 53,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1758204000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 238.758538185,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -13.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/17/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -13.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 54,
+      "contingentId": 0,
+      "brokerId": [
+        "54"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 170.280514847,
+      "priceCurrency": "USD",
+      "time": "2025-09-18T14:00:00Z",
+      "createdTime": "2025-09-18T14:00:00Z",
+      "lastFillTime": "2025-09-18T14:00:00Z",
+      "quantity": 30.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 5108.41544541,
+      "orderSubmissionData": {
+        "bidPrice": 170.280514847,
+        "askPrice": 170.280514847,
+        "lastPrice": 170.280514847
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-54-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 54,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1758204000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 30.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-54-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 54,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1758204000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 170.280514847,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 30.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/17/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 30.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 55,
+      "contingentId": 0,
+      "brokerId": [
+        "55"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 774.5600379365,
+      "priceCurrency": "USD",
+      "time": "2025-09-18T14:00:00Z",
+      "createdTime": "2025-09-18T14:00:00Z",
+      "lastFillTime": "2025-09-18T14:00:00Z",
+      "quantity": -5.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3872.8001896825,
+      "orderSubmissionData": {
+        "bidPrice": 774.5600379365,
+        "askPrice": 774.5600379365,
+        "lastPrice": 774.5600379365
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-55-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 55,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1758204000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -5.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-55-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 55,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1758204000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 774.5600379365,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -5.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/17/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -5.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 56,
+      "contingentId": 0,
+      "brokerId": [
+        "56"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 425.86,
+      "priceCurrency": "USD",
+      "time": "2025-09-18T14:00:00Z",
+      "createdTime": "2025-09-18T14:00:00Z",
+      "lastFillTime": "2025-09-18T14:00:00Z",
+      "quantity": -43.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -18311.98,
+      "orderSubmissionData": {
+        "bidPrice": 425.86,
+        "askPrice": 425.86,
+        "lastPrice": 425.86
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-56-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 56,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1758204000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -43.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-56-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 56,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1758204000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 425.86,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -43.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/17/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -43.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 57,
+      "contingentId": 0,
+      "brokerId": [
+        "57"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 588.558512,
+      "priceCurrency": "USD",
+      "time": "2025-09-18T14:00:00Z",
+      "createdTime": "2025-09-18T14:00:00Z",
+      "lastFillTime": "2025-09-18T14:00:00Z",
+      "quantity": -4.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2354.234048,
+      "orderSubmissionData": {
+        "bidPrice": 588.558512,
+        "askPrice": 588.558512,
+        "lastPrice": 588.558512
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-57-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 57,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1758204000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -4.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-57-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 57,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1758204000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 588.558512,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -4.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/17/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -4.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 58,
+      "contingentId": 0,
+      "brokerId": [
+        "58"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 252.065637765,
+      "priceCurrency": "USD",
+      "time": "2025-09-25T14:00:00Z",
+      "createdTime": "2025-09-25T14:00:00Z",
+      "lastFillTime": "2025-09-25T14:00:00Z",
+      "quantity": -21.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -5293.378393065,
+      "orderSubmissionData": {
+        "bidPrice": 252.065637765,
+        "askPrice": 252.065637765,
+        "lastPrice": 252.065637765
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-58-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 58,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1758808800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -21.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-58-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 58,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1758808800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 252.065637765,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -21.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/24/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -21.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 59,
+      "contingentId": 0,
+      "brokerId": [
+        "59"
+      ],
+      "symbol": {
+        "value": "AMZN",
+        "id": "AMZN R735QTJ8XC9X",
+        "permtick": "AMZN"
+      },
+      "price": 220.21,
+      "priceCurrency": "USD",
+      "time": "2025-09-25T14:00:00Z",
+      "createdTime": "2025-09-25T14:00:00Z",
+      "lastFillTime": "2025-09-25T14:00:00Z",
+      "quantity": 24.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 5285.04,
+      "orderSubmissionData": {
+        "bidPrice": 220.21,
+        "askPrice": 220.21,
+        "lastPrice": 220.21
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-59-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 59,
+          "orderEventId": 1,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1758808800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 24.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-59-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 59,
+          "orderEventId": 2,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1758808800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 220.21,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 24.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/24/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 24.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 60,
+      "contingentId": 0,
+      "brokerId": [
+        "60"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 176.960142771,
+      "priceCurrency": "USD",
+      "time": "2025-09-25T14:00:00Z",
+      "createdTime": "2025-09-25T14:00:00Z",
+      "lastFillTime": "2025-09-25T14:00:00Z",
+      "quantity": -21.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3716.162998191,
+      "orderSubmissionData": {
+        "bidPrice": 176.960142771,
+        "askPrice": 176.960142771,
+        "lastPrice": 176.960142771
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-60-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 60,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1758808800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -21.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-60-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 60,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1758808800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 176.960142771,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -21.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/24/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -21.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 61,
+      "contingentId": 0,
+      "brokerId": [
+        "61"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 760.040138166,
+      "priceCurrency": "USD",
+      "time": "2025-09-25T14:00:00Z",
+      "createdTime": "2025-09-25T14:00:00Z",
+      "lastFillTime": "2025-09-25T14:00:00Z",
+      "quantity": 2.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 1520.080276332,
+      "orderSubmissionData": {
+        "bidPrice": 760.040138166,
+        "askPrice": 760.040138166,
+        "lastPrice": 760.040138166
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-61-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 61,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1758808800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 2.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-61-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 61,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1758808800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 760.040138166,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 2.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/24/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 2.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 62,
+      "contingentId": 0,
+      "brokerId": [
+        "62"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 442.79,
+      "priceCurrency": "USD",
+      "time": "2025-09-25T14:00:00Z",
+      "createdTime": "2025-09-25T14:00:00Z",
+      "lastFillTime": "2025-09-25T14:00:00Z",
+      "quantity": -8.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3542.32,
+      "orderSubmissionData": {
+        "bidPrice": 442.79,
+        "askPrice": 442.79,
+        "lastPrice": 442.79
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-62-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 62,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1758808800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -8.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-62-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 62,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1758808800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 442.79,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -8.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 09/24/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -8.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 63,
+      "contingentId": 0,
+      "brokerId": [
+        "63"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 595.33287891,
+      "priceCurrency": "USD",
+      "time": "2025-09-25T14:00:00Z",
+      "createdTime": "2025-09-25T14:00:00Z",
+      "lastFillTime": "2025-09-25T14:00:00Z",
+      "quantity": 15.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 8929.99318365,
+      "orderSubmissionData": {
+        "bidPrice": 595.33287891,
+        "askPrice": 595.33287891,
+        "lastPrice": 595.33287891
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-63-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 63,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1758808800.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 15.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-63-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 63,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1758808800.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 595.33287891,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 15.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 09/24/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 15.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 64,
+      "contingentId": 0,
+      "brokerId": [
+        "64"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 187.229570732,
+      "priceCurrency": "USD",
+      "time": "2025-10-02T14:00:00Z",
+      "createdTime": "2025-10-02T14:00:00Z",
+      "lastFillTime": "2025-10-02T14:00:00Z",
+      "quantity": -29.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -5429.657551228,
+      "orderSubmissionData": {
+        "bidPrice": 187.229570732,
+        "askPrice": 187.229570732,
+        "lastPrice": 187.229570732
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-64-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 64,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1759413600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -29.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-64-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 64,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1759413600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 187.229570732,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -29.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 10/01/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -29.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 65,
+      "contingentId": 0,
+      "brokerId": [
+        "65"
+      ],
+      "symbol": {
+        "value": "META",
+        "id": "FB V6OIPNZEM8V9",
+        "permtick": "META"
+      },
+      "price": 716.755439634,
+      "priceCurrency": "USD",
+      "time": "2025-10-02T14:00:00Z",
+      "createdTime": "2025-10-02T14:00:00Z",
+      "lastFillTime": "2025-10-02T14:00:00Z",
+      "quantity": 7.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 5017.288077438,
+      "orderSubmissionData": {
+        "bidPrice": 716.755439634,
+        "askPrice": 716.755439634,
+        "lastPrice": 716.755439634
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-65-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 65,
+          "orderEventId": 1,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1759413600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 7.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-65-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 65,
+          "orderEventId": 2,
+          "symbol": "FB V6OIPNZEM8V9",
+          "symbolValue": "META",
+          "symbolPermtick": "FB",
+          "time": 1759413600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 716.755439634,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 7.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 10/01/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 7.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 66,
+      "contingentId": 0,
+      "brokerId": [
+        "66"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 459.46,
+      "priceCurrency": "USD",
+      "time": "2025-10-02T14:00:00Z",
+      "createdTime": "2025-10-02T14:00:00Z",
+      "lastFillTime": "2025-10-02T14:00:00Z",
+      "quantity": -8.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3675.68,
+      "orderSubmissionData": {
+        "bidPrice": 459.46,
+        "askPrice": 459.46,
+        "lastPrice": 459.46
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-66-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 66,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1759413600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -8.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-66-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 66,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1759413600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 459.46,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -8.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 10/01/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -8.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 67,
+      "contingentId": 0,
+      "brokerId": [
+        "67"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 602.473677575,
+      "priceCurrency": "USD",
+      "time": "2025-10-02T14:00:00Z",
+      "createdTime": "2025-10-02T14:00:00Z",
+      "lastFillTime": "2025-10-02T14:00:00Z",
+      "quantity": 14.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 8434.63148605,
+      "orderSubmissionData": {
+        "bidPrice": 602.473677575,
+        "askPrice": 602.473677575,
+        "lastPrice": 602.473677575
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-67-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 67,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1759413600.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 14.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-67-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 67,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1759413600.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 602.473677575,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 14.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 10/01/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 14.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 68,
+      "contingentId": 0,
+      "brokerId": [
+        "68"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 257.81006889,
+      "priceCurrency": "USD",
+      "time": "2025-10-09T14:00:00Z",
+      "createdTime": "2025-10-09T14:00:00Z",
+      "lastFillTime": "2025-10-09T14:00:00Z",
+      "quantity": -11.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2835.91075779,
+      "orderSubmissionData": {
+        "bidPrice": 257.81006889,
+        "askPrice": 257.81006889,
+        "lastPrice": 257.81006889
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-68-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 68,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1760018400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -11.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-68-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 68,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1760018400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 257.81006889,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -11.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 10/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -11.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 69,
+      "contingentId": 0,
+      "brokerId": [
+        "69"
+      ],
+      "symbol": {
+        "value": "MSFT",
+        "id": "MSFT R735QTJ8XC9X",
+        "permtick": "MSFT"
+      },
+      "price": 523.869527715,
+      "priceCurrency": "USD",
+      "time": "2025-10-09T14:00:00Z",
+      "createdTime": "2025-10-09T14:00:00Z",
+      "lastFillTime": "2025-10-09T14:00:00Z",
+      "quantity": -7.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3667.086694005,
+      "orderSubmissionData": {
+        "bidPrice": 523.869527715,
+        "askPrice": 523.869527715,
+        "lastPrice": 523.869527715
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-69-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 69,
+          "orderEventId": 1,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1760018400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -7.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-69-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 69,
+          "orderEventId": 2,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1760018400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 523.869527715,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -7.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 10/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -7.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 70,
+      "contingentId": 0,
+      "brokerId": [
+        "70"
+      ],
+      "symbol": {
+        "value": "AMZN",
+        "id": "AMZN R735QTJ8XC9X",
+        "permtick": "AMZN"
+      },
+      "price": 225.22,
+      "priceCurrency": "USD",
+      "time": "2025-10-09T14:00:00Z",
+      "createdTime": "2025-10-09T14:00:00Z",
+      "lastFillTime": "2025-10-09T14:00:00Z",
+      "quantity": -13.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2927.86,
+      "orderSubmissionData": {
+        "bidPrice": 225.22,
+        "askPrice": 225.22,
+        "lastPrice": 225.22
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-70-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 70,
+          "orderEventId": 1,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1760018400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -13.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-70-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 70,
+          "orderEventId": 2,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1760018400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 225.22,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -13.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 10/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -13.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 71,
+      "contingentId": 0,
+      "brokerId": [
+        "71"
+      ],
+      "symbol": {
+        "value": "TSLA",
+        "id": "TSLA UNU3P8Y3WFAD",
+        "permtick": "TSLA"
+      },
+      "price": 438.69,
+      "priceCurrency": "USD",
+      "time": "2025-10-09T14:00:00Z",
+      "createdTime": "2025-10-09T14:00:00Z",
+      "lastFillTime": "2025-10-09T14:00:00Z",
+      "quantity": 8.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 3509.52,
+      "orderSubmissionData": {
+        "bidPrice": 438.69,
+        "askPrice": 438.69,
+        "lastPrice": 438.69
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-71-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 71,
+          "orderEventId": 1,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1760018400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 8.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-71-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 71,
+          "orderEventId": 2,
+          "symbol": "TSLA UNU3P8Y3WFAD",
+          "symbolValue": "TSLA",
+          "symbolPermtick": "TSLA",
+          "time": 1760018400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 438.69,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 8.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 10/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 8.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 72,
+      "contingentId": 0,
+      "brokerId": [
+        "72"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 610.653137864,
+      "priceCurrency": "USD",
+      "time": "2025-10-09T14:00:00Z",
+      "createdTime": "2025-10-09T14:00:00Z",
+      "lastFillTime": "2025-10-09T14:00:00Z",
+      "quantity": 22.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 13434.369033008,
+      "orderSubmissionData": {
+        "bidPrice": 610.653137864,
+        "askPrice": 610.653137864,
+        "lastPrice": 610.653137864
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-72-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 72,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1760018400.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 22.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-72-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 72,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1760018400.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 610.653137864,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 22.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 10/08/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 22.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 73,
+      "contingentId": 0,
+      "brokerId": [
+        "73"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 249.09851421,
+      "priceCurrency": "USD",
+      "time": "2025-10-16T14:00:00Z",
+      "createdTime": "2025-10-16T14:00:00Z",
+      "lastFillTime": "2025-10-16T14:00:00Z",
+      "quantity": 11.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2740.08365631,
+      "orderSubmissionData": {
+        "bidPrice": 249.09851421,
+        "askPrice": 249.09851421,
+        "lastPrice": 249.09851421
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-73-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 73,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1760623200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 11.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-73-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 73,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1760623200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 249.09851421,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 11.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 10/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 11.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 74,
+      "contingentId": 0,
+      "brokerId": [
+        "74"
+      ],
+      "symbol": {
+        "value": "MSFT",
+        "id": "MSFT R735QTJ8XC9X",
+        "permtick": "MSFT"
+      },
+      "price": 512.470861417,
+      "priceCurrency": "USD",
+      "time": "2025-10-16T14:00:00Z",
+      "createdTime": "2025-10-16T14:00:00Z",
+      "lastFillTime": "2025-10-16T14:00:00Z",
+      "quantity": 4.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2049.883445668,
+      "orderSubmissionData": {
+        "bidPrice": 512.470861417,
+        "askPrice": 512.470861417,
+        "lastPrice": 512.470861417
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-74-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 74,
+          "orderEventId": 1,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1760623200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 4.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-74-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 74,
+          "orderEventId": 2,
+          "symbol": "MSFT R735QTJ8XC9X",
+          "symbolValue": "MSFT",
+          "symbolPermtick": "MSFT",
+          "time": 1760623200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 512.470861417,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 4.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 10/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 4.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 75,
+      "contingentId": 0,
+      "brokerId": [
+        "75"
+      ],
+      "symbol": {
+        "value": "GOOGL",
+        "id": "GOOG T1AZ164W5VTX",
+        "permtick": "GOOGL"
+      },
+      "price": 250.865901689,
+      "priceCurrency": "USD",
+      "time": "2025-10-16T14:00:00Z",
+      "createdTime": "2025-10-16T14:00:00Z",
+      "lastFillTime": "2025-10-16T14:00:00Z",
+      "quantity": -15.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -3762.988525335,
+      "orderSubmissionData": {
+        "bidPrice": 250.865901689,
+        "askPrice": 250.865901689,
+        "lastPrice": 250.865901689
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-75-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 75,
+          "orderEventId": 1,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1760623200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -15.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-75-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 75,
+          "orderEventId": 2,
+          "symbol": "GOOG T1AZ164W5VTX",
+          "symbolValue": "GOOGL",
+          "symbolPermtick": "GOOG",
+          "time": 1760623200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 250.865901689,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -15.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 10/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -15.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 76,
+      "contingentId": 0,
+      "brokerId": [
+        "76"
+      ],
+      "symbol": {
+        "value": "AMZN",
+        "id": "AMZN R735QTJ8XC9X",
+        "permtick": "AMZN"
+      },
+      "price": 215.57,
+      "priceCurrency": "USD",
+      "time": "2025-10-16T14:00:00Z",
+      "createdTime": "2025-10-16T14:00:00Z",
+      "lastFillTime": "2025-10-16T14:00:00Z",
+      "quantity": 17.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 3664.69,
+      "orderSubmissionData": {
+        "bidPrice": 215.57,
+        "askPrice": 215.57,
+        "lastPrice": 215.57
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-76-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 76,
+          "orderEventId": 1,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1760623200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 17.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-76-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 76,
+          "orderEventId": 2,
+          "symbol": "AMZN R735QTJ8XC9X",
+          "symbolValue": "AMZN",
+          "symbolPermtick": "AMZN",
+          "time": 1760623200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 215.57,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 17.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 10/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 17.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 77,
+      "contingentId": 0,
+      "brokerId": [
+        "77"
+      ],
+      "symbol": {
+        "value": "NVDA",
+        "id": "NVDA RHM8UTD8DT2D",
+        "permtick": "NVDA"
+      },
+      "price": 179.819983469,
+      "priceCurrency": "USD",
+      "time": "2025-10-16T14:00:00Z",
+      "createdTime": "2025-10-16T14:00:00Z",
+      "lastFillTime": "2025-10-16T14:00:00Z",
+      "quantity": 15.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 0,
+      "value": 2697.299752035,
+      "orderSubmissionData": {
+        "bidPrice": 179.819983469,
+        "askPrice": 179.819983469,
+        "lastPrice": 179.819983469
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-77-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 77,
+          "orderEventId": 1,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1760623200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "buy",
+          "message": null,
+          "isAssignment": false,
+          "quantity": 15.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-77-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 77,
+          "orderEventId": 2,
+          "symbol": "NVDA RHM8UTD8DT2D",
+          "symbolValue": "NVDA",
+          "symbolPermtick": "NVDA",
+          "time": 1760623200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 179.819983469,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 15.0,
+          "direction": "buy",
+          "message": "Warning: No quote information available at 10/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": 15.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 78,
+      "contingentId": 0,
+      "brokerId": [
+        "78"
+      ],
+      "symbol": {
+        "value": "QQQ",
+        "id": "QQQ RIWIV7K5Z9LX",
+        "permtick": "QQQ"
+      },
+      "price": 601.445003082,
+      "priceCurrency": "USD",
+      "time": "2025-10-16T14:00:00Z",
+      "createdTime": "2025-10-16T14:00:00Z",
+      "lastFillTime": "2025-10-16T14:00:00Z",
+      "quantity": -14.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -8420.230043148,
+      "orderSubmissionData": {
+        "bidPrice": 601.445003082,
+        "askPrice": 601.445003082,
+        "lastPrice": 601.445003082
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-78-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 78,
+          "orderEventId": 1,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1760623200.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -14.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-78-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 78,
+          "orderEventId": 2,
+          "symbol": "QQQ RIWIV7K5Z9LX",
+          "symbolValue": "QQQ",
+          "symbolPermtick": "QQQ",
+          "time": 1760623200.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 601.445003082,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -14.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 10/15/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -14.0
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "id": 79,
+      "contingentId": 0,
+      "brokerId": [
+        "79"
+      ],
+      "symbol": {
+        "value": "AAPL",
+        "id": "AAPL R735QTJ8XC9X",
+        "permtick": "AAPL"
+      },
+      "price": 258.199691175,
+      "priceCurrency": "USD",
+      "time": "2025-10-23T14:00:00Z",
+      "createdTime": "2025-10-23T14:00:00Z",
+      "lastFillTime": "2025-10-23T14:00:00Z",
+      "quantity": -11.0,
+      "status": 3,
+      "tag": "",
+      "properties": {
+        "timeInForce": {}
+      },
+      "securityType": 1,
+      "direction": 1,
+      "value": -2840.196602925,
+      "orderSubmissionData": {
+        "bidPrice": 258.199691175,
+        "askPrice": 258.199691175,
+        "lastPrice": 258.199691175
+      },
+      "isMarketable": true,
+      "priceAdjustmentMode": 1,
+      "events": [
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-79-1",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 79,
+          "orderEventId": 1,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1761228000.0,
+          "status": "submitted",
+          "fillPrice": 0.0,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": 0.0,
+          "direction": "sell",
+          "message": null,
+          "isAssignment": false,
+          "quantity": -11.0
+        },
+        {
+          "id": "a61d1f32651722d74dd98c6da5d339c2-79-2",
+          "algorithmId": "a61d1f32651722d74dd98c6da5d339c2",
+          "orderId": 79,
+          "orderEventId": 2,
+          "symbol": "AAPL R735QTJ8XC9X",
+          "symbolValue": "AAPL",
+          "symbolPermtick": "AAPL",
+          "time": 1761228000.0,
+          "status": "filled",
+          "orderFeeAmount": 1.0,
+          "orderFeeCurrency": "USD",
+          "fillPrice": 258.199691175,
+          "fillPriceCurrency": "USD",
+          "fillQuantity": -11.0,
+          "direction": "sell",
+          "message": "Warning: No quote information available at 10/22/2025 16:00:00 America/New_York, order filled using TradeBar data",
+          "isAssignment": false,
+          "quantity": -11.0
+        }
+      ]
+    }
+  ],
+  "raw_charts_data": {
+    "Strategy Equity": {
+      "name": "Strategy Equity"
+    },
+    "Benchmark": {
+      "name": "Benchmark"
+    },
+    "Portfolio Margin": {
+      "name": "Portfolio Margin"
+    },
+    "Assets Sales Volume": {
+      "name": "Assets Sales Volume"
+    },
+    "Drawdown": {
+      "name": "Drawdown"
+    },
+    "Portfolio Turnover": {
+      "name": "Portfolio Turnover"
+    },
+    "Exposure": {
+      "name": "Exposure"
+    },
+    "Capacity": {
+      "name": "Capacity"
+    }
+  }
+}

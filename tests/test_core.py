@@ -1,9 +1,12 @@
 """
-测试核心功能，验证外部调用的正确性
+Test core functionality
+
+Tests the internal core module (not part of public API).
 """
 
 import pytest
-from quant1024 import QuantStrategy, calculate_returns, calculate_sharpe_ratio
+# Import from internal modules directly (not public API)
+from quant1024.core import QuantStrategy, calculate_returns, calculate_sharpe_ratio
 
 
 class SimpleMovingAverageStrategy(QuantStrategy):
@@ -187,9 +190,9 @@ class TestExternalPackageIntegration:
     """测试外部软件集成场景"""
     
     def test_typical_usage_workflow(self):
-        """测试典型的使用流程"""
-        # 1. 外部软件导入包
-        from quant1024 import QuantStrategy, calculate_returns, calculate_sharpe_ratio
+        """Test typical usage workflow"""
+        # 1. Import from internal modules
+        from quant1024.core import QuantStrategy, calculate_returns, calculate_sharpe_ratio
         
         # 2. 创建自定义策略
         class CustomStrategy(QuantStrategy):
